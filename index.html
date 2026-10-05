@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>RSCWC Region II | Cagayan Valley Child Welfare & Regional News Portal</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            oxford: '#07172e',        // Deepest Midnight Oxford Navy
+            midnight: '#0b2246',      // Regional Institutional Navy
+            navyDeep: '#0f2e5a',      // Medium Deep Navy
+            navySurface: '#153a6e',   // Elevated Card & Header Navy
+            cobaltDark: '#1d4ed8',    // Deep Cobalt Blue
+            cobalt: '#2563eb',        // Primary Action Royal Blue
+            cobaltHover: '#1e40af',   // Hover State Cobalt
+            azure: '#0284c7',         // Sky Ocean Azure
+            skyElectric: '#0ea5e9',   // Electric Sky Accent
+            cyanGlow: '#38bdf8',      // High-Contrast Cyan & Active Tone
+            iceGlacier: '#bae6fd',    // Soft Glacier Tint
+            iceBorder: '#dbeafe',     // Light Slate Blue Border
+            iceBg: '#f0f7ff',         // Pale Ice Surface Tint
+            canvasBlue: '#f8fbff',    // Ultra Light Clean Background
+            inkBlue: '#0a1d37',       // Primary Text Dark Navy
+            slateBlueText: '#354e70'  // Muted Body Slate Blue
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+          },
+          screens: {
+            'xs': '420px'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* COMPACT OFFSET: Calibrated to match the exact sticky header height */
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 104px;
+    }
+    @media (max-width: 1023px) {
+      html {
+        scroll-padding-top: 76px;
+      }
+    }
+
+    /* Family of Blue Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f0f7ff; }
+    ::-webkit-scrollbar-thumb { background: #93c5fd; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #2563eb; }
+
+    /* Modal Backdrop Glass Effect */
+    .modal-backdrop {
+      background: rgba(7, 23, 46, 0.88);
+      backdrop-filter: blur(6px);
+    }
+
+    /* Marquee Animation */
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    .animate-marquee {
+      display: inline-block;
+      white-space: nowrap;
+      animation: marquee 30s linear infinite;
+    }
+    .animate-marquee:hover { animation-play-state: paused; }
+
+    /* Smooth accordion transition */
+    .accordion-content {
+      transition: max-height 0.3s ease-out, opacity 0.2s ease-out;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+    }
+    .accordion-content.open {
+      max-height: 520px;
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body id="home" class="bg-canvasBlue text-inkBlue antialiased font-sans flex flex-col min-h-screen relative selection:bg-cyanGlow selection:text-oxford overflow-x-hidden">
+
+  <!-- 1. TOP GOVPH BLUE BAR & LIVE PHILIPPINE STANDARD TIME (PST) -->
+  <aside aria-label="Official GovPH Top Bar" class="bg-gradient-to-r from-oxford via-midnight to-navyDeep text-blue-100 text-[10px] sm:text-[11px] py-1.5 px-3 sm:px-4 border-b border-cyanGlow/20 z-50">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      
+      <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
+        <a href="https://www.gov.ph" target="_blank" rel="noopener" class="font-extrabold text-white hover:text-cyanGlow transition-colors flex items-center gap-1.5 uppercase tracking-wider">
+          <i class="fa-solid fa-landmark text-cyanGlow text-xs"></i> GOVPH
+        </a>
+        <span class="text-blue-300/40">|</span>
+        <span class="hidden md:inline text-blue-100 font-medium">
+          Council for the Welfare of Children • Region II (Cagayan Valley)
+        </span>
+        <span class="md:hidden text-blue-100 truncate max-w-[170px] xs:max-w-none">
+          CWC • Region II
+        </span>
+      </div>
+
+      <div class="flex items-center gap-2 sm:gap-3 ml-auto">
+        <div class="hidden sm:flex items-center gap-1 font-mono text-cyanGlow">
+          <i class="fa-regular fa-clock text-xs"></i>
+          <span class="hidden lg:inline text-blue-200">PST:</span>
+          <span id="pstClock" class="font-bold text-white">Loading...</span>
+        </div>
+        
+        <span class="text-blue-300/40 hidden sm:inline">|</span>
+
+        <div class="flex items-center gap-1">
+          <button onclick="toggleHighContrast()" title="Toggle High Contrast" class="px-2 py-0.5 rounded bg-navySurface hover:bg-cobalt text-white font-bold transition-all text-[10px] flex items-center gap-1 min-h-[24px] border border-cyanGlow/30">
+            <i class="fa-solid fa-circle-half-stroke text-cyanGlow"></i>
+            <span class="hidden xs:inline">Contrast</span>
+          </button>
+          <button onclick="adjustFontSize(1)" title="Increase Font Size" class="px-2 py-0.5 rounded bg-navySurface hover:bg-cobalt text-white font-bold text-[10px] min-h-[24px] border border-cyanGlow/30">A+</button>
+          <button onclick="adjustFontSize(-1)" title="Decrease Font Size" class="px-2 py-0.5 rounded bg-navySurface hover:bg-cobalt text-white font-bold text-[10px] min-h-[24px] border border-cyanGlow/30">A-</button>
+        </div>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- 2. COMPACT REGIONAL BRANDING & CIVIC HEADER -->
+  <header class="bg-white border-b-2 border-cobalt shadow-sm sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-3 sm:px-4 py-2 flex flex-col md:flex-row items-center justify-between gap-2.5 sm:gap-3">
+      
+      <!-- Institutional Logos -->
+      <div class="flex items-center gap-2.5 w-full md:w-auto">
+        <div class="flex items-center -space-x-1.5 flex-shrink-0">
+          <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-gradient-to-br from-oxford to-cobalt text-cyanGlow flex items-center justify-center font-bold text-base sm:text-lg shadow border-2 border-white relative z-20">
+            <i class="fa-solid fa-hands-holding-child"></i>
+          </div>
+          <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-azure text-white flex items-center justify-center font-bold text-base sm:text-lg shadow border-2 border-white relative z-10">
+            <i class="fa-solid fa-landmark"></i>
+          </div>
+          <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-navyDeep text-iceGlacier flex items-center justify-center font-bold text-sm sm:text-base shadow border-2 border-white hidden xs:flex">
+            <i class="fa-solid fa-shield-cat"></i>
+          </div>
+        </div>
+
+        <div class="min-w-0 flex-1">
+          <div class="text-[9px] sm:text-[10px] uppercase tracking-widest font-extrabold text-azure flex items-center gap-1.5 truncate">
+            <span>Republic of the Philippines</span>
+            <span>•</span>
+            <span class="text-cobaltDark font-bold">Region II</span>
+          </div>
+          <h1 class="text-xs sm:text-sm md:text-base font-extrabold text-midnight tracking-tight leading-tight truncate sm:whitespace-normal">
+            REGIONAL SUB-COMMITTEE FOR THE WELFARE OF CHILDREN
+          </h1>
+          <p class="text-[10px] sm:text-[11px] text-slateBlueText font-medium truncate sm:whitespace-normal hidden xs:block">
+            Secretariat: DSWD Field Office 02, Regional Government Center, Carig Sur, Tuguegarao City
+          </p>
+        </div>
+
+        <!-- Mobile Hamburger -->
+        <button id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Toggle Navigation Menu" class="lg:hidden p-2 rounded-xl bg-iceBg text-midnight border border-iceBorder hover:bg-iceGlacier transition-colors flex-shrink-0 flex items-center justify-center min-w-[40px] min-h-[40px]">
+          <i id="menuIcon" class="fa-solid fa-bars text-sm text-cobalt"></i>
+        </button>
+      </div>
+
+      <!-- Compact Makabata 1383 Hotline -->
+      <div class="hidden lg:flex items-center gap-3 flex-shrink-0">
+        <a href="tel:1383" class="bg-gradient-to-r from-midnight via-navySurface to-cobalt text-white px-3.5 py-1.5 rounded-xl shadow border border-cyanGlow/40 hover:border-cyanGlow transition-all flex items-center gap-2.5 group">
+          <div class="w-7 h-7 rounded-lg bg-cyanGlow text-oxford flex items-center justify-center text-xs font-bold shadow group-hover:scale-105 transition-transform">
+            <i class="fa-solid fa-phone-volume"></i>
+          </div>
+          <div class="text-left">
+            <div class="text-[9px] text-cyanGlow uppercase font-extrabold leading-none tracking-wide">Makabata 24/7 Hotline</div>
+            <div class="text-xs font-extrabold font-mono leading-tight mt-0.5 text-white">DIAL 1383 (TOLL-FREE)</div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- 3. COMPACT NAVIGATION BAR -->
+    <nav class="bg-midnight text-blue-100 text-xs font-semibold shadow-inner border-t border-navyDeep hidden lg:block">
+      <div class="max-w-7xl mx-auto px-4 flex items-center justify-between">
+        
+        <div class="flex items-center space-x-1">
+          
+          <!-- Home Button (Direct to Absolute Top 0,0) -->
+          <a href="#home" onclick="scrollToTop(event)" class="hover:bg-navySurface text-white hover:text-cyanGlow transition-colors px-3 py-2 flex items-center gap-1.5 border-b-2 border-transparent hover:border-cyanGlow font-bold">
+            <i class="fa-solid fa-house text-cyanGlow text-[11px]"></i> Home
+          </a>
+
+          <!-- Subheading Group 1: News & Advisories -->
+          <div class="relative group">
+            <button onclick="navigateAndFilterNews('ALL')" class="hover:bg-navySurface hover:text-cyanGlow transition-colors px-3 py-2 flex items-center gap-1 border-b-2 border-transparent group-hover:border-cyanGlow">
+              <span>News & Advisories</span>
+              <i class="fa-solid fa-chevron-down text-[10px] ml-0.5 opacity-80 group-hover:rotate-180 transition-transform"></i>
+            </button>
+            <div class="absolute left-0 top-full hidden group-hover:block w-72 bg-white text-slateBlueText rounded-b-2xl shadow-2xl border-t-2 border-cyanGlow border-x border-b border-iceBorder py-1.5 z-50">
+              <a href="javascript:void(0)" onclick="navigateAndFilterNews('ALL')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight">All Regional Bulletins</div>
+                <div class="text-[10px] text-slateBlueText">Full news archive & updates</div>
+              </a>
+              <a href="javascript:void(0)" onclick="navigateAndFilterNews('CFLGA')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight">CFLGA Governance Circulars</div>
+                <div class="text-[10px] text-slateBlueText">93 LGU validation memos</div>
+              </a>
+              <a href="javascript:void(0)" onclick="navigateAndFilterNews('EMERGENCY')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight">CEPC Flood & Disaster Alerts</div>
+                <div class="text-[10px] text-slateBlueText">Cagayan basin evacuation relief</div>
+              </a>
+              <a href="javascript:void(0)" onclick="navigateAndFilterNews('PROTECTION')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors">
+                <div class="font-bold text-midnight">Anti-OSAEC & Child Rights</div>
+                <div class="text-[10px] text-slateBlueText">Digital protection & victim rescue</div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Subheading Group 2: 5-Province Directory -->
+          <div class="relative group">
+            <button onclick="navigateAndFilterHotlines('ALL')" class="hover:bg-navySurface hover:text-cyanGlow transition-colors px-3 py-2 flex items-center gap-1 border-b-2 border-transparent group-hover:border-cyanGlow">
+              <span>Directory & Hotlines</span>
+              <i class="fa-solid fa-chevron-down text-[10px] ml-0.5 opacity-80 group-hover:rotate-180 transition-transform"></i>
+            </button>
+            <div class="absolute left-0 top-full hidden group-hover:block w-72 bg-white text-slateBlueText rounded-b-2xl shadow-2xl border-t-2 border-cobalt border-x border-b border-iceBorder py-1.5 z-50">
+              <a href="javascript:void(0)" onclick="navigateAndFilterHotlines('ALL')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight">5-Province Overview</div>
+                <div class="text-[10px] text-slateBlueText">Emergency desks & PSWDO lines</div>
+              </a>
+              <a href="javascript:void(0)" onclick="navigateAndFilterHotlines('REGIONAL')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight">Regional HQ (Carig Sur Desk)</div>
+                <div class="text-[10px] text-slateBlueText">DSWD FO2 & PNP PRO2 WCPD HQ</div>
+              </a>
+              <a href="javascript:void(0)" onclick="navigateAndFilterHotlines('CAGAYAN')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight">Cagayan Province Desk</div>
+                <div class="text-[10px] text-slateBlueText">PSWDO & CPPO Police Desks</div>
+              </a>
+              <a href="javascript:void(0)" onclick="navigateAndFilterHotlines('ISABELA')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight">Isabela Province Desk</div>
+                <div class="text-[10px] text-slateBlueText">PSWDO & IPPO Police Desks</div>
+              </a>
+              <a href="javascript:void(0)" onclick="navigateAndFilterHotlines('NUEVA_VIZCAYA')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight">Nueva Vizcaya Desk</div>
+                <div class="text-[10px] text-slateBlueText">PSWDO & NVPPO Police Desks</div>
+              </a>
+              <a href="javascript:void(0)" onclick="navigateAndFilterHotlines('QUIRINO')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight">Quirino Province Desk</div>
+                <div class="text-[10px] text-slateBlueText">PSWDO & QPPO Police Desks</div>
+              </a>
+              <a href="javascript:void(0)" onclick="navigateAndFilterHotlines('BATANES')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors">
+                <div class="font-bold text-midnight">Batanes Archipelago Desk</div>
+                <div class="text-[10px] text-slateBlueText">Island PSWDO & BPPO Police Desks</div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Subheading Group 3: Programs & Frameworks -->
+          <div class="relative group">
+            <button onclick="scrollToSection('programs-section')" class="hover:bg-navySurface hover:text-cyanGlow transition-colors px-3 py-2 flex items-center gap-1 border-b-2 border-transparent group-hover:border-cyanGlow">
+              <span>Programs & Frameworks</span>
+              <i class="fa-solid fa-chevron-down text-[10px] ml-0.5 opacity-80 group-hover:rotate-180 transition-transform"></i>
+            </button>
+            <div class="absolute left-0 top-full hidden group-hover:block w-80 bg-white text-slateBlueText rounded-b-2xl shadow-2xl border-t-2 border-cobalt border-x border-b border-iceBorder py-1.5 z-50">
+              <a href="javascript:void(0)" onclick="openProgramModal('rpac')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight">Regional Plan of Action for Children (RPAC)</div>
+                <div class="text-[10px] text-slateBlueText">5-year master plan (2023–2028)</div>
+              </a>
+              <a href="javascript:void(0)" onclick="openProgramModal('cflga')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight">Child-Friendly Governance Audit (CFLGA)</div>
+                <div class="text-[10px] text-slateBlueText">Annual evaluation of 93 LGUs</div>
+              </a>
+              <a href="javascript:void(0)" onclick="openProgramModal('cepc')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight">Children in Emergencies (RA 10821 CEPC)</div>
+                <div class="text-[10px] text-slateBlueText">River basin evacuation safeguards</div>
+              </a>
+              <a href="javascript:void(0)" onclick="openProgramModal('osaec')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight">Anti-OSAEC & CSAEM Regional Taskforce</div>
+                <div class="text-[10px] text-slateBlueText">RA 11930 digital defense network</div>
+              </a>
+              <a href="javascript:void(0)" onclick="openProgramModal('eccd')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight">ECCD & Daycare Worker Accreditation</div>
+                <div class="text-[10px] text-slateBlueText">1,840+ validated CDCs across Region II</div>
+              </a>
+              <a href="javascript:void(0)" onclick="openProgramModal('jjwa')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors">
+                <div class="font-bold text-midnight">Juvenile Justice & Bahay Pag-asa Network</div>
+                <div class="text-[10px] text-slateBlueText">RA 9344 / 10630 youth diversion</div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Subheading Group 4: Policy Downloads -->
+          <div class="relative group">
+            <button onclick="scrollToSection('resources-section')" class="hover:bg-navySurface hover:text-cyanGlow transition-colors px-3 py-2 flex items-center gap-1 border-b-2 border-transparent group-hover:border-cyanGlow">
+              <span>Policy Downloads</span>
+              <i class="fa-solid fa-chevron-down text-[10px] ml-0.5 opacity-80 group-hover:rotate-180 transition-transform"></i>
+            </button>
+            <div class="absolute left-0 top-full hidden group-hover:block w-72 bg-white text-slateBlueText rounded-b-2xl shadow-2xl border-t-2 border-cobalt border-x border-b border-iceBorder py-1.5 z-50">
+              <a href="assets/docs/RPAC_Region2_2023-2028_Framework.pdf" download class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight"><i class="fa-solid fa-file-pdf text-cobalt mr-1.5"></i> RPAC 2023–2028 Manual</div>
+                <div class="text-[10px] text-slateBlueText">Official framework publication (PDF)</div>
+              </a>
+              <a href="assets/docs/CFLGA_2026_Audit_Indicators_R2.xlsx" download class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight"><i class="fa-solid fa-file-excel text-azure mr-1.5"></i> CFLGA 2026 Scoring Rubric</div>
+                <div class="text-[10px] text-slateBlueText">Official LGU assessment template (XLSX)</div>
+              </a>
+              <a href="assets/docs/CEPC_RA10821_Cagayan_Basin_Guidelines.pdf" download class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight"><i class="fa-solid fa-file-shield text-skyElectric mr-1.5"></i> CEPC Flood Guidelines</div>
+                <div class="text-[10px] text-slateBlueText">Child-Friendly Space evacuation SOPs (PDF)</div>
+              </a>
+              <a href="javascript:void(0)" onclick="scrollToSection('resources-section')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors">
+                <div class="font-bold text-midnight">All Toolkits & Circulars →</div>
+                <div class="text-[10px] text-slateBlueText">Access repository section</div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Subheading Group 5: About Us -->
+          <div class="relative group">
+            <button onclick="scrollToSection('org-structure-section')" class="hover:bg-navySurface hover:text-cyanGlow transition-colors px-3 py-2 flex items-center gap-1 border-b-2 border-transparent group-hover:border-cyanGlow">
+              <span>About Us</span>
+              <i class="fa-solid fa-chevron-down text-[10px] ml-0.5 opacity-80 group-hover:rotate-180 transition-transform"></i>
+            </button>
+            <div class="absolute left-0 top-full hidden group-hover:block w-72 bg-white text-slateBlueText rounded-b-2xl shadow-2xl border-t-2 border-cobalt border-x border-b border-iceBorder py-1.5 z-50">
+              <a href="javascript:void(0)" onclick="openAboutModal('mandate')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight">Mandate & Legal Basis</div>
+                <div class="text-[10px] text-slateBlueText">Executive Order 233 & CWC arm</div>
+              </a>
+              <a href="javascript:void(0)" onclick="openAboutModal('vision')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight">Vision, Mission & Core Values</div>
+                <div class="text-[10px] text-slateBlueText">Institutional child rights principles</div>
+              </a>
+              <a href="javascript:void(0)" onclick="navigateAndSwitchOrg('chart')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight">Organizational Structure</div>
+                <div class="text-[10px] text-slateBlueText">Executive hierarchy & line desks</div>
+              </a>
+              <a href="javascript:void(0)" onclick="navigateAndSwitchOrg('table')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight">Personnel Directory</div>
+                <div class="text-[10px] text-slateBlueText">Live roster from Google Sheet</div>
+              </a>
+              <a href="javascript:void(0)" onclick="openAboutModal('charter')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors">
+                <div class="font-bold text-midnight">Citizen's Charter</div>
+                <div class="text-[10px] text-slateBlueText">Service standards & ARTA pledges</div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="text-xs text-cyanGlow font-mono py-1.5 flex items-center gap-1.5">
+          <i class="fa-solid fa-location-dot"></i> <span>RSCWC REGION II</span>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- MOBILE ACCORDION DRAWER -->
+    <div id="mobileMenuDrawer" class="hidden lg:hidden bg-gradient-to-b from-oxford to-midnight text-white border-t border-cyanGlow/30 px-4 py-2.5 space-y-1.5 text-xs max-h-[82vh] overflow-y-auto">
+      
+      <a href="tel:1383" class="w-full bg-cobalt hover:bg-cobaltHover text-white p-2.5 rounded-xl font-bold flex items-center justify-center gap-2 mb-1.5 shadow border border-cyanGlow/40">
+        <i class="fa-solid fa-phone-volume text-cyanGlow"></i>
+        <span>CALL MAKABATA 1383 HOTLINE</span>
+      </a>
+
+      <!-- Mobile Home -->
+      <a href="#home" onclick="scrollToTop(event); closeMobileMenu();" class="block py-2 px-2 font-bold text-white border-b border-navySurface rounded-lg hover:bg-white/5">
+        <i class="fa-solid fa-house mr-2 text-cyanGlow"></i> Home
+      </a>
+
+      <!-- Mobile News Subheadings -->
+      <div class="border-b border-navySurface pb-1">
+        <button onclick="toggleMobileAccordion('accNews')" class="w-full flex items-center justify-between py-2 px-2 font-bold text-cyanGlow">
+          <span><i class="fa-solid fa-newspaper mr-2"></i> News & Advisories (Live)</span>
+          <i id="accNewsIcon" class="fa-solid fa-chevron-down text-[10px] transition-transform"></i>
+        </button>
+        <div id="accNews" class="accordion-content pl-6 space-y-1.5 text-[11px] text-blue-100 py-1">
+          <a href="javascript:void(0)" onclick="navigateAndFilterNews('ALL')" class="block py-1 hover:text-cyanGlow">All Regional Bulletins</a>
+          <a href="javascript:void(0)" onclick="navigateAndFilterNews('CFLGA')" class="block py-1 hover:text-cyanGlow">CFLGA Circulars</a>
+          <a href="javascript:void(0)" onclick="navigateAndFilterNews('EMERGENCY')" class="block py-1 hover:text-cyanGlow">CEPC Disaster Advisories</a>
+          <a href="javascript:void(0)" onclick="navigateAndFilterNews('PROTECTION')" class="block py-1 hover:text-cyanGlow">Child Rights & Protection</a>
+        </div>
+      </div>
+
+      <!-- Mobile Hotlines Subheadings -->
+      <div class="border-b border-navySurface pb-1">
+        <button onclick="toggleMobileAccordion('accDir')" class="w-full flex items-center justify-between py-2 px-2 font-bold text-white hover:text-cyanGlow">
+          <span><i class="fa-solid fa-phone-volume text-cyanGlow mr-2"></i> 5-Province Directory</span>
+          <i id="accDirIcon" class="fa-solid fa-chevron-down text-[10px] transition-transform"></i>
+        </button>
+        <div id="accDir" class="accordion-content pl-6 space-y-1.5 text-[11px] text-blue-100 py-1">
+          <a href="javascript:void(0)" onclick="navigateAndFilterHotlines('ALL')" class="block py-1 hover:text-cyanGlow">All 5 Provinces</a>
+          <a href="javascript:void(0)" onclick="navigateAndFilterHotlines('REGIONAL')" class="block py-1 hover:text-cyanGlow">Regional HQ (Carig Sur)</a>
+          <a href="javascript:void(0)" onclick="navigateAndFilterHotlines('CAGAYAN')" class="block py-1 hover:text-cyanGlow">Cagayan Province</a>
+          <a href="javascript:void(0)" onclick="navigateAndFilterHotlines('ISABELA')" class="block py-1 hover:text-cyanGlow">Isabela Province</a>
+          <a href="javascript:void(0)" onclick="navigateAndFilterHotlines('NUEVA_VIZCAYA')" class="block py-1 hover:text-cyanGlow">Nueva Vizcaya</a>
+          <a href="javascript:void(0)" onclick="navigateAndFilterHotlines('QUIRINO')" class="block py-1 hover:text-cyanGlow">Quirino</a>
+          <a href="javascript:void(0)" onclick="navigateAndFilterHotlines('BATANES')" class="block py-1 hover:text-cyanGlow">Batanes</a>
+        </div>
+      </div>
+
+      <!-- Mobile Programs Subheadings -->
+      <div class="border-b border-navySurface pb-1">
+        <button onclick="toggleMobileAccordion('accProg')" class="w-full flex items-center justify-between py-2 px-2 font-bold text-white hover:text-cyanGlow">
+          <span><i class="fa-solid fa-layer-group text-cyanGlow mr-2"></i> Flagship Programs</span>
+          <i id="accProgIcon" class="fa-solid fa-chevron-down text-[10px] transition-transform"></i>
+        </button>
+        <div id="accProg" class="accordion-content pl-6 space-y-1.5 text-[11px] text-blue-100 py-1">
+          <a href="javascript:void(0)" onclick="openProgramModal('rpac'); closeMobileMenu();" class="block py-1 hover:text-cyanGlow">RPAC 2023–2028 Plan</a>
+          <a href="javascript:void(0)" onclick="openProgramModal('cflga'); closeMobileMenu();" class="block py-1 hover:text-cyanGlow">CFLGA 2026 Audit</a>
+          <a href="javascript:void(0)" onclick="openProgramModal('cepc'); closeMobileMenu();" class="block py-1 hover:text-cyanGlow">RA 10821 CEPC Disaster Response</a>
+          <a href="javascript:void(0)" onclick="openProgramModal('osaec'); closeMobileMenu();" class="block py-1 hover:text-cyanGlow">Anti-OSAEC Taskforce</a>
+          <a href="javascript:void(0)" onclick="openProgramModal('eccd'); closeMobileMenu();" class="block py-1 hover:text-cyanGlow">ECCD Center Accreditation</a>
+          <a href="javascript:void(0)" onclick="openProgramModal('jjwa'); closeMobileMenu();" class="block py-1 hover:text-cyanGlow">Juvenile Justice & Bahay Pag-asa</a>
+        </div>
+      </div>
+
+      <!-- Mobile Publications Subheadings -->
+      <div class="border-b border-navySurface pb-1">
+        <button onclick="toggleMobileAccordion('accPub')" class="w-full flex items-center justify-between py-2 px-2 font-bold text-white hover:text-cyanGlow">
+          <span><i class="fa-solid fa-folder-open text-cyanGlow mr-2"></i> Policy Downloads</span>
+          <i id="accPubIcon" class="fa-solid fa-chevron-down text-[10px] transition-transform"></i>
+        </button>
+        <div id="accPub" class="accordion-content pl-6 space-y-1.5 text-[11px] text-blue-100 py-1">
+          <a href="assets/docs/RPAC_Region2_2023-2028_Framework.pdf" download class="block py-1 hover:text-cyanGlow">Download RPAC Manual (PDF)</a>
+          <a href="assets/docs/CFLGA_2026_Audit_Indicators_R2.xlsx" download class="block py-1 hover:text-cyanGlow">Download CFLGA Rubric (XLSX)</a>
+          <a href="assets/docs/CEPC_RA10821_Cagayan_Basin_Guidelines.pdf" download class="block py-1 hover:text-cyanGlow">Download CEPC Flood SOP (PDF)</a>
+          <a href="javascript:void(0)" onclick="scrollToSection('resources-section'); closeMobileMenu();" class="block py-1 text-cyanGlow font-bold">View All Downloads →</a>
+        </div>
+      </div>
+
+      <!-- Mobile About Us Subheadings -->
+      <div class="pb-1">
+        <button onclick="toggleMobileAccordion('accAbout')" class="w-full flex items-center justify-between py-2.5 px-2 font-bold text-white hover:text-cyanGlow">
+          <span><i class="fa-solid fa-landmark text-cyanGlow mr-2"></i> About Us</span>
+          <i id="accAboutIcon" class="fa-solid fa-chevron-down text-[10px] transition-transform"></i>
+        </button>
+        <div id="accAbout" class="accordion-content pl-6 space-y-1.5 text-[11px] text-blue-100 py-1">
+          <a href="javascript:void(0)" onclick="openAboutModal('mandate'); closeMobileMenu();" class="block py-1 hover:text-cyanGlow">Mandate & Legal Basis</a>
+          <a href="javascript:void(0)" onclick="openAboutModal('vision'); closeMobileMenu();" class="block py-1 hover:text-cyanGlow">Vision, Mission & Core Values</a>
+          <a href="javascript:void(0)" onclick="navigateAndSwitchOrg('chart'); closeMobileMenu();" class="block py-1 hover:text-cyanGlow">Organizational Structure</a>
+          <a href="javascript:void(0)" onclick="navigateAndSwitchOrg('table'); closeMobileMenu();" class="block py-1 hover:text-cyanGlow">Officers & Personnel Directory</a>
+          <a href="javascript:void(0)" onclick="openAboutModal('charter'); closeMobileMenu();" class="block py-1 hover:text-cyanGlow">Citizen's Charter</a>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- 4. BREAKING TICKER -->
+  <div class="bg-navyDeep text-white text-xs py-1.5 border-b border-cobalt overflow-hidden shadow-inner">
+    <div class="max-w-7xl mx-auto px-3 sm:px-4 flex items-center gap-2 sm:gap-3">
+      <span class="bg-cobalt text-white font-extrabold px-2 py-0.5 rounded text-[9px] sm:text-[10px] uppercase tracking-wider flex-shrink-0 flex items-center gap-1 shadow-sm border border-cyanGlow/40">
+        <i class="fa-solid fa-tower-broadcast animate-bounce text-cyanGlow"></i> BULLETIN
+      </span>
+      <div class="overflow-hidden relative w-full whitespace-nowrap">
+        <div class="animate-marquee cursor-pointer" onclick="scrollToSection('headlines-section')">
+          <span class="mr-8 sm:mr-12"><strong class="text-cyanGlow">CFLGA 2026 AUDIT:</strong> Regional Monitoring Task Force (RIMTF) commences on-site validation of 93 Region II LGUs.</span>
+          <span class="mr-8 sm:mr-12"><strong class="text-cyanGlow">CEPC RA 10821:</strong> Prepositioning of child-safe evacuation pods active along lower Cagayan River basin.</span>
+          <span class="mr-8 sm:mr-12"><strong class="text-cyanGlow">ANTI-OSAEC:</strong> DSWD FO2 & PNP PRO2 joint digital safety campaign reaches secondary schools in NV and Quirino.</span>
+          <span class="mr-8 sm:mr-12"><strong class="text-cyanGlow">BATANES:</strong> Pediatric disaster medicine and infant kits reinforced at Basco Provincial Hospital.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. [FIRST WINDOW / HERO] HEADLINE & TOP NEWS HERO WINDOW -->
+  <section id="news-hero" class="relative bg-gradient-to-r from-oxford via-midnight to-navyDeep text-white py-6 sm:py-8 lg:py-10 px-3 sm:px-4 overflow-hidden border-b-4 border-azure">
+    <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:24px_24px]"></div>
+    
+    <div class="max-w-7xl mx-auto relative z-10">
+      
+      <!-- Top Window Header Badge -->
+      <div class="flex items-center justify-between mb-3 sm:mb-4">
+        <div class="inline-flex items-center gap-2 bg-navySurface/90 border border-cyanGlow/40 text-cyanGlow text-[10px] sm:text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+          <i class="fa-solid fa-bolt-lightning text-skyElectric"></i> Top Story & Regional Command Window
+        </div>
+        <div class="text-[11px] text-blue-200 hidden sm:block font-mono">
+          <i class="fa-solid fa-satellite-dish text-cyanGlow animate-pulse mr-1"></i> Live Regional Wire
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-stretch">
+        
+        <!-- Featured Major Headline -->
+        <div class="lg:col-span-8 bg-navySurface/80 rounded-2xl sm:rounded-3xl border border-cyanGlow/30 overflow-hidden shadow-2xl flex flex-col justify-between" id="featuredHeadlineHero">
+          
+          <div class="relative w-full h-52 sm:h-64 md:h-72 bg-navyDeep overflow-hidden">
+            <img id="heroHeadlineImg" src="assets/images/news-1.jpg" alt="Featured Regional Headline" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=1200&auto=format&fit=crop'">
+            <div class="absolute inset-0 bg-gradient-to-t from-oxford via-oxford/40 to-transparent"></div>
+            
+            <div class="absolute bottom-3 sm:bottom-4 left-3 sm:left-5 right-3 sm:right-5">
+              <span id="heroHeadlineCategory" class="bg-cobalt text-white font-extrabold uppercase px-2.5 py-0.5 rounded-full text-[10px] tracking-wider border border-cyanGlow/40 shadow">
+                CFLGA GOVERNANCE
+              </span>
+              <span id="heroHeadlineDate" class="text-blue-100 text-[10px] sm:text-[11px] font-mono ml-2 font-medium">October 02, 2026</span>
+              <h2 id="heroHeadlineTitle" class="text-base sm:text-xl md:text-2xl font-extrabold text-white mt-1 leading-snug drop-shadow-md">
+                CFLGA 2026: Regional Validation of 93 LGUs Underway Across 5 Provinces
+              </h2>
+            </div>
+          </div>
+
+          <div class="p-3.5 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-oxford/70 border-t border-cyanGlow/20">
+            <p id="heroHeadlineSummary" class="text-xs text-blue-100 max-w-xl font-normal leading-relaxed line-clamp-2">
+              The Regional Inter-Agency Monitoring Task Force (RIMTF) initiated on-site audits for 93 cities and municipalities across Cagayan Valley to validate the Seal of Child-Friendly Local Governance.
+            </p>
+            <button id="heroHeadlineBtn" onclick="openFeaturedModal()" class="w-full sm:w-auto bg-cyanGlow hover:bg-skyElectric text-oxford font-extrabold px-4 py-2 rounded-xl shadow transition-all flex items-center justify-center gap-1.5 text-xs whitespace-nowrap min-h-[38px]">
+              <span>Read Full Story</span>
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Quick Feed -->
+        <div class="lg:col-span-4 flex flex-col justify-between gap-3 sm:gap-4">
+          
+          <div class="bg-white text-inkBlue rounded-2xl sm:rounded-3xl p-3.5 sm:p-4 shadow-xl border-2 border-iceGlacier flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between border-b border-iceBorder pb-2 mb-2.5">
+                <span class="text-[10px] uppercase font-extrabold text-cobalt tracking-wider flex items-center gap-1.5">
+                  <i class="fa-solid fa-tower-broadcast text-skyElectric animate-pulse"></i> Regional Flash Updates
+                </span>
+                <span class="bg-iceBg text-cobalt font-bold text-[9px] px-2 py-0.5 rounded-full border border-iceBorder">
+                  Region II
+                </span>
+              </div>
+
+              <div id="heroNewsSnippetList" class="space-y-2 text-xs">
+                <!-- Injected via JavaScript -->
+              </div>
+            </div>
+
+            <div class="pt-2.5 border-t border-iceBorder flex items-center justify-between">
+              <a href="javascript:void(0)" onclick="scrollToSection('headlines-section')" class="text-cobalt hover:text-cobaltDark font-bold text-xs flex items-center gap-1">
+                <span>View Full News Archive</span>
+                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="bg-navySurface/90 border border-cyanGlow/30 rounded-2xl p-3.5 shadow-xl text-white flex items-center justify-between gap-2.5">
+            <div>
+              <div class="text-[10px] text-cyanGlow uppercase font-bold">Child Protection Crisis?</div>
+              <div class="text-xs sm:text-sm font-extrabold font-mono text-white">Call Makabata 1383</div>
+            </div>
+            <a href="tel:1383" class="bg-cobalt hover:bg-cobaltHover text-white px-3 py-1.5 rounded-xl text-xs font-bold border border-cyanGlow/40 flex items-center gap-1.5 shadow">
+              <i class="fa-solid fa-phone"></i>
+              <span>Dial 1383</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. COMPLETE REGIONAL NEWS ARCHIVE & ALL CATEGORIES -->
+  <main id="headlines-section" class="py-6 sm:py-8 px-3 sm:px-4 bg-white border-b border-iceBorder relative">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-5 pb-3 border-b border-iceBorder">
+        <div>
+          <span class="text-[11px] font-bold text-cobalt uppercase tracking-wider bg-iceBg border border-iceBorder px-3 py-0.5 rounded-full shadow-sm flex items-center gap-1.5 w-fit">
+            <i class="fa-solid fa-newspaper text-azure"></i> Official Press & Issuance Repository
+          </span>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-midnight mt-1.5 tracking-tight">
+            Regional News, Bulletins & Circulars
+          </h2>
+          <p class="text-xs text-slateBlueText mt-0.5 max-w-2xl font-normal">
+            Filter regional advisories, disaster child protection protocols along the river basin, and LGU governance circulars.
+          </p>
+        </div>
+
+        <!-- News Category Filter Tabs -->
+        <div class="flex items-center gap-1 sm:gap-1.5 bg-iceBg p-1 rounded-2xl text-xs font-semibold border border-iceBorder overflow-x-auto shadow-sm -mx-3 px-3 sm:mx-0 sm:px-1">
+          <button onclick="filterHeadlines('ALL')" class="news-tab-btn active px-3 sm:px-3.5 py-1.5 rounded-xl bg-cobalt text-white shadow-sm transition-all whitespace-nowrap min-h-[34px] border border-cyanGlow/30" data-category="ALL">All Advisories</button>
+          <button onclick="filterHeadlines('CFLGA')" class="news-tab-btn px-3 sm:px-3.5 py-1.5 rounded-xl text-slateBlueText hover:text-midnight transition-all whitespace-nowrap min-h-[34px]" data-category="CFLGA">CFLGA Governance</button>
+          <button onclick="filterHeadlines('EMERGENCY')" class="news-tab-btn px-3 sm:px-4 py-1.5 rounded-xl text-slateBlueText hover:text-midnight transition-all whitespace-nowrap min-h-[34px]" data-category="EMERGENCY">CEPC Floods/Disaster</button>
+          <button onclick="filterHeadlines('PROTECTION')" class="news-tab-btn px-3 sm:px-4 py-1.5 rounded-xl text-slateBlueText hover:text-midnight transition-all whitespace-nowrap min-h-[34px]" data-category="PROTECTION">Protection & Rights</button>
+        </div>
+      </div>
+
+      <!-- Headlines Grid -->
+      <div id="headlinesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"></div>
+
+    </div>
+  </main>
+
+  <!-- 7. REGIONAL STATISTICAL INDICATORS -->
+  <section class="bg-iceBg border-b border-iceBorder py-5 sm:py-6 px-3 sm:px-4 shadow-sm">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-2 xs:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3.5">
+        <div class="p-3 rounded-2xl bg-white border border-iceBorder text-center shadow-sm">
+          <div class="text-xl sm:text-2xl font-extrabold text-midnight font-mono">5 Provinces</div>
+          <div class="text-[10px] sm:text-[11px] text-slateBlueText font-semibold mt-0.5 truncate">Cag, Isa, NV, Qui, Bat</div>
+        </div>
+        <div class="p-3 rounded-2xl bg-white border border-iceBorder text-center shadow-sm">
+          <div class="text-xl sm:text-2xl font-extrabold text-cobalt font-mono">93 LGUs</div>
+          <div class="text-[10px] sm:text-[11px] text-slateBlueText font-semibold mt-0.5 truncate">1 City, 92 Municipalities</div>
+        </div>
+        <div class="p-3 rounded-2xl bg-white border border-iceBorder text-center shadow-sm">
+          <div class="text-xl sm:text-2xl font-extrabold text-azure font-mono">2,311</div>
+          <div class="text-[10px] sm:text-[11px] text-slateBlueText font-semibold mt-0.5 truncate">Barangay BCPCs</div>
+        </div>
+        <div class="p-3 rounded-2xl bg-white border border-iceBorder text-center shadow-sm">
+          <div class="text-xl sm:text-2xl font-extrabold text-skyElectric font-mono">94.8%</div>
+          <div class="text-[10px] sm:text-[11px] text-slateBlueText font-semibold mt-0.5 truncate">CFLGA Audit Rate</div>
+        </div>
+        <div class="p-3 rounded-2xl bg-white border border-iceBorder text-center shadow-sm col-span-2 xs:col-span-1">
+          <div class="text-xl sm:text-2xl font-extrabold text-midnight font-mono">1,840</div>
+          <div class="text-[10px] sm:text-[11px] text-slateBlueText font-semibold mt-0.5 truncate">Accredited Daycares</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. PROVINCIAL CHILD PROTECTION & EMERGENCY DIRECTORY -->
+  <section id="provincial-hotlines" class="py-6 sm:py-8 px-3 sm:px-4 max-w-7xl mx-auto w-full">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-5">
+      <div>
+        <span class="text-[11px] font-bold text-cobalt uppercase tracking-wider bg-iceBg border border-iceBorder px-3 py-0.5 rounded-full shadow-sm">
+          Regional Command Directory
+        </span>
+        <h2 class="text-xl sm:text-2xl font-extrabold text-midnight mt-1.5">
+          Provincial Social Welfare & Emergency Desks
+        </h2>
+        <p class="text-xs text-slateBlueText mt-0.5 max-w-2xl">
+          Direct institutional contacts for Provincial Social Welfare & Development Offices (PSWDO) and PNP WCPD across Cagayan Valley.
+        </p>
+      </div>
+
+      <!-- Search Input -->
+      <div class="relative w-full md:w-auto">
+        <input 
+          type="text" 
+          id="hotlineSearchInput" 
+          placeholder="Search office, province, or hotline..." 
+          oninput="filterHotlines()"
+          class="w-full md:w-72 pl-9 pr-3 py-2 text-xs bg-white border border-iceBorder rounded-xl focus:ring-2 focus:ring-cobalt focus:outline-none shadow-sm min-h-[38px]"
+        >
+        <i class="fa-solid fa-magnifying-glass text-slateBlueText/60 absolute left-3 top-3 text-xs"></i>
+      </div>
+    </div>
+
+    <!-- Province Tabs -->
+    <div class="flex items-center gap-1.5 mb-5 overflow-x-auto pb-1.5 scrollbar-none -mx-3 px-3 sm:mx-0 sm:px-0">
+      <button onclick="selectProvinceTab('ALL')" class="prov-tab-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold bg-cobalt text-white shadow-sm transition-all whitespace-nowrap min-h-[34px]" data-prov="ALL">All Desks</button>
+      <button onclick="selectProvinceTab('REGIONAL')" class="prov-tab-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white text-slateBlueText hover:text-midnight transition-all border border-iceBorder whitespace-nowrap min-h-[34px]" data-prov="REGIONAL">Regional HQ</button>
+      <button onclick="selectProvinceTab('CAGAYAN')" class="prov-tab-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white text-slateBlueText hover:text-midnight transition-all border border-iceBorder whitespace-nowrap min-h-[34px]" data-prov="CAGAYAN">Cagayan</button>
+      <button onclick="selectProvinceTab('ISABELA')" class="prov-tab-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white text-slateBlueText hover:text-midnight transition-all border border-iceBorder whitespace-nowrap min-h-[34px]" data-prov="ISABELA">Isabela</button>
+      <button onclick="selectProvinceTab('NUEVA_VIZCAYA')" class="prov-tab-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white text-slateBlueText hover:text-midnight transition-all border border-iceBorder whitespace-nowrap min-h-[34px]" data-prov="NUEVA_VIZCAYA">Nueva Vizcaya</button>
+      <button onclick="selectProvinceTab('QUIRINO')" class="prov-tab-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white text-slateBlueText hover:text-midnight transition-all border border-iceBorder whitespace-nowrap min-h-[34px]" data-prov="QUIRINO">Quirino</button>
+      <button onclick="selectProvinceTab('BATANES')" class="prov-tab-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white text-slateBlueText hover:text-midnight transition-all border border-iceBorder whitespace-nowrap min-h-[34px]" data-prov="BATANES">Batanes</button>
+    </div>
+
+    <!-- Hotlines Dynamic Grid -->
+    <div id="hotlinesGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+
+    <div id="noHotlineFound" class="hidden text-center py-8 bg-white rounded-3xl border border-iceBorder mt-4 p-4">
+      <i class="fa-solid fa-phone-slash text-iceGlacier text-3xl mb-2"></i>
+      <h4 class="text-sm font-bold text-midnight">No Directory Records Found</h4>
+      <p class="text-xs text-slateBlueText mt-0.5">Try another search keyword or switch province tabs.</p>
+    </div>
+  </section>
+
+  <!-- 9. FLAGSHIP MANDATES & PROGRAMS -->
+  <section id="programs-section" class="py-6 sm:py-8 px-3 sm:px-4 bg-white border-y border-iceBorder">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-5 sm:mb-6">
+        <span class="text-[11px] font-bold text-cobalt uppercase tracking-widest bg-iceBg border border-iceBorder px-3 py-0.5 rounded-full shadow-sm">
+          Statutory Frameworks
+        </span>
+        <h2 class="text-xl sm:text-2xl font-extrabold text-midnight mt-1.5">
+          RSCWC Region II Flagship Programs
+        </h2>
+        <p class="text-slateBlueText text-xs mt-0.5">
+          Translating national child welfare statutes into concrete regional programs across Survival, Development, Protection, and Participation.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+        
+        <!-- RPAC -->
+        <div class="bg-iceBg rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-iceBorder shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="text-[11px] font-bold text-cobalt bg-white border border-iceBorder px-2.5 py-0.5 rounded-xl">Masterplan</span>
+              <span class="text-xs text-azure font-mono font-semibold">2023 - 2028</span>
+            </div>
+            <h3 class="text-sm sm:text-base font-bold text-midnight group-hover:text-cobalt transition-colors">
+              Regional Plan of Action for Children (RPAC)
+            </h3>
+            <p class="text-xs text-slateBlueText mt-1.5 leading-relaxed">
+              Multi-sectoral master plan unifying DSWD, DepEd, DOH CVCHD, DILG, and NEDA across all 5 provinces to eliminate stunting and enhance juvenile protection.
+            </p>
+          </div>
+          <button onclick="openProgramModal('rpac')" class="mt-3.5 pt-2.5 border-t border-iceBorder text-xs font-bold text-cobalt hover:text-cobaltDark flex items-center justify-between min-h-[34px]">
+            <span>View RPAC Targets</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+        <!-- CFLGA -->
+        <div class="bg-iceBg rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-iceBorder shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="text-[11px] font-bold text-azure bg-white border border-iceBorder px-2.5 py-0.5 rounded-xl">Governance Seal</span>
+              <span class="text-xs text-cobalt font-mono font-semibold">DILG-CWC Joint</span>
+            </div>
+            <h3 class="text-sm sm:text-base font-bold text-midnight group-hover:text-cobalt transition-colors">
+              Child-Friendly Local Governance Audit (CFLGA)
+            </h3>
+            <p class="text-xs text-slateBlueText mt-1.5 leading-relaxed">
+              Annual audit assessing all 93 LGUs on child budget earmarks (1% IRA), daycare service quality, and functional Barangay Councils for Children.
+            </p>
+          </div>
+          <button onclick="openProgramModal('cflga')" class="mt-3.5 pt-2.5 border-t border-iceBorder text-xs font-bold text-azure hover:text-cobaltDark flex items-center justify-between min-h-[34px]">
+            <span>Audit Mechanics & Tools</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+        <!-- CEPC -->
+        <div class="bg-iceBg rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-iceBorder shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="text-[11px] font-bold text-midnight bg-white border border-iceBorder px-2.5 py-0.5 rounded-xl">Disaster Protocol</span>
+              <span class="text-xs text-azure font-mono font-semibold">RA 10821</span>
+            </div>
+            <h3 class="text-sm sm:text-base font-bold text-midnight group-hover:text-cobalt transition-colors">
+              Comprehensive Emergency Program for Children (CEPC)
+            </h3>
+            <p class="text-xs text-slateBlueText mt-1.5 leading-relaxed">
+              Mandatory safeguarding protocol during river basin flooding and island typhoons, ensuring Child-Friendly Spaces (CFS) and minor registries.
+            </p>
+          </div>
+          <button onclick="openProgramModal('cepc')" class="mt-3.5 pt-2.5 border-t border-iceBorder text-xs font-bold text-midnight hover:text-cobalt flex items-center justify-between min-h-[34px]">
+            <span>Evacuation Safeguards</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+        <!-- Anti-OSAEC -->
+        <div class="bg-iceBg rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-iceBorder shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="text-[11px] font-bold text-skyElectric bg-white border border-iceBorder px-2.5 py-0.5 rounded-xl">Cyber Safety</span>
+              <span class="text-xs text-slateBlueText font-mono font-semibold">RA 11930</span>
+            </div>
+            <h3 class="text-sm sm:text-base font-bold text-midnight group-hover:text-cobalt transition-colors">
+              Anti-OSAEC & CSAEM Regional Taskforce
+            </h3>
+            <p class="text-xs text-slateBlueText mt-1.5 leading-relaxed">
+              Coordinated action against Online Sexual Abuse and Exploitation of Children, aligning digital forensics with PNP RACU 2 and school campaigns.
+            </p>
+          </div>
+          <button onclick="openProgramModal('osaec')" class="mt-3.5 pt-2.5 border-t border-iceBorder text-xs font-bold text-skyElectric hover:text-azure flex items-center justify-between min-h-[34px]">
+            <span>Taskforce Directives</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+        <!-- ECCD -->
+        <div class="bg-iceBg rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-iceBorder shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="text-[11px] font-bold text-cobaltDark bg-white border border-iceBorder px-2.5 py-0.5 rounded-xl">Early Education</span>
+              <span class="text-xs text-azure font-mono font-semibold">1,840+ CDCs</span>
+            </div>
+            <h3 class="text-sm sm:text-base font-bold text-midnight group-hover:text-cobaltDark transition-colors">
+              ECCD Center & Worker Accreditation
+            </h3>
+            <p class="text-xs text-slateBlueText mt-1.5 leading-relaxed">
+              Standardization of Child Development Centers across Region II, guaranteeing continuous education for Daycare Workers and nutritious feeding.
+            </p>
+          </div>
+          <button onclick="openProgramModal('eccd')" class="mt-3.5 pt-2.5 border-t border-iceBorder text-xs font-bold text-cobaltDark hover:text-cobalt flex items-center justify-between min-h-[34px]">
+            <span>Quality Standards</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+        <!-- Makabata 1383 & JJWA -->
+        <div class="bg-iceBg rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-iceBorder shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="text-[11px] font-bold text-azure bg-white border border-iceBorder px-2.5 py-0.5 rounded-xl">Juvenile Justice</span>
+              <span class="text-xs text-slateBlueText font-mono font-semibold">RA 9344 / 10630</span>
+            </div>
+            <h3 class="text-sm sm:text-base font-bold text-midnight group-hover:text-azure transition-colors">
+              Makabata 1383 & Bahay Pag-asa Network
+            </h3>
+            <p class="text-xs text-slateBlueText mt-1.5 leading-relaxed">
+              Case intake and diversion coordination for Children in Conflict with the Law (CICL) across provincial Bahay Pag-asa facilities.
+            </p>
+          </div>
+          <button onclick="openProgramModal('jjwa')" class="mt-3.5 pt-2.5 border-t border-iceBorder text-xs font-bold text-azure hover:text-cobaltDark flex items-center justify-between min-h-[34px]">
+            <span>Diversion Guidelines</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. ORGANIZATIONAL DIRECTORY -->
+  <section id="org-structure-section" class="py-6 sm:py-8 px-3 sm:px-4 max-w-7xl mx-auto w-full">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-5">
+      <div>
+        <span class="text-[11px] font-bold text-cobalt uppercase tracking-wider bg-iceBg border border-iceBorder px-3 py-0.5 rounded-full shadow-sm">
+          Regional Governance
+        </span>
+        <h2 class="text-xl sm:text-2xl font-extrabold text-midnight mt-1.5">
+          RSCWC Region II Committee & Personnel Directory
+        </h2>
+        <p class="text-xs text-slateBlueText mt-0.5 max-w-2xl">
+          Official roster of regional executive leaders, technical secretariat focal persons at DSWD FO2 Carig Sur, and provincial desks.
+        </p>
+      </div>
+
+      <div class="flex items-center bg-white p-1 rounded-2xl text-xs font-semibold border border-iceBorder shadow-sm self-start md:self-auto">
+        <button id="viewChartBtn" onclick="switchOrgView('chart')" class="px-3.5 py-1.5 rounded-xl bg-midnight text-white shadow-sm transition-all flex items-center gap-1.5 min-h-[34px]">
+          <i class="fa-solid fa-sitemap text-cyanGlow"></i>
+          <span>Visual Hierarchy</span>
+        </button>
+        <button id="viewTableBtn" onclick="switchOrgView('table')" class="px-3.5 py-1.5 rounded-xl text-slateBlueText hover:text-midnight transition-all flex items-center gap-1.5 min-h-[34px]">
+          <i class="fa-solid fa-address-book text-azure"></i>
+          <span>Personnel List</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- VIEW 1: Visual Tree View -->
+    <div id="orgChartView" class="space-y-4">
+      <div class="bg-white p-4 sm:p-5 lg:p-6 rounded-2xl sm:rounded-3xl border border-iceBorder text-center relative overflow-hidden shadow-sm">
+        <div class="inline-block bg-midnight text-cyanGlow text-[10px] sm:text-[11px] font-extrabold px-3.5 py-0.5 rounded-full uppercase tracking-wider mb-4 border border-cyanGlow/30">
+          Level I: Regional Executive Leadership
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4 max-w-4xl mx-auto">
+          <div class="bg-iceBg border-2 border-cobalt/30 rounded-2xl p-3.5 sm:p-4 shadow-sm text-left relative">
+            <span class="absolute top-2.5 right-2.5 bg-cobalt text-white font-bold text-[9px] px-2 py-0.5 rounded-full">CHAIRPERSON</span>
+            <div class="flex items-center gap-2.5">
+              <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl bg-midnight text-cyanGlow flex items-center justify-center font-bold text-base sm:text-lg shadow flex-shrink-0">
+                <i class="fa-solid fa-user-tie"></i>
+              </div>
+              <div>
+                <h4 class="text-xs sm:text-sm font-bold text-midnight">Regional Director, DSWD Field Office 02</h4>
+                <p class="text-[11px] text-cobalt font-semibold">RSCWC Region II Committee Chairperson</p>
+                <p class="text-[10px] text-slateBlueText mt-0.5">Regional Government Center, Carig Sur</p>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-iceBorder text-[10px] text-slateBlueText flex justify-between items-center">
+              <span>RPAC Executive Direction</span>
+              <a href="mailto:fo2@dswd.gov.ph" class="text-cobalt font-semibold hover:underline">fo2@dswd.gov.ph</a>
+            </div>
+          </div>
+
+          <div class="bg-iceBg border-2 border-azure/40 rounded-2xl p-3.5 sm:p-4 shadow-sm text-left relative">
+            <span class="absolute top-2.5 right-2.5 bg-azure text-white font-bold text-[9px] px-2 py-0.5 rounded-full">CO-CHAIRPERSON</span>
+            <div class="flex items-center gap-2.5">
+              <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl bg-azure text-white flex items-center justify-center font-bold text-base sm:text-lg shadow flex-shrink-0">
+                <i class="fa-solid fa-landmark"></i>
+              </div>
+              <div>
+                <h4 class="text-xs sm:text-sm font-bold text-midnight">Regional Director, DILG Region II</h4>
+                <p class="text-[11px] text-azure font-semibold">RSCWC Co-Chairperson (CFLGA Lead)</p>
+                <p class="text-[10px] text-slateBlueText mt-0.5">Regional Government Center, Carig Sur</p>
+              </div>
+            </div>
+            <div class="mt-2.5 pt-2 border-t border-iceBorder text-[10px] text-slateBlueText flex justify-between items-center">
+              <span>LGU CFLGA Governance Audit</span>
+              <a href="mailto:r2@dilg.gov.ph" class="text-azure font-semibold hover:underline">r2@dilg.gov.ph</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-0.5 h-4 bg-iceGlacier mx-auto my-2"></div>
+
+        <!-- Level 2: Secretariat -->
+        <div class="mt-1 pt-2.5 border-t border-iceBorder">
+          <div class="inline-block bg-iceBg text-midnight text-[10px] sm:text-[11px] font-extrabold px-3 py-0.5 rounded-full uppercase tracking-wider mb-3.5 border border-iceBorder">
+            Level II: Technical Secretariat & Operations Desk (Carig Sur)
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-5xl mx-auto text-left">
+            <div class="bg-iceBg p-3.5 rounded-2xl border border-iceBorder shadow-sm">
+              <div class="text-[10px] uppercase font-bold text-cobalt">Secretariat Head</div>
+              <h5 class="text-xs sm:text-sm font-bold text-midnight mt-0.5">Division Chief, Protective Services</h5>
+              <p class="text-[10px] text-slateBlueText mt-1">DSWD FO2 • Statutory case coordination & licensing</p>
+              <div class="mt-1.5 text-[10px] font-mono text-slateBlueText">Tel: (078) 304-1004 loc. 201</div>
+            </div>
+
+            <div class="bg-iceBg p-3.5 rounded-2xl border border-iceBorder shadow-sm">
+              <div class="text-[10px] uppercase font-bold text-azure font-mono">Focal Person</div>
+              <h5 class="text-xs sm:text-sm font-bold text-midnight mt-0.5">Regional Child Rights Focal Person</h5>
+              <p class="text-[10px] text-slateBlueText mt-1">Social Welfare Officer IV • Lead RPAC coordinator</p>
+              <div class="mt-1.5 text-[10px] font-mono text-slateBlueText truncate">rscwc.fo2@dswd.gov.ph</div>
+            </div>
+
+            <div class="bg-iceBg p-3.5 rounded-2xl border border-iceBorder shadow-sm">
+              <div class="text-[10px] uppercase font-bold text-cobaltDark">M&E Officer</div>
+              <h5 class="text-xs sm:text-sm font-bold text-midnight mt-0.5">Monitoring & Evaluation Officer</h5>
+              <p class="text-[10px] text-slateBlueText mt-1">Social Welfare Officer III • Validates 93 LGU audits</p>
+              <div class="mt-1.5 text-[10px] font-mono text-slateBlueText">Tel: (078) 304-0586</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 2: Dual Mode Personnel Directory -->
+    <div id="orgTableView" class="hidden bg-white rounded-2xl sm:rounded-3xl border border-iceBorder shadow-sm overflow-hidden">
+      <div class="p-3.5 bg-iceBg border-b border-iceBorder flex flex-wrap items-center justify-between gap-2 text-xs">
+        <div>
+          <h4 class="font-bold text-midnight text-xs sm:text-sm">RSCWC Region II Institutional Personnel & Desk Directory</h4>
+          <p class="text-[10px] sm:text-[11px] text-slateBlueText mt-0.5">Live registry retrieved from Google Sheets.</p>
+        </div>
+        <div class="text-cobalt font-mono text-[10px] sm:text-[11px] bg-white px-2.5 py-0.5 rounded-full border border-iceBorder">GovPH R2 Registry</div>
+      </div>
+
+      <!-- Desktop Tabular Layout -->
+      <div class="hidden md:block overflow-x-auto">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-canvasBlue text-midnight font-bold border-b border-iceBorder uppercase text-[10px] tracking-wider">
+            <tr>
+              <th class="p-3">Designation / Role</th>
+              <th class="p-3">Agency / Office</th>
+              <th class="p-3">Jurisdiction / Station</th>
+              <th class="p-3">Child Focus Area</th>
+              <th class="p-3 text-right">Official Contact</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-iceBorder text-slateBlueText" id="employeeTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- Mobile Card Stack Layout -->
+      <div class="md:hidden divide-y divide-iceBorder p-3 space-y-2.5" id="employeeCardsMobile"></div>
+    </div>
+  </section>
+
+  <!-- 11. POLICY TOOLKITS & DOWNLOADS -->
+  <section id="resources-section" class="py-6 sm:py-8 px-3 sm:px-4 bg-iceBg border-t border-iceBorder">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-5 sm:mb-6">
+        <span class="text-[11px] font-bold text-cobalt uppercase tracking-wider bg-white border border-iceBorder px-3 py-0.5 rounded-full shadow-sm">
+          Policy Publications & Toolkits
+        </span>
+        <h2 class="text-xl sm:text-2xl font-extrabold text-midnight mt-1.5">
+          RSCWC Region II Policy & Legal Repository
+        </h2>
+        <p class="text-slateBlueText text-xs mt-0.5">
+          Directly download regional action plans, audit rubrics, and disaster SOPs stored in your portal repository.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        
+        <!-- Doc 1: RPAC -->
+        <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-iceBorder shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+          <div>
+            <div class="w-9 h-9 rounded-2xl bg-iceBg text-cobalt flex items-center justify-center font-bold text-base mb-3 border border-iceBorder">
+              <i class="fa-solid fa-file-pdf"></i>
+            </div>
+            <h4 class="text-sm font-bold text-midnight">RPAC 2023–2028 Regional Framework</h4>
+            <p class="text-xs text-slateBlueText mt-1.5 leading-relaxed">
+              The complete 5-year master plan for Cagayan Valley containing multi-agency targets for child survival, nutrition, and child protection desks.
+            </p>
+            <div class="mt-2.5 text-[10px] text-slateBlueText font-mono">PDF • 4.2 MB • CWC Approved</div>
+          </div>
+          <div class="mt-3.5 pt-2.5 border-t border-iceBorder">
+            <a href="assets/docs/RPAC_Region2_2023-2028_Framework.pdf" download="RPAC_Region2_2023-2028_Framework.pdf" class="w-full text-xs font-bold text-cobalt hover:text-cobaltDark flex items-center justify-between min-h-[38px]">
+              <span>Download Official RPAC Manual</span>
+              <i class="fa-solid fa-download"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Doc 2: CFLGA -->
+        <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-iceBorder shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+          <div>
+            <div class="w-9 h-9 rounded-2xl bg-iceBg text-azure flex items-center justify-center font-bold text-base mb-3 border border-iceBorder">
+              <i class="fa-solid fa-file-excel"></i>
+            </div>
+            <h4 class="text-sm font-bold text-midnight">CFLGA 2026 Audit Tool & Indicators</h4>
+            <p class="text-xs text-slateBlueText mt-1.5 leading-relaxed">
+              Assessment forms, scoring rubrics, and MOVs required by the Regional Inter-Agency Monitoring Task Force (RIMTF) for the 93 LGUs.
+            </p>
+            <div class="mt-2.5 text-[10px] text-slateBlueText font-mono">DOCX / XLSX • 2.8 MB • DILG-CWC Joint</div>
+          </div>
+          <div class="mt-3.5 pt-2.5 border-t border-iceBorder">
+            <a href="assets/docs/CFLGA_2026_Audit_Indicators_R2.xlsx" download="CFLGA_2026_Audit_Indicators_R2.xlsx" class="w-full text-xs font-bold text-azure hover:text-cobaltDark flex items-center justify-between min-h-[38px]">
+              <span>Download CFLGA Verification Tool</span>
+              <i class="fa-solid fa-download"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Doc 3: CEPC -->
+        <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-iceBorder shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+          <div>
+            <div class="w-9 h-9 rounded-2xl bg-iceBg text-skyElectric flex items-center justify-center font-bold text-base mb-3 border border-iceBorder">
+              <i class="fa-solid fa-file-shield"></i>
+            </div>
+            <h4 class="text-sm font-bold text-midnight">CEPC RA 10821 Flood Guidelines</h4>
+            <p class="text-xs text-slateBlueText mt-1.5 leading-relaxed">
+              Standard operating procedures for setting up Child-Friendly Spaces and tracking separated minors during Cagayan River basin flooding.
+            </p>
+            <div class="mt-2.5 text-[10px] text-slateBlueText font-mono">PDF • 3.1 MB • DSWD FO2 Disaster Desk</div>
+          </div>
+          <div class="mt-3.5 pt-2.5 border-t border-iceBorder">
+            <a href="assets/docs/CEPC_RA10821_Cagayan_Basin_Guidelines.pdf" download="CEPC_RA10821_Cagayan_Basin_Guidelines.pdf" class="w-full text-xs font-bold text-cobalt hover:text-cobaltDark flex items-center justify-between min-h-[38px]">
+              <span>Download CEPC Flood SOP</span>
+              <i class="fa-solid fa-download"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. BLUE CIVIC FOOTER -->
+  <footer class="bg-oxford text-white pt-8 sm:pt-10 pb-6 px-3 sm:px-4 border-t-4 border-cobalt mt-auto">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 mb-6 text-xs">
+      
+      <div class="space-y-2">
+        <div class="flex items-center gap-2">
+          <div class="w-6 h-6 rounded-full bg-cobalt text-cyanGlow font-bold flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-hands-holding-child text-xs"></i>
+          </div>
+          <span class="font-extrabold text-xs tracking-wide text-white">RSCWC REGION II</span>
+        </div>
+        <p class="text-blue-200/80 leading-relaxed font-light text-[11px]">
+          The Regional Sub-Committee for the Welfare of Children (RSCWC Region II) is the regional arm of the Council for the Welfare of Children (CWC), mandated to protect, uphold, and monitor child rights across Cagayan, Isabela, Nueva Vizcaya, Quirino, and Batanes.
+        </p>
+        <p class="text-cyanGlow font-mono text-[10px]">
+          DSWD FO2, Carig Sur, Tuguegarao City
+        </p>
+      </div>
+
+      <div>
+        <h5 class="font-bold text-white text-xs mb-2 border-b border-navySurface pb-1 flex items-center gap-1.5">
+          <i class="fa-solid fa-scale-balanced text-cyanGlow"></i> Statutory Mandates
+        </h5>
+        <ul class="space-y-1 text-blue-200/80 font-light text-[11px]">
+          <li>• <span class="hover:text-cyanGlow">RA 7610</span> - Protection Against Abuse</li>
+          <li>• <span class="hover:text-cyanGlow">RA 11930</span> - Anti-OSAEC & CSAEM Act</li>
+          <li>• <span class="hover:text-cyanGlow">RA 10821</span> - Children in Emergencies (CEPC)</li>
+          <li>• <span class="hover:text-cyanGlow">RA 9344 / 10630</span> - Juvenile Justice Act</li>
+          <li>• <span class="hover:text-cyanGlow">RA 11148</span> - First 1,000 Days Law</li>
+        </ul>
+      </div>
+
+      <div>
+        <h5 class="font-bold text-white text-xs mb-2 border-b border-navySurface pb-1 flex items-center gap-1.5">
+          <i class="fa-solid fa-landmark text-cyanGlow"></i> Government Links
+        </h5>
+        <ul class="space-y-1 text-blue-200/80 font-light text-[11px]">
+          <li>• <a href="https://www.gov.ph" target="_blank" rel="noopener" class="hover:text-cyanGlow">Office of the President</a></li>
+          <li>• <a href="https://cwc.gov.ph" target="_blank" rel="noopener" class="hover:text-cyanGlow">Council for the Welfare of Children</a></li>
+          <li>• <a href="https://fo2.dswd.gov.ph" target="_blank" rel="noopener" class="hover:text-cyanGlow">DSWD Field Office 02</a></li>
+          <li>• <a href="https://region2.dilg.gov.ph" target="_blank" rel="noopener" class="hover:text-cyanGlow">DILG Regional Office 02</a></li>
+          <li>• <a href="https://pro2.pnp.gov.ph" target="_blank" rel="noopener" class="hover:text-cyanGlow">PNP Police Regional Office 2</a></li>
+        </ul>
+      </div>
+
+      <div class="space-y-2 bg-navySurface/40 p-3 rounded-2xl border border-navySurface">
+        <h5 class="font-bold text-cyanGlow text-xs flex items-center gap-1.5">
+          <i class="fa-solid fa-shield-halved"></i> Transparency & FOI
+        </h5>
+        <p class="text-blue-200/80 text-[10px] leading-relaxed font-light">
+          Compliant with Executive Order No. 2 (s. 2016) on Freedom of Information (FOI).
+        </p>
+        <div class="pt-1 flex items-center gap-2">
+          <div class="w-8 h-8 rounded-xl bg-midnight border border-cyanGlow/40 flex items-center justify-center font-bold text-cyanGlow text-sm flex-shrink-0" title="Transparency Seal">
+            <i class="fa-solid fa-certificate"></i>
+          </div>
+          <div class="text-[9px] text-blue-200 font-mono">
+            <div>PHILIPPINE TRANSPARENCY SEAL</div>
+            <div class="text-cyanGlow">FO2 Carig Sur Registry</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Copyright -->
+    <div class="max-w-7xl mx-auto pt-4 border-t border-navySurface flex flex-col sm:flex-row items-center justify-between text-[10px] text-blue-200/60 gap-1.5 text-center sm:text-left">
+      <div>
+        © 2026 Regional Sub-Committee for the Welfare of Children (RSCWC Region II) • Cagayan Valley
+      </div>
+      <div class="flex items-center gap-2">
+        <span>GovPH Design System</span>
+        <span>•</span>
+        <span>Family of Blue Theme</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 13. MODALS -->
+  <!-- About Us Details Modal -->
+  <div id="aboutModal" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white rounded-2xl sm:rounded-3xl max-w-2xl w-full p-4 sm:p-5 shadow-2xl border border-iceBorder max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-iceBorder pb-2.5 mb-2.5">
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded-xl bg-iceBg text-cobalt flex items-center justify-center text-xs shadow-sm border border-iceBorder flex-shrink-0">
+            <i class="fa-solid fa-landmark"></i>
+          </div>
+          <div>
+            <span class="text-[9px] uppercase font-bold text-cobalt tracking-wider font-mono">About RSCWC Region II</span>
+            <h3 id="aboutModalTitle" class="text-sm sm:text-base font-extrabold text-midnight"></h3>
+          </div>
+        </div>
+        <button onclick="closeModal('aboutModal')" aria-label="Close Modal" class="text-slateBlueText hover:text-midnight p-1 text-lg min-w-[32px] min-h-[32px] flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div id="aboutModalBody" class="space-y-2.5 text-xs text-slateBlueText leading-relaxed"></div>
+
+      <div class="mt-4 pt-2.5 border-t border-iceBorder flex justify-end">
+        <button onclick="closeModal('aboutModal')" class="bg-midnight hover:bg-oxford text-white font-bold px-3.5 py-1.5 rounded-xl text-xs transition-colors min-h-[34px]">
+          Close Window
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- News Modal -->
+  <div id="newsModal" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white rounded-2xl sm:rounded-3xl max-w-2xl w-full p-4 sm:p-5 shadow-2xl border border-iceBorder max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-iceBorder pb-2.5 mb-2.5">
+        <div>
+          <span id="newsModalCategory" class="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"></span>
+          <h3 id="newsModalTitle" class="text-sm sm:text-base font-extrabold text-midnight mt-1 leading-snug"></h3>
+          <p id="newsModalMeta" class="text-[10px] text-slateBlueText mt-0.5 font-mono"></p>
+        </div>
+        <button onclick="closeModal('newsModal')" aria-label="Close Modal" class="text-slateBlueText hover:text-midnight p-1 text-lg min-w-[32px] min-h-[32px] flex items-center justify-center self-start">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div id="newsModalImageContainer" class="mb-2.5 hidden">
+        <img id="newsModalImage" src="" alt="Advisory Photo" class="w-full max-h-56 sm:max-h-72 object-cover rounded-xl border border-iceBorder">
+      </div>
+
+      <div id="newsModalBody" class="space-y-2.5 text-xs text-slateBlueText leading-relaxed"></div>
+
+      <div class="mt-4 pt-2.5 border-t border-iceBorder flex justify-end">
+        <button onclick="closeModal('newsModal')" class="bg-midnight hover:bg-oxford text-white font-bold px-3.5 py-1.5 rounded-xl text-xs transition-colors min-h-[34px]">
+          Close Bulletin
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Program Details Modal -->
+  <div id="programModal" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white rounded-2xl sm:rounded-3xl max-w-2xl w-full p-4 sm:p-5 shadow-2xl border border-iceBorder max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-iceBorder pb-2.5 mb-2.5">
+        <div class="flex items-center gap-2">
+          <div id="progModalIcon" class="w-8 h-8 rounded-2xl flex items-center justify-center text-sm shadow flex-shrink-0"></div>
+          <div>
+            <span id="progModalTag" class="text-[9px] font-bold uppercase tracking-wider text-slateBlueText font-mono"></span>
+            <h3 id="progModalTitle" class="text-sm sm:text-base font-extrabold text-midnight leading-snug"></h3>
+          </div>
+        </div>
+        <button onclick="closeModal('programModal')" aria-label="Close Modal" class="text-slateBlueText hover:text-midnight p-1 text-lg min-w-[32px] min-h-[32px] flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div id="progModalContent" class="space-y-2.5 text-xs text-slateBlueText leading-relaxed"></div>
+
+      <div class="mt-4 pt-2.5 border-t border-iceBorder flex justify-end">
+        <button onclick="closeModal('programModal')" class="bg-midnight hover:bg-oxford text-white font-bold px-3.5 py-1.5 rounded-xl text-xs transition-colors min-h-[34px]">
+          Close Program Matrix
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14. CORE JAVASCRIPT -->
+  <script>
+    const GOOGLE_SHEET_API_URL = "https://script.google.com/macros/s/AKfycbxcC-crXI3I6Qwqe88mu9BebfyA53W38kU9ZTX5Kw-VOXPtgDQtoiby6NxRBrwZXr7GYw/exec";
+
+    let liveHeadlinesData = [...defaultHeadlines];
+    let liveHotlinesData = [...defaultHotlines];
+    let liveDirectoryData = [...defaultDirectory];
+    let currentProvinceFilter = 'ALL';
+    let featuredHeadlineItem = null;
+
+    // ACCURATE NAVIGATION CONTROLLERS
+    function scrollToTop(e) {
+      if (e) e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (history.pushState) history.pushState(null, null, '#home');
+      closeMobileMenu();
+    }
+
+    function scrollToSection(id) {
+      closeMobileMenu();
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function navigateAndFilterNews(category) {
+      closeMobileMenu();
+      filterHeadlines(category);
+      scrollToSection('headlines-section');
+    }
+
+    function navigateAndFilterHotlines(province) {
+      closeMobileMenu();
+      selectProvinceTab(province);
+      scrollToSection('provincial-hotlines');
+    }
+
+    function navigateAndSwitchOrg(viewType) {
+      closeMobileMenu();
+      switchOrgView(viewType);
+      scrollToSection('org-structure-section');
+    }
+
+    function closeMobileMenu() {
+      const drawer = document.getElementById('mobileMenuDrawer');
+      const icon = document.getElementById('menuIcon');
+      if (drawer && !drawer.classList.contains('hidden')) {
+        drawer.classList.add('hidden');
+        if (icon) icon.className = 'fa-solid fa-bars text-sm text-cobalt';
+      }
+    }
+
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobileMenuDrawer');
+      const icon = document.getElementById('menuIcon');
+      if (drawer) {
+        drawer.classList.toggle('hidden');
+        if (drawer.classList.contains('hidden')) {
+          icon.className = 'fa-solid fa-bars text-sm text-cobalt';
+        } else {
+          icon.className = 'fa-solid fa-xmark text-sm text-cyanGlow';
+        }
+      }
+    }
+
+    function toggleMobileAccordion(id) {
+      const el = document.getElementById(id);
+      const icon = document.getElementById(id + 'Icon');
+      if (!el) return;
+
+      const isOpen = el.classList.contains('open');
+      
+      document.querySelectorAll('.accordion-content').forEach(acc => acc.classList.remove('open'));
+      document.querySelectorAll('[id$="Icon"]').forEach(i => {
+        if (i.id !== 'menuIcon') i.classList.remove('rotate-180');
+      });
+
+      if (!isOpen) {
+        el.classList.add('open');
+        if (icon) icon.classList.add('rotate-180');
+      }
+    }
+
+    // Live Clock
+    function updatePSTClock() {
+      const clockEl = document.getElementById('pstClock');
+      if (!clockEl) return;
+      const now = new Date();
+      const options = {
+        timeZone: 'Asia/Manila',
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+      };
+      clockEl.innerText = now.toLocaleString('en-US', options);
+    }
+    setInterval(updatePSTClock, 1000);
+    updatePSTClock();
+
+    // Accessibility
+    function toggleHighContrast() {
+      document.documentElement.classList.toggle('dark');
+      document.body.style.filter = document.documentElement.classList.contains('dark') ? "contrast(130%)" : "none";
+    }
+
+    let currentFontScale = 100;
+    function adjustFontSize(delta) {
+      currentFontScale = Math.max(90, Math.min(125, currentFontScale + (delta * 5)));
+      document.documentElement.style.fontSize = `${currentFontScale}%`;
+    }
+
+    // Modal Triggers
+    function openAboutModal(key) {
+      closeMobileMenu();
+      const data = aboutData[key];
+      if (!data) return;
+      document.getElementById('aboutModalTitle').innerText = data.title;
+      document.getElementById('aboutModalBody').innerHTML = data.html;
+      openModal('aboutModal');
+    }
+
+    function openProgramModal(key) {
+      closeMobileMenu();
+      const data = programData[key];
+      if (!data) return;
+      document.getElementById('progModalTag').innerText = data.tag;
+      document.getElementById('progModalTitle').innerText = data.title;
+      document.getElementById('progModalContent').innerHTML = data.html;
+      const iconBox = document.getElementById('progModalIcon');
+      iconBox.className = `w-8 h-8 rounded-2xl flex items-center justify-center text-sm shadow flex-shrink-0 ${data.bg}`;
+      iconBox.innerHTML = `<i class="fa-solid ${data.icon}"></i>`;
+      openModal('programModal');
+    }
+
+    function openModal(id) {
+      const m = document.getElementById(id);
+      if (m) m.classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      const m = document.getElementById(id);
+      if (m) m.classList.add('hidden');
+    }
+
+    window.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' || e.keyCode === 27) {
+        const openModalEl = document.querySelector('.modal-backdrop:not(.hidden)');
+        if (openModalEl) openModalEl.classList.add('hidden');
+      }
+    });
+
+    // Fetch Portal Data
+    async function fetchPortalData() {
+      try {
+        const response = await fetch(GOOGLE_SHEET_API_URL);
+        const data = await response.json();
+        if (data.news && data.news.length > 0) liveHeadlinesData = data.news;
+        if (data.hotlines && data.hotlines.length > 0) liveHotlinesData = data.hotlines;
+        if (data.directory && data.directory.length > 0) liveDirectoryData = data.directory;
+      } catch (error) {
+        console.warn("Could not fetch remote sheet data. Rendering preloaded fallback records:", error);
+      } finally {
+        populateFirstWindowHero();
+        renderHeadlines('ALL');
+        renderHotlines();
+        renderEmployeeTable();
+      }
+    }
+
+    // Populate Hero Headline
+    function populateFirstWindowHero() {
+      if (!liveHeadlinesData || liveHeadlinesData.length === 0) return;
+
+      featuredHeadlineItem = liveHeadlinesData[0];
+
+      const img = document.getElementById('heroHeadlineImg');
+      const cat = document.getElementById('heroHeadlineCategory');
+      const date = document.getElementById('heroHeadlineDate');
+      const title = document.getElementById('heroHeadlineTitle');
+      const summary = document.getElementById('heroHeadlineSummary');
+
+      if (img && featuredHeadlineItem.image) img.src = featuredHeadlineItem.image;
+      if (cat) cat.innerText = featuredHeadlineItem.category || 'TOP BULLETIN';
+      if (date) date.innerText = featuredHeadlineItem.date || '';
+      if (title) title.innerText = featuredHeadlineItem.title || 'Regional Child Welfare Directive';
+      if (summary) summary.innerText = featuredHeadlineItem.summary || '';
+
+      const snippetBox = document.getElementById('heroNewsSnippetList');
+      if (snippetBox) {
+        snippetBox.innerHTML = '';
+        const secondary = liveHeadlinesData.slice(1, 4);
+
+        secondary.forEach(item => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = "p-2 bg-iceBg hover:bg-iceBorder/60 rounded-xl border border-iceBorder transition-colors cursor-pointer";
+          itemDiv.onclick = () => openNewsModal(item.id);
+          itemDiv.innerHTML = `
+            <div class="flex items-center justify-between text-[9px] mb-0.5">
+              <span class="font-bold text-cobalt font-mono">${item.category}</span>
+              <span class="text-slateBlueText/70">${item.date}</span>
+            </div>
+            <div class="font-bold text-midnight text-xs line-clamp-1 hover:text-cobalt transition-colors">
+              ${item.title}
+            </div>
+          `;
+          snippetBox.appendChild(itemDiv);
+        });
+      }
+    }
+
+    function openFeaturedModal() {
+      if (featuredHeadlineItem) openNewsModal(featuredHeadlineItem.id);
+    }
+
+    // Render Headlines
+    function renderHeadlines(filterCategory = 'ALL') {
+      const container = document.getElementById('headlinesGrid');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const filtered = filterCategory === 'ALL' 
+        ? liveHeadlinesData 
+        : liveHeadlinesData.filter(item => item.category === filterCategory);
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<p class="text-xs text-slateBlueText col-span-1 md:col-span-3 text-center py-6">No bulletins found in this category.</p>';
+        return;
+      }
+
+      filtered.forEach(item => {
+        const card = document.createElement('article');
+        card.className = "bg-white rounded-2xl sm:rounded-3xl border border-iceBorder p-3.5 sm:p-4 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group overflow-hidden";
+        
+        let badgeColor = "bg-iceBg text-cobalt border border-iceBorder";
+        if (item.category === 'EMERGENCY') badgeColor = "bg-navySurface text-cyanGlow border border-cyanGlow/40";
+        if (item.category === 'PROTECTION') badgeColor = "bg-canvasBlue text-azure border border-iceGlacier";
+
+        const imageMarkup = item.image ? `
+          <div class="w-full h-36 sm:h-44 rounded-xl sm:rounded-2xl overflow-hidden mb-3 bg-iceBg">
+            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.parentElement.style.display='none'">
+          </div>
+        ` : '';
+
+        card.innerHTML = `
+          <div>
+            ${imageMarkup}
+            <div class="flex items-center justify-between mb-1.5 text-xs">
+              <span class="font-extrabold uppercase px-2 py-0.5 rounded-full text-[9px] ${badgeColor}">
+                ${item.category || 'BULLETIN'}
+              </span>
+              <span class="text-slateBlueText font-mono text-[10px] font-medium">${item.date || ''}</span>
+            </div>
+            <h3 class="text-sm font-bold text-midnight group-hover:text-cobalt transition-colors leading-snug">
+              ${item.title || 'Untitled Bulletin'}
+            </h3>
+            <p class="text-xs text-slateBlueText mt-1.5 leading-relaxed font-normal">
+              ${item.summary || ''}
+            </p>
+          </div>
+          <div class="mt-3 pt-2.5 border-t border-iceBorder flex items-center justify-between text-xs">
+            <span class="text-[10px] text-slateBlueText truncate max-w-[140px]">${item.source || ''}</span>
+            <button onclick="openNewsModal('${item.id}')" class="font-bold text-cobalt hover:text-cobaltDark flex items-center gap-1.5 min-h-[32px]">
+              Read Advisory <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function filterHeadlines(cat) {
+      document.querySelectorAll('.news-tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-category') === cat) {
+          btn.classList.add('bg-cobalt', 'text-white', 'shadow-sm');
+          btn.classList.remove('text-slateBlueText');
+        } else {
+          btn.classList.remove('bg-cobalt', 'text-white', 'shadow-sm');
+          btn.classList.add('text-slateBlueText');
+        }
+      });
+      renderHeadlines(cat);
+    }
+
+    function openNewsModal(id) {
+      const item = liveHeadlinesData.find(h => h.id === id);
+      if (!item) return;
+
+      document.getElementById('newsModalTitle').innerText = item.title;
+      document.getElementById('newsModalCategory').innerText = item.category || 'BULLETIN';
+      document.getElementById('newsModalCategory').className = `text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-iceBg text-cobalt border border-iceBorder`;
+      document.getElementById('newsModalMeta').innerText = `${item.date || ''} • Issued by: ${item.source || 'RSCWC Region II'}`;
+      document.getElementById('newsModalBody').innerHTML = item.content || `<p>${item.summary || ''}</p>`;
+
+      const imgContainer = document.getElementById('newsModalImageContainer');
+      const imgEl = document.getElementById('newsModalImage');
+      if (item.image) {
+        imgEl.src = item.image;
+        imgContainer.classList.remove('hidden');
+      } else {
+        imgContainer.classList.add('hidden');
+      }
+
+      openModal('newsModal');
+    }
+
+    // Render Hotlines
+    function renderHotlines() {
+      const container = document.getElementById('hotlinesGrid');
+      const emptyState = document.getElementById('noHotlineFound');
+      const search = document.getElementById('hotlineSearchInput').value.toLowerCase().trim();
+      
+      container.innerHTML = '';
+
+      const filtered = liveHotlinesData.filter(item => {
+        const itemProv = (item.province || '').toUpperCase();
+        const matchesProv = (currentProvinceFilter === 'ALL') || (itemProv === currentProvinceFilter);
+        const matchesText = 
+          (item.office || '').toLowerCase().includes(search) ||
+          (item.provinceLabel || '').toLowerCase().includes(search) ||
+          (item.jurisdiction || '').toLowerCase().includes(search) ||
+          (item.focus || '').toLowerCase().includes(search) ||
+          (item.phoneText || '').toLowerCase().includes(search);
+        return matchesProv && matchesText;
+      });
+
+      if (filtered.length === 0) {
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      emptyState.classList.add('hidden');
+
+      filtered.forEach(h => {
+        let badgeStyle = "bg-iceBg text-cobalt border border-iceBorder";
+        if (h.province === 'REGIONAL') badgeStyle = "bg-midnight text-cyanGlow border border-cyanGlow/40";
+        if (h.province === 'ISABELA') badgeStyle = "bg-canvasBlue text-azure border border-iceBorder";
+        if (h.province === 'NUEVA_VIZCAYA') badgeStyle = "bg-iceBg text-cobaltDark border border-iceBorder";
+        if (h.province === 'BATANES') badgeStyle = "bg-canvasBlue text-skyElectric border border-iceBorder";
+
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-2xl sm:rounded-3xl p-3.5 sm:p-4 border border-iceBorder shadow-sm hover:shadow-md transition-all flex flex-col justify-between";
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-2 text-xs">
+              <span class="font-extrabold uppercase px-2 py-0.5 rounded-full text-[9px] ${badgeStyle}">
+                ${h.provinceLabel || h.province}
+              </span>
+              <span class="text-slateBlueText text-[10px] font-medium truncate max-w-[130px]">
+                <i class="fa-solid fa-map-pin text-azure mr-1"></i> ${h.jurisdiction || ''}
+              </span>
+            </div>
+
+            <h4 class="text-sm font-bold text-midnight leading-snug">
+              ${h.office || 'Emergency Desk'}
+            </h4>
+            <p class="text-xs text-slateBlueText mt-1 leading-relaxed font-normal">
+              ${h.focus || ''}
+            </p>
+
+            <div class="mt-3 p-2.5 bg-iceBg rounded-xl border border-iceBorder space-y-1 text-xs text-slateBlueText">
+              <div class="flex items-start gap-1.5">
+                <i class="fa-solid fa-location-dot text-cobalt mt-0.5 text-[10px]"></i>
+                <span class="text-[10px] leading-tight text-midnight font-medium">${h.station || 'Regional Station'}</span>
+              </div>
+              <div class="flex items-center justify-between pt-0.5">
+                <span>Official Line:</span>
+                <span class="font-mono text-midnight font-bold text-[11px]">${h.phoneText || '—'}</span>
+              </div>
+              ${h.altPhone ? `
+              <div class="flex items-center justify-between text-[10px]">
+                <span>24/7 Mobile:</span>
+                <span class="font-mono text-cobalt font-semibold">${h.altPhone}</span>
+              </div>` : ''}
+              ${h.email ? `
+              <div class="flex items-center justify-between text-[10px] border-t border-iceBorder pt-0.5 mt-0.5">
+                <span>Email:</span>
+                <span class="font-mono text-azure truncate max-w-[150px]">${h.email}</span>
+              </div>` : ''}
+            </div>
+          </div>
+
+          <div class="mt-3.5 pt-2.5 border-t border-iceBorder">
+            <a href="tel:${h.phoneTel || h.phoneText}" class="w-full text-center bg-cobalt hover:bg-cobaltHover text-white py-2 px-3 rounded-xl text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-1.5 border border-cyanGlow/20 min-h-[38px]">
+              <i class="fa-solid fa-phone text-xs"></i>
+              <span>Call Desk Now</span>
+            </a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function selectProvinceTab(prov) {
+      currentProvinceFilter = prov;
+      document.querySelectorAll('.prov-tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-prov') === prov) {
+          btn.classList.add('bg-cobalt', 'text-white', 'shadow-sm');
+          btn.classList.remove('bg-white', 'text-slateBlueText');
+        } else {
+          btn.classList.remove('bg-cobalt', 'text-white', 'shadow-sm');
+          btn.classList.add('text-slateBlueText');
+        }
+      });
+      renderHotlines();
+    }
+
+    function filterHotlines() {
+      renderHotlines();
+    }
+
+    // Render Personnel Directory
+    function renderEmployeeTable() {
+      const tbody = document.getElementById('employeeTableBody');
+      const cardsMobile = document.getElementById('employeeCardsMobile');
+      if (!tbody && !cardsMobile) return;
+
+      if (tbody) tbody.innerHTML = '';
+      if (cardsMobile) cardsMobile.innerHTML = '';
+
+      liveDirectoryData.forEach(emp => {
+        if (tbody) {
+          const row = document.createElement('tr');
+          row.className = "hover:bg-iceBg/60 transition-colors";
+          row.innerHTML = `
+            <td class="p-2.5 font-bold text-midnight">${emp.role || '—'}</td>
+            <td class="p-2.5 text-cobalt font-semibold">${emp.agency || '—'}</td>
+            <td class="p-2.5 text-slateBlueText">${emp.station || '—'}</td>
+            <td class="p-2.5 text-midnight">${emp.focus || '—'}</td>
+            <td class="p-2.5 text-right font-mono text-cobaltDark font-semibold">${emp.contact || '—'}</td>
+          `;
+          tbody.appendChild(row);
+        }
+
+        if (cardsMobile) {
+          const mCard = document.createElement('div');
+          mCard.className = "bg-white p-3 rounded-xl border border-iceBorder text-xs space-y-1 shadow-sm";
+          mCard.innerHTML = `
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-midnight text-xs">${emp.role || '—'}</span>
+              <span class="text-[9px] bg-iceBg text-cobalt font-bold px-1.5 py-0.5 rounded border border-iceBorder">${emp.agency || '—'}</span>
+            </div>
+            <div class="text-[10px] text-slateBlueText"><i class="fa-solid fa-location-dot text-azure mr-1"></i> ${emp.station || '—'}</div>
+            <div class="text-[10px] text-slateBlueText font-medium">${emp.focus || '—'}</div>
+            <div class="pt-1 border-t border-iceBorder flex items-center justify-between text-[10px]">
+              <span class="text-slateBlueText">Official Contact:</span>
+              <span class="font-mono text-cobaltDark font-bold">${emp.contact || '—'}</span>
+            </div>
+          `;
+          cardsMobile.appendChild(mCard);
+        }
+      });
+    }
+
+    function switchOrgView(viewType) {
+      const chartView = document.getElementById('orgChartView');
+      const tableView = document.getElementById('orgTableView');
+      const chartBtn = document.getElementById('viewChartBtn');
+      const tableBtn = document.getElementById('viewTableBtn');
+
+      if (viewType === 'chart') {
+        chartView.classList.remove('hidden');
+        tableView.classList.add('hidden');
+        chartBtn.className = "px-3.5 py-1.5 rounded-xl bg-midnight text-white shadow-sm transition-all flex items-center gap-1.5 min-h-[34px]";
+        tableBtn.className = "px-3.5 py-1.5 rounded-xl text-slateBlueText hover:text-midnight transition-all flex items-center gap-1.5 min-h-[34px]";
+      } else {
+        chartView.classList.add('hidden');
+        tableView.classList.remove('hidden');
+        tableBtn.className = "px-3.5 py-1.5 rounded-xl bg-midnight text-white shadow-sm transition-all flex items-center gap-1.5 min-h-[34px]";
+        chartBtn.className = "px-3.5 py-1.5 rounded-xl text-slateBlueText hover:text-midnight transition-all flex items-center gap-1.5 min-h-[34px]";
+      }
+    }
+
+    // Initialization
+    window.addEventListener('DOMContentLoaded', () => {
+      fetchPortalData();
+    });
+  </script>
+</body>
+</html>
