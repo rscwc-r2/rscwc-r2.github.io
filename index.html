@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>RSCWC Region II | Cagayan Valley Child Welfare & Regional News Portal</title>
+  <title>RSCWC Region II | Regional Sub-Committee for the Welfare of Children - Cagayan Valley</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -51,7 +51,7 @@
   </script>
 
   <style>
-    /* COMPACT OFFSET: Calibrated to match the exact sticky header height */
+    /* Offset for sticky header navigation */
     html {
       scroll-behavior: smooth;
       scroll-padding-top: 104px;
@@ -62,7 +62,7 @@
       }
     }
 
-    /* Family of Blue Custom Scrollbar */
+    /* Custom Blue Scrollbar */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #f0f7ff; }
     ::-webkit-scrollbar-thumb { background: #93c5fd; border-radius: 4px; }
@@ -86,7 +86,7 @@
     }
     .animate-marquee:hover { animation-play-state: paused; }
 
-    /* Smooth accordion transition */
+    /* Accordion Content Animation */
     .accordion-content {
       transition: max-height 0.3s ease-out, opacity 0.2s ease-out;
       max-height: 0;
@@ -141,11 +141,10 @@
     </div>
   </aside>
 
-  <!-- 2. COMPACT REGIONAL BRANDING & CIVIC HEADER -->
+  <!-- 2. REGIONAL BRANDING & CIVIC HEADER -->
   <header class="bg-white border-b-2 border-cobalt shadow-sm sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-3 sm:px-4 py-2 flex flex-col md:flex-row items-center justify-between gap-2.5 sm:gap-3">
       
-      <!-- Institutional Logos -->
       <div class="flex items-center gap-2.5 w-full md:w-auto">
         <div class="flex items-center -space-x-1.5 flex-shrink-0">
           <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-gradient-to-br from-oxford to-cobalt text-cyanGlow flex items-center justify-center font-bold text-base sm:text-lg shadow border-2 border-white relative z-20">
@@ -173,13 +172,11 @@
           </p>
         </div>
 
-        <!-- Mobile Hamburger -->
         <button id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Toggle Navigation Menu" class="lg:hidden p-2 rounded-xl bg-iceBg text-midnight border border-iceBorder hover:bg-iceGlacier transition-colors flex-shrink-0 flex items-center justify-center min-w-[40px] min-h-[40px]">
           <i id="menuIcon" class="fa-solid fa-bars text-sm text-cobalt"></i>
         </button>
       </div>
 
-      <!-- Compact Makabata 1383 Hotline -->
       <div class="hidden lg:flex items-center gap-3 flex-shrink-0">
         <a href="tel:1383" class="bg-gradient-to-r from-midnight via-navySurface to-cobalt text-white px-3.5 py-1.5 rounded-xl shadow border border-cyanGlow/40 hover:border-cyanGlow transition-all flex items-center gap-2.5 group">
           <div class="w-7 h-7 rounded-lg bg-cyanGlow text-oxford flex items-center justify-center text-xs font-bold shadow group-hover:scale-105 transition-transform">
@@ -194,13 +191,11 @@
 
     </div>
 
-    <!-- 3. COMPACT NAVIGATION BAR -->
+    <!-- 3. NAVIGATION BAR -->
     <nav class="bg-midnight text-blue-100 text-xs font-semibold shadow-inner border-t border-navyDeep hidden lg:block">
       <div class="max-w-7xl mx-auto px-4 flex items-center justify-between">
         
         <div class="flex items-center space-x-1">
-          
-          <!-- Home Button (Direct to Absolute Top 0,0) -->
           <a href="#home" onclick="scrollToTop(event)" class="hover:bg-navySurface text-white hover:text-cyanGlow transition-colors px-3 py-2 flex items-center gap-1.5 border-b-2 border-transparent hover:border-cyanGlow font-bold">
             <i class="fa-solid fa-house text-cyanGlow text-[11px]"></i> Home
           </a>
@@ -414,7 +409,7 @@
 
       <!-- Mobile Programs Subheadings -->
       <div class="border-b border-navySurface pb-1">
-        <button onclick="toggleMobileAccordion('accProg')" class="w-full flex items-center justify-between py-2 px-2 font-bold text-white hover:text-cyanGlow">
+        <button onclick="toggleMobileAccordion('accProg')" class="w-full flex items-center justify-between py-2.5 px-2 font-bold text-white hover:text-cyanGlow">
           <span><i class="fa-solid fa-layer-group text-cyanGlow mr-2"></i> Flagship Programs</span>
           <i id="accProgIcon" class="fa-solid fa-chevron-down text-[10px] transition-transform"></i>
         </button>
@@ -444,7 +439,7 @@
 
       <!-- Mobile About Us Subheadings -->
       <div class="pb-1">
-        <button onclick="toggleMobileAccordion('accAbout')" class="w-full flex items-center justify-between py-2.5 px-2 font-bold text-white hover:text-cyanGlow">
+        <button onclick="toggleMobileAccordion('accAbout')" class="w-full flex items-center justify-between py-2 px-2 font-bold text-white hover:text-cyanGlow">
           <span><i class="fa-solid fa-landmark text-cyanGlow mr-2"></i> About Us</span>
           <i id="accAboutIcon" class="fa-solid fa-chevron-down text-[10px] transition-transform"></i>
         </button>
@@ -463,7 +458,7 @@
   <!-- 4. BREAKING TICKER -->
   <div class="bg-navyDeep text-white text-xs py-1.5 border-b border-cobalt overflow-hidden shadow-inner">
     <div class="max-w-7xl mx-auto px-3 sm:px-4 flex items-center gap-2 sm:gap-3">
-      <span class="bg-cobalt text-white font-extrabold px-2 py-0.5 rounded text-[9px] sm:text-[10px] uppercase tracking-wider flex-shrink-0 flex items-center gap-1 shadow-sm border border-cyanGlow/40">
+      <span class="bg-cobalt text-white font-extrabold px-2.5 py-0.5 rounded text-[9px] sm:text-[10px] uppercase tracking-wider flex-shrink-0 flex items-center gap-1 shadow-sm border border-cyanGlow/40">
         <i class="fa-solid fa-tower-broadcast animate-bounce text-cyanGlow"></i> BULLETIN
       </span>
       <div class="overflow-hidden relative w-full whitespace-nowrap">
@@ -483,7 +478,6 @@
     
     <div class="max-w-7xl mx-auto relative z-10">
       
-      <!-- Top Window Header Badge -->
       <div class="flex items-center justify-between mb-3 sm:mb-4">
         <div class="inline-flex items-center gap-2 bg-navySurface/90 border border-cyanGlow/40 text-cyanGlow text-[10px] sm:text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
           <i class="fa-solid fa-bolt-lightning text-skyElectric"></i> Top Story & Regional Command Window
@@ -499,7 +493,7 @@
         <div class="lg:col-span-8 bg-navySurface/80 rounded-2xl sm:rounded-3xl border border-cyanGlow/30 overflow-hidden shadow-2xl flex flex-col justify-between" id="featuredHeadlineHero">
           
           <div class="relative w-full h-52 sm:h-64 md:h-72 bg-navyDeep overflow-hidden">
-            <img id="heroHeadlineImg" src="assets/images/news-1.jpg" alt="Featured Regional Headline" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=1200&auto=format&fit=crop'">
+            <img id="heroHeadlineImg" src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=1200&auto=format&fit=crop" alt="Featured Regional Headline" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=1200&auto=format&fit=crop'; this.onerror=null;">
             <div class="absolute inset-0 bg-gradient-to-t from-oxford via-oxford/40 to-transparent"></div>
             
             <div class="absolute bottom-3 sm:bottom-4 left-3 sm:left-5 right-3 sm:right-5">
@@ -538,9 +532,7 @@
                 </span>
               </div>
 
-              <div id="heroNewsSnippetList" class="space-y-2 text-xs">
-                <!-- Injected via JavaScript -->
-              </div>
+              <div id="heroNewsSnippetList" class="space-y-2 text-xs"></div>
             </div>
 
             <div class="pt-2.5 border-t border-iceBorder flex items-center justify-between">
@@ -573,7 +565,6 @@
   <main id="headlines-section" class="py-6 sm:py-8 px-3 sm:px-4 bg-white border-b border-iceBorder relative">
     <div class="max-w-7xl mx-auto">
       
-      <!-- Section Header -->
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-5 pb-3 border-b border-iceBorder">
         <div>
           <span class="text-[11px] font-bold text-cobalt uppercase tracking-wider bg-iceBg border border-iceBorder px-3 py-0.5 rounded-full shadow-sm flex items-center gap-1.5 w-fit">
@@ -587,16 +578,14 @@
           </p>
         </div>
 
-        <!-- News Category Filter Tabs -->
         <div class="flex items-center gap-1 sm:gap-1.5 bg-iceBg p-1 rounded-2xl text-xs font-semibold border border-iceBorder overflow-x-auto shadow-sm -mx-3 px-3 sm:mx-0 sm:px-1">
           <button onclick="filterHeadlines('ALL')" class="news-tab-btn active px-3 sm:px-3.5 py-1.5 rounded-xl bg-cobalt text-white shadow-sm transition-all whitespace-nowrap min-h-[34px] border border-cyanGlow/30" data-category="ALL">All Advisories</button>
           <button onclick="filterHeadlines('CFLGA')" class="news-tab-btn px-3 sm:px-3.5 py-1.5 rounded-xl text-slateBlueText hover:text-midnight transition-all whitespace-nowrap min-h-[34px]" data-category="CFLGA">CFLGA Governance</button>
-          <button onclick="filterHeadlines('EMERGENCY')" class="news-tab-btn px-3 sm:px-4 py-1.5 rounded-xl text-slateBlueText hover:text-midnight transition-all whitespace-nowrap min-h-[34px]" data-category="EMERGENCY">CEPC Floods/Disaster</button>
-          <button onclick="filterHeadlines('PROTECTION')" class="news-tab-btn px-3 sm:px-4 py-1.5 rounded-xl text-slateBlueText hover:text-midnight transition-all whitespace-nowrap min-h-[34px]" data-category="PROTECTION">Protection & Rights</button>
+          <button onclick="filterHeadlines('EMERGENCY')" class="news-tab-btn px-3 sm:px-3.5 py-1.5 rounded-xl text-slateBlueText hover:text-midnight transition-all whitespace-nowrap min-h-[34px]" data-category="EMERGENCY">CEPC Floods/Disaster</button>
+          <button onclick="filterHeadlines('PROTECTION')" class="news-tab-btn px-3 sm:px-3.5 py-1.5 rounded-xl text-slateBlueText hover:text-midnight transition-all whitespace-nowrap min-h-[34px]" data-category="PROTECTION">Protection & Rights</button>
         </div>
       </div>
 
-      <!-- Headlines Grid -->
       <div id="headlinesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"></div>
 
     </div>
@@ -645,7 +634,6 @@
         </p>
       </div>
 
-      <!-- Search Input -->
       <div class="relative w-full md:w-auto">
         <input 
           type="text" 
@@ -1209,7 +1197,7 @@
     let currentProvinceFilter = 'ALL';
     let featuredHeadlineItem = null;
 
-    // ACCURATE NAVIGATION CONTROLLERS
+    // NAVIGATION CONTROLLERS
     function scrollToTop(e) {
       if (e) e.preventDefault();
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1443,7 +1431,7 @@
 
         const imageMarkup = item.image ? `
           <div class="w-full h-36 sm:h-44 rounded-xl sm:rounded-2xl overflow-hidden mb-3 bg-iceBg">
-            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.parentElement.style.display='none'">
+            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=1200&auto=format&fit=crop'; this.onerror=null;">
           </div>
         ` : '';
 
@@ -1603,7 +1591,7 @@
           btn.classList.remove('bg-white', 'text-slateBlueText');
         } else {
           btn.classList.remove('bg-cobalt', 'text-white', 'shadow-sm');
-          btn.classList.add('text-slateBlueText');
+          btn.classList.add('bg-white', 'text-slateBlueText');
         }
       });
       renderHotlines();
@@ -1665,13 +1653,13 @@
       if (viewType === 'chart') {
         chartView.classList.remove('hidden');
         tableView.classList.add('hidden');
-        chartBtn.className = "px-3.5 py-1.5 rounded-xl bg-midnight text-white shadow-sm transition-all flex items-center gap-1.5 min-h-[34px]";
-        tableBtn.className = "px-3.5 py-1.5 rounded-xl text-slateBlueText hover:text-midnight transition-all flex items-center gap-1.5 min-h-[34px]";
+        chartBtn.className = "px-3.5 sm:px-4 py-2 rounded-xl bg-midnight text-white shadow-sm transition-all flex items-center gap-1.5 min-h-[34px]";
+        tableBtn.className = "px-3.5 sm:px-4 py-2 rounded-xl text-slateBlueText hover:text-midnight transition-all flex items-center gap-1.5 min-h-[34px]";
       } else {
         chartView.classList.add('hidden');
         tableView.classList.remove('hidden');
-        tableBtn.className = "px-3.5 py-1.5 rounded-xl bg-midnight text-white shadow-sm transition-all flex items-center gap-1.5 min-h-[34px]";
-        chartBtn.className = "px-3.5 py-1.5 rounded-xl text-slateBlueText hover:text-midnight transition-all flex items-center gap-1.5 min-h-[34px]";
+        tableBtn.className = "px-3.5 sm:px-4 py-2 rounded-xl bg-midnight text-white shadow-sm transition-all flex items-center gap-1.5 min-h-[34px]";
+        chartBtn.className = "px-3.5 sm:px-4 py-2 rounded-xl text-slateBlueText hover:text-midnight transition-all flex items-center gap-1.5 min-h-[34px]";
       }
     }
 
