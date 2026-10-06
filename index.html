@@ -26,22 +26,22 @@
       theme: {
         extend: {
           colors: {
-            oxford: '#07172e',        // Deepest Midnight Oxford Navy
-            midnight: '#0b2246',      // Regional Institutional Navy
-            navyDeep: '#0f2e5a',      // Medium Deep Navy
-            navySurface: '#153a6e',   // Elevated Card & Header Navy
-            cobaltDark: '#1d4ed8',    // Deep Cobalt Blue
-            cobalt: '#2563eb',        // Primary Action Royal Blue
-            cobaltHover: '#1e40af',   // Hover State Cobalt
-            azure: '#0284c7',         // Sky Ocean Azure
-            skyElectric: '#0ea5e9',   // Electric Sky Accent
-            cyanGlow: '#38bdf8',      // High-Contrast Cyan & Active Tone
-            iceGlacier: '#bae6fd',    // Soft Glacier Tint
-            iceBorder: '#dbeafe',     // Light Slate Blue Border
-            iceBg: '#f0f7ff',         // Pale Ice Surface Tint
-            canvasBlue: '#f8fbff',    // Ultra Light Clean Background
-            inkBlue: '#0a1d37',       // Primary Text Dark Navy
-            slateBlueText: '#354e70'  // Muted Body Slate Blue
+            oxford: '#041d4a',        // CWC Deep Emblem Midnight Blue
+            midnight: '#002f87',      // Primary CWC Official Royal Blue
+            navyDeep: '#0038a8',      // Official GovPH & CWC Seal Blue
+            navySurface: '#0d47a1',   // Elevated Card & Header Sapphire
+            cobaltDark: '#1251b5',    // Deep Sapphire Blue
+            cobalt: '#1a65d6',        // Primary Action Vibrant Royal Blue
+            cobaltHover: '#104ea8',   // Hover State Royal Blue
+            azure: '#0284c7',         // Sky Ocean Blue Accent
+            skyElectric: '#38bdf8',   // Light Sky Blue
+            cyanGlow: '#60a5fa',      // CWC Glow Blue & Highlight Tone
+            iceGlacier: '#dbeafe',    // Soft Emblem Glacier Tint
+            iceBorder: '#bfdbfe',     // Light Blue Border
+            iceBg: '#eff6ff',         // Soft Blue Surface Background
+            canvasBlue: '#f8faff',    // Clean Crisp Porcelain Blue Background
+            inkBlue: '#051937',       // High-Contrast Deep Navy Text
+            slateBlueText: '#2e4a70'  // Muted Body Slate Blue
           },
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
@@ -68,13 +68,13 @@
 
     /* Custom Blue Scrollbar */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #f0f7ff; }
-    ::-webkit-scrollbar-thumb { background: #93c5fd; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #2563eb; }
+    ::-webkit-scrollbar-track { background: #eff6ff; }
+    ::-webkit-scrollbar-thumb { background: #60a5fa; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #1a65d6; }
 
     /* Modal Backdrop Glass Effect */
     .modal-backdrop {
-      background: rgba(7, 23, 46, 0.88);
+      background: rgba(4, 29, 74, 0.88);
       backdrop-filter: blur(6px);
     }
 
@@ -104,7 +104,7 @@
   </style>
 </head>
 
-<body id="home" class="bg-canvasBlue text-inkBlue antialiased font-sans flex flex-col min-h-screen relative selection:bg-cyanGlow selection:text-oxford overflow-x-hidden">
+<body id="home" class="bg-canvasBlue text-inkBlue antialiased font-sans flex flex-col min-h-screen relative selection:bg-cyanGlow selection:text-white overflow-x-hidden">
 
   <!-- 1. TOP GOVPH BLUE BAR & LIVE PHILIPPINE STANDARD TIME (PST) -->
   <aside aria-label="Official GovPH Top Bar" class="bg-gradient-to-r from-oxford via-midnight to-navyDeep text-blue-100 text-[10px] sm:text-[11px] py-1.5 px-3 sm:px-4 border-b border-cyanGlow/20 z-50">
@@ -155,7 +155,7 @@
           <img 
             src="WEBINAR_LOGO.png" 
             onerror="this.src='assets/images/rscwc-logo.png'; this.onerror=null;"
-            alt="Council for the Welfare of Children (RSCWC Region II) Official Seal"[cite: 4]
+            alt="Council for the Welfare of Children (RSCWC Region II) Official Seal"
             class="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-contain p-0.5 bg-white border-2 border-cobalt/30 shadow-sm"
           >
         </div>
@@ -182,7 +182,7 @@
       <!-- Makabata 1383 Hotline -->
       <div class="hidden lg:flex items-center gap-3 flex-shrink-0">
         <a href="tel:1383" class="bg-gradient-to-r from-midnight via-navySurface to-cobalt text-white px-3.5 py-1.5 rounded-xl shadow border border-cyanGlow/40 hover:border-cyanGlow transition-all flex items-center gap-2.5 group">
-          <div class="w-7 h-7 rounded-lg bg-cyanGlow text-oxford flex items-center justify-center text-xs font-bold shadow group-hover:scale-105 transition-transform">
+          <div class="w-7 h-7 rounded-lg bg-white text-midnight flex items-center justify-center text-xs font-bold shadow group-hover:scale-105 transition-transform">
             <i class="fa-solid fa-phone-volume"></i>
           </div>
           <div class="text-left">
@@ -359,8 +359,8 @@
 
         </div>
 
-        <div class="text-xs text-cyanGlow font-mono py-1.5 flex items-center gap-1.5">
-          <i class="fa-solid fa-location-dot"></i> <span>RSCWC REGION II</span>
+        <div class="text-xs text-white font-mono py-1.5 flex items-center gap-1.5 font-bold">
+          <i class="fa-solid fa-location-dot text-cyanGlow"></i> <span>RSCWC REGION II</span>
         </div>
 
       </div>
@@ -370,7 +370,7 @@
     <div id="mobileMenuDrawer" class="hidden lg:hidden bg-gradient-to-b from-oxford to-midnight text-white border-t border-cyanGlow/30 px-4 py-2.5 space-y-1.5 text-xs max-h-[82vh] overflow-y-auto">
       
       <a href="tel:1383" class="w-full bg-cobalt hover:bg-cobaltHover text-white p-2.5 rounded-xl font-bold flex items-center justify-center gap-2 mb-1.5 shadow border border-cyanGlow/40">
-        <i class="fa-solid fa-phone-volume text-cyanGlow"></i>
+        <i class="fa-solid fa-phone-volume text-white"></i>
         <span>CALL MAKABATA 1383 HOTLINE</span>
       </a>
 
@@ -477,8 +477,8 @@
 
 <!-- 5. [FIRST WINDOW / HERO] HEADLINE & TOP NEWS HERO WINDOW -->
 <section id="news-hero" class="relative bg-gradient-to-r from-oxford via-midnight to-navyDeep text-white py-6 sm:py-8 lg:py-10 px-3 sm:px-4 overflow-hidden border-b-4 border-azure">
-  <!-- Dot pattern color: change #5c84ed to any hex color -->
-  <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#5c84ed_1px,transparent_1px)] [background-size:24px_24px]"></div>
+  <!-- Dot pattern color -->
+  <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#60a5fa_1px,transparent_1px)] [background-size:24px_24px]"></div>
     <div class="max-w-7xl mx-auto relative z-10">
       
       <div class="flex items-center justify-between mb-3 sm:mb-4">
@@ -514,7 +514,7 @@
             <p id="heroHeadlineSummary" class="text-xs text-blue-100 max-w-xl font-normal leading-relaxed line-clamp-2">
               The Regional Inter-Agency Monitoring Task Force (RIMTF) initiated on-site audits for 93 cities and municipalities across Cagayan Valley to validate the Seal of Child-Friendly Local Governance.
             </p>
-            <button id="heroHeadlineBtn" onclick="openFeaturedModal()" class="w-full sm:w-auto bg-cyanGlow hover:bg-skyElectric text-oxford font-extrabold px-4 py-2 rounded-xl shadow transition-all flex items-center justify-center gap-1.5 text-xs whitespace-nowrap min-h-[38px]">
+            <button id="heroHeadlineBtn" onclick="openFeaturedModal()" class="w-full sm:w-auto bg-cobalt hover:bg-cobaltHover text-white font-extrabold px-4 py-2 rounded-xl shadow transition-all flex items-center justify-center gap-1.5 text-xs whitespace-nowrap min-h-[38px] border border-cyanGlow/40">
               <span>Read Full Story</span>
               <i class="fa-solid fa-arrow-right text-xs"></i>
             </button>
@@ -527,8 +527,8 @@
           <div class="bg-white text-inkBlue rounded-2xl sm:rounded-3xl p-3.5 sm:p-4 shadow-xl border-2 border-iceGlacier flex-1 flex flex-col justify-between">
             <div>
               <div class="flex items-center justify-between border-b border-iceBorder pb-2 mb-2.5">
-                <span class="text-[10px] uppercase font-extrabold text-cobalt tracking-wider flex items-center gap-1.5">
-                  <i class="fa-solid fa-tower-broadcast text-skyElectric animate-pulse"></i> Regional Flash Updates
+                <span class="text-[10px] uppercase font-extrabold text-midnight tracking-wider flex items-center gap-1.5">
+                  <i class="fa-solid fa-tower-broadcast text-cobalt animate-pulse"></i> Regional Flash Updates
                 </span>
                 <span class="bg-iceBg text-cobalt font-bold text-[9px] px-2 py-0.5 rounded-full border border-iceBorder">
                   Region II
@@ -539,7 +539,7 @@
             </div>
 
             <div class="pt-2.5 border-t border-iceBorder flex items-center justify-between">
-              <a href="javascript:void(0)" onclick="scrollToSection('headlines-section')" class="text-cobalt hover:text-cobaltDark font-bold text-xs flex items-center gap-1">
+              <a href="javascript:void(0)" onclick="scrollToSection('headlines-section')" class="text-cobalt hover:text-midnight font-bold text-xs flex items-center gap-1">
                 <span>View Full News Archive</span>
                 <i class="fa-solid fa-chevron-right text-[10px]"></i>
               </a>
@@ -701,7 +701,7 @@
               Multi-sectoral master plan unifying DSWD, DepEd, DOH CVCHD, DILG, and NEDA across all 5 provinces to eliminate stunting and enhance juvenile protection.
             </p>
           </div>
-          <button onclick="openProgramModal('rpac')" class="mt-3.5 pt-2.5 border-t border-iceBorder text-xs font-bold text-cobalt hover:text-cobaltDark flex items-center justify-between min-h-[34px]">
+          <button onclick="openProgramModal('rpac')" class="mt-3.5 pt-2.5 border-t border-iceBorder text-xs font-bold text-cobalt hover:text-midnight flex items-center justify-between min-h-[34px]">
             <span>View RPAC Targets</span>
             <i class="fa-solid fa-arrow-right"></i>
           </button>
@@ -721,7 +721,7 @@
               Annual audit assessing all 93 LGUs on child budget earmarks (1% IRA), daycare service quality, and functional Barangay Councils for Children.
             </p>
           </div>
-          <button onclick="openProgramModal('cflga')" class="mt-3.5 pt-2.5 border-t border-iceBorder text-xs font-bold text-azure hover:text-cobaltDark flex items-center justify-between min-h-[34px]">
+          <button onclick="openProgramModal('cflga')" class="mt-3.5 pt-2.5 border-t border-iceBorder text-xs font-bold text-azure hover:text-midnight flex items-center justify-between min-h-[34px]">
             <span>Audit Mechanics & Tools</span>
             <i class="fa-solid fa-arrow-right"></i>
           </button>
@@ -761,7 +761,7 @@
               Coordinated action against Online Sexual Abuse and Exploitation of Children, aligning digital forensics with PNP RACU 2 and school campaigns.
             </p>
           </div>
-          <button onclick="openProgramModal('osaec')" class="mt-3.5 pt-2.5 border-t border-iceBorder text-xs font-bold text-skyElectric hover:text-azure flex items-center justify-between min-h-[34px]">
+          <button onclick="openProgramModal('osaec')" class="mt-3.5 pt-2.5 border-t border-iceBorder text-xs font-bold text-cobalt hover:text-midnight flex items-center justify-between min-h-[34px]">
             <span>Taskforce Directives</span>
             <i class="fa-solid fa-arrow-right"></i>
           </button>
@@ -801,7 +801,7 @@
               Case intake and diversion coordination for Children in Conflict with the Law (CICL) across provincial Bahay Pag-asa facilities.
             </p>
           </div>
-          <button onclick="openProgramModal('jjwa')" class="mt-3.5 pt-2.5 border-t border-iceBorder text-xs font-bold text-azure hover:text-cobaltDark flex items-center justify-between min-h-[34px]">
+          <button onclick="openProgramModal('jjwa')" class="mt-3.5 pt-2.5 border-t border-iceBorder text-xs font-bold text-azure hover:text-midnight flex items-center justify-between min-h-[34px]">
             <span>Diversion Guidelines</span>
             <i class="fa-solid fa-arrow-right"></i>
           </button>
@@ -849,8 +849,8 @@
           <div class="bg-iceBg border-2 border-cobalt/30 rounded-2xl p-3.5 sm:p-4 shadow-sm text-left relative">
             <span class="absolute top-2.5 right-2.5 bg-cobalt text-white font-bold text-[9px] px-2 py-0.5 rounded-full">CHAIRPERSON</span>
             <div class="flex items-center gap-2.5">
-              <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl bg-midnight text-cyanGlow flex items-center justify-center font-bold text-base sm:text-lg shadow flex-shrink-0">
-                <i class="fa-solid fa-user-tie"></i>
+              <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl bg-midnight text-white flex items-center justify-center font-bold text-base sm:text-lg shadow flex-shrink-0">
+                <i class="fa-solid fa-user-tie text-cyanGlow"></i>
               </div>
               <div>
                 <h4 class="text-xs sm:text-sm font-bold text-midnight">Regional Director, DSWD Field Office 02</h4>
@@ -924,7 +924,7 @@
           <h4 class="font-bold text-midnight text-xs sm:text-sm">RSCWC Region II Institutional Personnel & Desk Directory</h4>
           <p class="text-[10px] sm:text-[11px] text-slateBlueText mt-0.5">Live registry retrieved from Google Sheets.</p>
         </div>
-        <div class="text-cobalt font-mono text-[10px] sm:text-[11px] bg-white px-2.5 py-0.5 rounded-full border border-iceBorder">GovPH R2 Registry</div>
+        <div class="text-cobalt font-mono text-[10px] sm:text-[11px] bg-white px-2.5 py-0.5 rounded-full border border-iceBorder font-bold">GovPH R2 Registry</div>
       </div>
 
       <!-- Desktop Tabular Layout -->
@@ -978,7 +978,7 @@
             <div class="mt-2.5 text-[10px] text-slateBlueText font-mono">PDF • 4.2 MB • CWC Approved</div>
           </div>
           <div class="mt-3.5 pt-2.5 border-t border-iceBorder">
-            <a href="assets/docs/RPAC_Region2_2023-2028_Framework.pdf" download="RPAC_Region2_2023-2028_Framework.pdf" class="w-full text-xs font-bold text-cobalt hover:text-cobaltDark flex items-center justify-between min-h-[38px]">
+            <a href="assets/docs/RPAC_Region2_2023-2028_Framework.pdf" download class="w-full text-xs font-bold text-cobalt hover:text-midnight flex items-center justify-between min-h-[38px]">
               <span>Download Official RPAC Manual</span>
               <i class="fa-solid fa-download"></i>
             </a>
@@ -998,7 +998,7 @@
             <div class="mt-2.5 text-[10px] text-slateBlueText font-mono">DOCX / XLSX • 2.8 MB • DILG-CWC Joint</div>
           </div>
           <div class="mt-3.5 pt-2.5 border-t border-iceBorder">
-            <a href="assets/docs/CFLGA_2026_Audit_Indicators_R2.xlsx" download="CFLGA_2026_Audit_Indicators_R2.xlsx" class="w-full text-xs font-bold text-azure hover:text-cobaltDark flex items-center justify-between min-h-[38px]">
+            <a href="assets/docs/CFLGA_2026_Audit_Indicators_R2.xlsx" download class="w-full text-xs font-bold text-azure hover:text-midnight flex items-center justify-between min-h-[38px]">
               <span>Download CFLGA Verification Tool</span>
               <i class="fa-solid fa-download"></i>
             </a>
@@ -1008,7 +1008,7 @@
         <!-- Doc 3: CEPC -->
         <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-iceBorder shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
           <div>
-            <div class="w-9 h-9 rounded-2xl bg-iceBg text-skyElectric flex items-center justify-center font-bold text-base mb-3 border border-iceBorder">
+            <div class="w-9 h-9 rounded-2xl bg-iceBg text-cobalt flex items-center justify-center font-bold text-base mb-3 border border-iceBorder">
               <i class="fa-solid fa-file-shield"></i>
             </div>
             <h4 class="text-sm font-bold text-midnight">CEPC RA 10821 Flood Guidelines</h4>
@@ -1018,7 +1018,7 @@
             <div class="mt-2.5 text-[10px] text-slateBlueText font-mono">PDF • 3.1 MB • DSWD FO2 Disaster Desk</div>
           </div>
           <div class="mt-3.5 pt-2.5 border-t border-iceBorder">
-            <a href="assets/docs/CEPC_RA10821_Cagayan_Basin_Guidelines.pdf" download="CEPC_RA10821_Cagayan_Basin_Guidelines.pdf" class="w-full text-xs font-bold text-cobalt hover:text-cobaltDark flex items-center justify-between min-h-[38px]">
+            <a href="assets/docs/CEPC_RA10821_Cagayan_Basin_Guidelines.pdf" download class="w-full text-xs font-bold text-cobalt hover:text-midnight flex items-center justify-between min-h-[38px]">
               <span>Download CEPC Flood SOP</span>
               <i class="fa-solid fa-download"></i>
             </a>
@@ -1030,7 +1030,7 @@
   </section>
 
   <!-- 12. BLUE CIVIC FOOTER (OFFICIAL RSCWC LOGO) -->
-  <footer class="bg-slate-950 text-white pt-8 sm:pt-10 pb-6 px-3 sm:px-4 border-t-4 border-blue-600 mt-auto">
+  <footer class="bg-oxford text-white pt-8 sm:pt-10 pb-6 px-3 sm:px-4 border-t-4 border-cobalt mt-auto">
     <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 mb-6 text-xs">
       
       <div class="space-y-2">
@@ -1038,7 +1038,7 @@
           <img 
             src="WEBINAR_LOGO.png" 
             onerror="this.src='assets/images/rscwc-logo.png'; this.onerror=null;"
-            alt="RSCWC Official Seal"[cite: 4]
+            alt="RSCWC Official Seal"
             class="w-7 h-7 rounded-full object-contain p-0.5 bg-white border border-cyanGlow/50"
           >
           <span class="font-extrabold text-xs tracking-wide text-white">RSCWC REGION II</span>
@@ -1676,7 +1676,7 @@
           </div>
           <div class="mt-3 pt-2.5 border-t border-iceBorder flex items-center justify-between text-xs">
             <span class="text-[10px] text-slateBlueText truncate max-w-[140px]">${item.source || ''}</span>
-            <button onclick="openNewsModal('${item.id}')" class="font-bold text-cobalt hover:text-cobaltDark flex items-center gap-1.5 min-h-[32px]">
+            <button onclick="openNewsModal('${item.id}')" class="font-bold text-cobalt hover:text-midnight flex items-center gap-1.5 min-h-[32px]">
               Read Advisory <i class="fa-solid fa-arrow-right text-[10px]"></i>
             </button>
           </div>
