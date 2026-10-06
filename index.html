@@ -452,6 +452,14 @@
           <i id="accProgIcon" class="fa-solid fa-chevron-down text-[10px] transition-transform"></i>
         </button>
         <div id="accProg" class="accordion-content pl-6 space-y-1.5 text-[11px] text-blue-100 py-1">
+          <button 
+            type="button" 
+            onclick="scrollToSection('programs-section'); closeMobileMenu();" 
+            class="w-full text-left bg-cobalt hover:bg-cobaltHover text-white font-bold py-1.5 px-2.5 rounded-lg text-[11px] my-1 flex items-center justify-between"
+          >
+            <span><i class="fa-solid fa-layer-group mr-1.5 text-cyanGlow"></i> All Flagship Programs</span>
+            <i class="fa-solid fa-arrow-down text-[10px]"></i>
+          </button>
           <a href="javascript:void(0)" onclick="openProgramModal('rpac'); closeMobileMenu();" class="block py-1 hover:text-cyanGlow">RPAC 2023–2028 Plan</a>
           <a href="javascript:void(0)" onclick="openProgramModal('cflga'); closeMobileMenu();" class="block py-1 hover:text-cyanGlow">CFLGA 2026 Audit</a>
           <a href="javascript:void(0)" onclick="openProgramModal('cepc'); closeMobileMenu();" class="block py-1 hover:text-cyanGlow">RA 10821 CEPC Disaster Response</a>
