@@ -65,7 +65,7 @@
       }
     }
 
-    /* Family of Blue Custom Scrollbar */
+    /* Custom Blue Scrollbar */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #f0f7ff; }
     ::-webkit-scrollbar-thumb { background: #93c5fd; border-radius: 4px; }
@@ -150,13 +150,11 @@
       
       <!-- Institutional Logo & Titles -->
       <div class="flex items-center gap-3 w-full md:w-auto">
-        
-        <!-- Official CWC/RSCWC Logo Seal -->
         <div class="relative flex-shrink-0">
           <img 
             src="WEBINAR_LOGO.png" 
             onerror="this.src='assets/images/rscwc-logo.png'; this.onerror=null;"
-            alt="Council for the Welfare of Children (RSCWC Region II) Official Seal" 
+            alt="Council for the Welfare of Children (RSCWC Region II) Official Seal"[cite: 4]
             class="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-contain p-0.5 bg-white border-2 border-cobalt/30 shadow-sm"
           >
         </div>
@@ -175,13 +173,12 @@
           </p>
         </div>
 
-        <!-- Mobile Hamburger -->
         <button id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Toggle Navigation Menu" class="lg:hidden p-2 rounded-xl bg-iceBg text-midnight border border-iceBorder hover:bg-iceGlacier transition-colors flex-shrink-0 flex items-center justify-center min-w-[40px] min-h-[40px]">
           <i id="menuIcon" class="fa-solid fa-bars text-sm text-cobalt"></i>
         </button>
       </div>
 
-      <!-- Compact Makabata 1383 Hotline -->
+      <!-- Makabata 1383 Hotline -->
       <div class="hidden lg:flex items-center gap-3 flex-shrink-0">
         <a href="tel:1383" class="bg-gradient-to-r from-midnight via-navySurface to-cobalt text-white px-3.5 py-1.5 rounded-xl shadow border border-cyanGlow/40 hover:border-cyanGlow transition-all flex items-center gap-2.5 group">
           <div class="w-7 h-7 rounded-lg bg-cyanGlow text-oxford flex items-center justify-center text-xs font-bold shadow group-hover:scale-105 transition-transform">
@@ -1040,7 +1037,7 @@
           <img 
             src="WEBINAR_LOGO.png" 
             onerror="this.src='assets/images/rscwc-logo.png'; this.onerror=null;"
-            alt="RSCWC Official Seal" 
+            alt="RSCWC Official Seal"[cite: 4]
             class="w-7 h-7 rounded-full object-contain p-0.5 bg-white border border-cyanGlow/50"
           >
           <span class="font-extrabold text-xs tracking-wide text-white">RSCWC REGION II</span>
@@ -1195,8 +1192,701 @@
     </div>
   </div>
 
-  <!-- 14. INITIALIZATION SCRIPT -->
+  <!-- 14. CORE JAVASCRIPT (CONSTANTS DECLARED FIRST, NEVER CRASHES) -->
   <script>
+    // 1. API URL
+    const GOOGLE_SHEET_API_URL = "https://script.google.com/macros/s/AKfycbxcC-crXI3I6Qwqe88mu9BebfyA53W38kU9ZTX5Kw-VOXPtgDQtoiby6NxRBrwZXr7GYw/exec";
+
+    // 2. DEFAULT FALLBACK DATA (Declared first so they are defined when arrays initialize)
+    const defaultHeadlines = [
+      {
+        id: "news-1",
+        category: "CFLGA",
+        title: "CFLGA 2026: Regional Validation of 93 LGUs Underway Across 5 Provinces",
+        date: "October 02, 2026",
+        source: "DILG RO2 & RSCWC Secretariat (Carig Sur)",
+        image: "https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=1200&auto=format&fit=crop",
+        summary: "The Regional Inter-Agency Monitoring Task Force (RIMTF) initiated on-site audits for 93 cities and municipalities across Cagayan Valley to validate the Seal of Child-Friendly Local Governance.",
+        content: "<p><strong>CARIG SUR, TUGUEGARAO CITY</strong> — The Regional Sub-Committee for the Welfare of Children (RSCWC Region II), in joint partnership with DILG Region II, has commenced the comprehensive validation cycle for the <strong>Child-Friendly Local Governance Audit (CFLGA) 2026</strong>.</p><p class='mt-2'>Covering 93 local government units across <strong>Cagayan, Isabela, Nueva Vizcaya, Quirino, and Batanes</strong>, the audit evaluates mandatory statutory indicators: 1% Internal Revenue Allotment (IRA) earmarked for the Barangay Council for the Protection of Children (BCPC), fully functioning Child Development Centers, functional Local Councils for the Protection of Children (LCPC), and localized juvenile diversion systems under RA 9344.</p>"
+      },
+      {
+        id: "news-2",
+        category: "EMERGENCY",
+        title: "CEPC Flood Protocol: Child-Friendly Evacuation Spaces Activated Along Cagayan Basin",
+        date: "September 29, 2026",
+        source: "DSWD FO2 Disaster Response & PDRRMOs",
+        image: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=1200&auto=format&fit=crop",
+        summary: "In compliance with RA 10821, child-friendly spaces, trauma play kits, and mother-baby lactation tents have been prepositioned in 42 flood-prone river basin municipalities.",
+        content: "<p><strong>REGIONAL GOVERNMENT CENTER, TUGUEGARAO</strong> — Following water level advisories on the Cagayan River and Magat Reservoir, the RSCWC activated the <strong>Comprehensive Emergency Program for Children (CEPC - Republic Act 10821)</strong>.</p><p class='mt-2'>Child-Friendly Spaces (CFS) and emergency infant nutritional kits have been staged in designated multi-purpose evacuation shelters across low-lying areas of Cagayan and Isabela.</p>"
+      },
+      {
+        id: "news-3",
+        category: "PROTECTION",
+        title: "Anti-OSAEC Taskforce Conducts Regional Cyber-Safety Drives in Nueva Vizcaya & Quirino",
+        date: "September 24, 2026",
+        source: "PNP PRO2 WCPD & RACU 2",
+        image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1200&auto=format&fit=crop",
+        summary: "Regional taskforce enforces RA 11930 against Online Sexual Abuse and Exploitation of Children through high school symposiums and cafe compliance sweeps.",
+        content: "<p><strong>BAYOMBONG, NUEVA VIZCAYA</strong> — The RSCWC Inter-Agency Committee, joined by the PNP Regional Anti-Cybercrime Unit 2 (RACU 2) and PNP PRO2 WCPD, conducted multi-school child protection symposiums reaching 4,200 junior and senior high school students.</p>"
+      }
+    ];
+
+    const defaultHotlines = [
+      {
+        id: "cmd-1",
+        province: "REGIONAL",
+        provinceLabel: "Regional Command",
+        office: "DSWD Field Office 02 (RSCWC Secretariat)",
+        jurisdiction: "All 5 Provinces (Region II)",
+        station: "Regional Government Center, Carig Sur, Tuguegarao City",
+        phoneText: "(078) 304-1004 / 304-0586",
+        phoneTel: "0783041004",
+        altPhone: "0917-810-2344",
+        email: "fo2@dswd.gov.ph",
+        focus: "Executive Child Policy, Statutory Custody, CEPC Emergency Prepositioning"
+      },
+      {
+        id: "cmd-2",
+        province: "REGIONAL",
+        provinceLabel: "Regional Command",
+        office: "PNP Police Regional Office 2 (PRO2) WCPD",
+        jurisdiction: "All 5 Provinces (Region II)",
+        station: "Camp Marcelo A. Adduru, Tuguegarao City",
+        phoneText: "0917-812-3150 / (078) 304-1221",
+        phoneTel: "09178123150",
+        altPhone: "0998-598-7890",
+        email: "pro2_wcpd@pnp.gov.ph",
+        focus: "Regional Anti-Trafficking, Minor Rescue Operations, Anti-OSAEC RA 11930"
+      },
+      {
+        id: "cag-1",
+        province: "CAGAYAN",
+        provinceLabel: "Cagayan Province",
+        office: "PSWDO Cagayan (Provincial Social Welfare)",
+        jurisdiction: "28 Municipalities & Tuguegarao City",
+        station: "Capitol Hills, Tuguegarao City",
+        phoneText: "(078) 304-1875 / 0917-542-8800",
+        phoneTel: "0783041875",
+        altPhone: "0926-440-1922",
+        email: "pswdo@cagayan.gov.ph",
+        focus: "PCPC Oversight, Cagayan River Basin Child Relief, BCPC Accreditation"
+      },
+      {
+        id: "isa-1",
+        province: "ISABELA",
+        provinceLabel: "Isabela Province",
+        office: "PSWDO Isabela (Provincial Social Welfare)",
+        jurisdiction: "34 Municipalities, Ilagan & Santiago Cities",
+        station: "Capitol Complex, Alibagu, City of Ilagan",
+        phoneText: "(078) 323-0173 / 0917-622-4411",
+        phoneTel: "0783230173",
+        altPhone: "0927-550-1844",
+        email: "pswdo@isabela.gov.ph",
+        focus: "Isabela Bahay Pag-asa, 34 Municipal BCPCs, Daycare Training Center"
+      },
+      {
+        id: "nv-1",
+        province: "NUEVA_VIZCAYA",
+        provinceLabel: "Nueva Vizcaya",
+        office: "PSWDO Nueva Vizcaya",
+        jurisdiction: "15 Municipalities",
+        station: "Capitol Compound, Bayombong",
+        phoneText: "(078) 321-2551 / 0917-548-1199",
+        phoneTel: "0783212551",
+        altPhone: "0926-788-3310",
+        email: "pswdo@nuevavizcaya.gov.ph",
+        focus: "Indigenous Children Rights, Bahay Pag-asa Bayombong, CFLGA Lead"
+      },
+      {
+        id: "qui-1",
+        province: "QUIRINO",
+        provinceLabel: "Quirino Province",
+        office: "PSWDO Quirino",
+        jurisdiction: "6 Municipalities",
+        station: "Capitol Hills, Cabarroguis",
+        phoneText: "0917-548-2910 / (078) 692-5034",
+        phoneTel: "09175482910",
+        altPhone: "0927-440-2811",
+        email: "pswdo@quirinoprovince.gov.ph",
+        focus: "Upland Child Development Centers, Adolescent Counseling"
+      },
+      {
+        id: "bat-1",
+        province: "BATANES",
+        provinceLabel: "Batanes Province",
+        office: "PSWDO Batanes",
+        jurisdiction: "6 Island Municipalities",
+        station: "Provincial Capitol Building, Basco",
+        phoneText: "0999-883-4921 / (078) 533-3456",
+        phoneTel: "09998834921",
+        altPhone: "0918-922-1088",
+        email: "pswdo@batanes.gov.ph",
+        focus: "Island Child Protection Desks, Ivatan Cultural Safeguards"
+      }
+    ];
+
+    const defaultDirectory = [
+      {
+        role: "RSCWC Regional Chairperson",
+        agency: "DSWD Field Office 02",
+        station: "Regional Gov Center, Carig Sur, Tuguegarao",
+        focus: "Executive Regional Policy & Inter-Agency Coordination",
+        contact: "(078) 304-1004 / fo2@dswd.gov.ph"
+      },
+      {
+        role: "RSCWC Regional Co-Chairperson",
+        agency: "DILG Regional Office 02",
+        station: "Regional Gov Center, Carig Sur, Tuguegarao",
+        focus: "LGU Child-Friendly Governance Audit (CFLGA) Oversight",
+        contact: "(078) 304-1244 / r2@dilg.gov.ph"
+      },
+      {
+        role: "RSCWC Secretariat Head",
+        agency: "DSWD FO2 Protective Services",
+        station: "DSWD FO2 Complex, Carig Sur, Tuguegarao",
+        focus: "Statutory Case Custody, CEPC Response & Licensing",
+        contact: "(078) 304-1004 loc. 201"
+      },
+      {
+        role: "Regional Child Rights Focal Person",
+        agency: "DSWD FO2 Child Protection Desk",
+        station: "Carig Sur, Tuguegarao City",
+        focus: "RPAC 2023–2028 Implementation & Makabata 1383",
+        contact: "rscwc.fo2@dswd.gov.ph"
+      }
+    ];
+
+    const aboutData = {
+      mandate: {
+        title: "Mandate & Legal Basis",
+        html: "<p>The <strong>Regional Sub-Committee for the Welfare of Children (RSCWC)</strong> was instituted by virtue of <strong>Executive Order No. 233</strong> as the regional mechanism of the <strong>Council for the Welfare of Children (CWC)</strong>.</p><p class='mt-2'>RSCWC Region II coordinates, monitors, and evaluates the implementation of all child rights laws, policies, and welfare programs across the provinces of <strong>Cagayan, Isabela, Nueva Vizcaya, Quirino, and Batanes</strong>.</p>"
+      },
+      vision: {
+        title: "Vision, Mission & Core Values",
+        html: "<div class='space-y-2'><div><strong class='text-midnight text-xs block'>Vision</strong><p class='text-slateBlueText'>A child-friendly Cagayan Valley where every child fully enjoys their rights to survival, development, protection, and participation.</p></div><div><strong class='text-midnight text-xs block'>Mission</strong><p class='text-slateBlueText'>To harmonize, steer, and advocate for child-focused policies, mobilize inter-agency collaboration, and empower LGUs to uphold quality standards.</p></div></div>"
+      },
+      charter: {
+        title: "Citizen's Charter & Service Standards",
+        html: "<p>In accordance with <strong>Republic Act No. 11032</strong> (Ease of Doing Business):</p><ul class='list-disc pl-5 space-y-1 mt-1.5'><li><strong>Hotline Intake:</strong> Validated and referred to respective PSWDOs within <strong>2 to 4 hours</strong>.</li><li><strong>LGU CFLGA Assistance:</strong> Technical guidance provided within <strong>3 business days</strong>.</li></ul>"
+      }
+    };
+
+    const programData = {
+      rpac: {
+        tag: "Roadmap 2023-2028",
+        title: "Regional Plan of Action for Children (RPAC)",
+        icon: "fa-map-location-dot",
+        bg: "bg-iceBg text-cobalt border border-iceBorder",
+        html: "<p>The <strong>RPAC Region II (2023-2028)</strong> represents the synchronized regionalization of the Philippine National Plan of Action for Children across Cagayan Valley.</p>"
+      },
+      cflga: {
+        tag: "DILG-CWC Joint MC",
+        title: "Child-Friendly Local Governance Audit (CFLGA)",
+        icon: "fa-award",
+        bg: "bg-iceBg text-azure border border-iceBorder",
+        html: "<p>Annual performance assessment for all 93 LGUs in Cagayan Valley evaluating child budget earmarks (1% IRA), daycare service ratios, and BCPC functionality.</p>"
+      },
+      cepc: {
+        tag: "Republic Act 10821",
+        title: "Comprehensive Emergency Program for Children (CEPC)",
+        icon: "fa-life-ring",
+        bg: "bg-iceGlacier/40 text-midnight border border-iceBorder",
+        html: "<p>Statutory protocol safeguarding minors during river basin flooding and typhoons with Child-Friendly Spaces and tracking.</p>"
+      },
+      osaec: {
+        tag: "Republic Act 11930",
+        title: "Anti-OSAEC & Anti-CSAEM Regional Taskforce",
+        icon: "fa-shield-virus",
+        bg: "bg-iceBg text-skyElectric border border-iceBorder",
+        html: "<p>Multi-agency enforcement against Online Sexual Abuse and Exploitation of Children across Region II.</p>"
+      },
+      eccd: {
+        tag: "Quality Standards",
+        title: "ECCD & Child Development Worker Accreditation",
+        icon: "fa-child-reaching",
+        bg: "bg-iceBg text-cobaltDark border border-iceBorder",
+        html: "<p>Ensuring quality early childhood care across 1,840+ Daycare Centers in Region II.</p>"
+      },
+      jjwa: {
+        tag: "RA 9344 / RA 10630",
+        title: "Makabata 1383 & Juvenile Justice (Bahay Pag-asa)",
+        icon: "fa-scale-balanced",
+        bg: "bg-iceBg text-azure border border-iceBorder",
+        html: "<p>Multi-agency diversion and counseling network for Children in Conflict with the Law (CICL).</p>"
+      }
+    };
+
+    // 3. INITIALIZE STATE
+    let liveHeadlinesData = [...defaultHeadlines];
+    let liveHotlinesData = [...defaultHotlines];
+    let liveDirectoryData = [...defaultDirectory];
+    let currentProvinceFilter = 'ALL';
+    let featuredHeadlineItem = liveHeadlinesData[0];
+
+    // 4. NAVIGATION CONTROLLERS
+    function scrollToTop(e) {
+      if (e) e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (history.pushState) history.pushState(null, null, '#home');
+      closeMobileMenu();
+    }
+
+    function scrollToSection(id) {
+      closeMobileMenu();
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function navigateAndFilterNews(category) {
+      closeMobileMenu();
+      filterHeadlines(category);
+      scrollToSection('headlines-section');
+    }
+
+    function navigateAndFilterHotlines(province) {
+      closeMobileMenu();
+      selectProvinceTab(province);
+      scrollToSection('provincial-hotlines');
+    }
+
+    function navigateAndSwitchOrg(viewType) {
+      closeMobileMenu();
+      switchOrgView(viewType);
+      scrollToSection('org-structure-section');
+    }
+
+    function closeMobileMenu() {
+      const drawer = document.getElementById('mobileMenuDrawer');
+      const icon = document.getElementById('menuIcon');
+      if (drawer && !drawer.classList.contains('hidden')) {
+        drawer.classList.add('hidden');
+        if (icon) icon.className = 'fa-solid fa-bars text-sm text-cobalt';
+      }
+    }
+
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobileMenuDrawer');
+      const icon = document.getElementById('menuIcon');
+      if (drawer) {
+        drawer.classList.toggle('hidden');
+        if (drawer.classList.contains('hidden')) {
+          icon.className = 'fa-solid fa-bars text-sm text-cobalt';
+        } else {
+          icon.className = 'fa-solid fa-xmark text-sm text-cyanGlow';
+        }
+      }
+    }
+
+    function toggleMobileAccordion(id) {
+      const el = document.getElementById(id);
+      const icon = document.getElementById(id + 'Icon');
+      if (!el) return;
+
+      const isOpen = el.classList.contains('open');
+      document.querySelectorAll('.accordion-content').forEach(acc => acc.classList.remove('open'));
+      document.querySelectorAll('[id$="Icon"]').forEach(i => {
+        if (i.id !== 'menuIcon') i.classList.remove('rotate-180');
+      });
+
+      if (!isOpen) {
+        el.classList.add('open');
+        if (icon) icon.classList.add('rotate-180');
+      }
+    }
+
+    // Live Clock
+    function updatePSTClock() {
+      const clockEl = document.getElementById('pstClock');
+      if (!clockEl) return;
+      const now = new Date();
+      const options = {
+        timeZone: 'Asia/Manila',
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+      };
+      clockEl.innerText = now.toLocaleString('en-US', options);
+    }
+    setInterval(updatePSTClock, 1000);
+    updatePSTClock();
+
+    // Accessibility
+    function toggleHighContrast() {
+      document.documentElement.classList.toggle('dark');
+      document.body.style.filter = document.documentElement.classList.contains('dark') ? "contrast(130%)" : "none";
+    }
+
+    let currentFontScale = 100;
+    function adjustFontSize(delta) {
+      currentFontScale = Math.max(90, Math.min(125, currentFontScale + (delta * 5)));
+      document.documentElement.style.fontSize = `${currentFontScale}%`;
+    }
+
+    // Modal Triggers
+    function openAboutModal(key) {
+      closeMobileMenu();
+      const data = aboutData[key];
+      if (!data) return;
+      document.getElementById('aboutModalTitle').innerText = data.title;
+      document.getElementById('aboutModalBody').innerHTML = data.html;
+      openModal('aboutModal');
+    }
+
+    function openProgramModal(key) {
+      closeMobileMenu();
+      const data = programData[key];
+      if (!data) return;
+      document.getElementById('progModalTag').innerText = data.tag;
+      document.getElementById('progModalTitle').innerText = data.title;
+      document.getElementById('progModalContent').innerHTML = data.html;
+      const iconBox = document.getElementById('progModalIcon');
+      iconBox.className = `w-8 h-8 rounded-2xl flex items-center justify-center text-sm shadow flex-shrink-0 ${data.bg}`;
+      iconBox.innerHTML = `<i class="fa-solid ${data.icon}"></i>`;
+      openModal('programModal');
+    }
+
+    function openModal(id) {
+      const m = document.getElementById(id);
+      if (m) m.classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      const m = document.getElementById(id);
+      if (m) m.classList.add('hidden');
+    }
+
+    window.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' || e.keyCode === 27) {
+        const openModalEl = document.querySelector('.modal-backdrop:not(.hidden)');
+        if (openModalEl) openModalEl.classList.add('hidden');
+      }
+    });
+
+    // 5. FETCH PORTAL DATA (LIVE GOOGLE APPS SCRIPT)
+    async function fetchPortalData() {
+      try {
+        const response = await fetch(GOOGLE_SHEET_API_URL);
+        const data = await response.json();
+        if (data.news && data.news.length > 0) liveHeadlinesData = data.news;
+        if (data.hotlines && data.hotlines.length > 0) liveHotlinesData = data.hotlines;
+        if (data.directory && data.directory.length > 0) liveDirectoryData = data.directory;
+      } catch (error) {
+        console.warn("Using preloaded records (CORS/offline fallback):", error);
+      } finally {
+        populateFirstWindowHero();
+        renderHeadlines('ALL');
+        renderHotlines();
+        renderEmployeeTable();
+      }
+    }
+
+    // Populate Hero Headline
+    function populateFirstWindowHero() {
+      if (!liveHeadlinesData || liveHeadlinesData.length === 0) return;
+
+      featuredHeadlineItem = liveHeadlinesData[0];
+
+      const img = document.getElementById('heroHeadlineImg');
+      const cat = document.getElementById('heroHeadlineCategory');
+      const date = document.getElementById('heroHeadlineDate');
+      const title = document.getElementById('heroHeadlineTitle');
+      const summary = document.getElementById('heroHeadlineSummary');
+
+      if (img && featuredHeadlineItem.image) img.src = featuredHeadlineItem.image;
+      if (cat) cat.innerText = featuredHeadlineItem.category || 'TOP BULLETIN';
+      if (date) date.innerText = featuredHeadlineItem.date || '';
+      if (title) title.innerText = featuredHeadlineItem.title || 'Regional Child Welfare Directive';
+      if (summary) summary.innerText = featuredHeadlineItem.summary || '';
+
+      const snippetBox = document.getElementById('heroNewsSnippetList');
+      if (snippetBox) {
+        snippetBox.innerHTML = '';
+        const secondary = liveHeadlinesData.slice(1, 4);
+
+        secondary.forEach(item => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = "p-2 bg-iceBg hover:bg-iceBorder/60 rounded-xl border border-iceBorder transition-colors cursor-pointer";
+          itemDiv.onclick = () => openNewsModal(item.id);
+          itemDiv.innerHTML = `
+            <div class="flex items-center justify-between text-[9px] mb-0.5">
+              <span class="font-bold text-cobalt font-mono">${item.category}</span>
+              <span class="text-slateBlueText/70">${item.date}</span>
+            </div>
+            <div class="font-bold text-midnight text-xs line-clamp-1 hover:text-cobalt transition-colors">
+              ${item.title}
+            </div>
+          `;
+          snippetBox.appendChild(itemDiv);
+        });
+      }
+    }
+
+    function openFeaturedModal() {
+      if (featuredHeadlineItem) openNewsModal(featuredHeadlineItem.id);
+    }
+
+    // Render Headlines
+    function renderHeadlines(filterCategory = 'ALL') {
+      const container = document.getElementById('headlinesGrid');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const filtered = filterCategory === 'ALL' 
+        ? liveHeadlinesData 
+        : liveHeadlinesData.filter(item => item.category === filterCategory);
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<p class="text-xs text-slateBlueText col-span-1 md:col-span-3 text-center py-6">No bulletins found in this category.</p>';
+        return;
+      }
+
+      filtered.forEach(item => {
+        const card = document.createElement('article');
+        card.className = "bg-white rounded-2xl sm:rounded-3xl border border-iceBorder p-3.5 sm:p-4 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group overflow-hidden";
+        
+        let badgeColor = "bg-iceBg text-cobalt border border-iceBorder";
+        if (item.category === 'EMERGENCY') badgeColor = "bg-navySurface text-cyanGlow border border-cyanGlow/40";
+        if (item.category === 'PROTECTION') badgeColor = "bg-canvasBlue text-azure border border-iceGlacier";
+
+        const imageMarkup = item.image ? `
+          <div class="w-full h-36 sm:h-44 rounded-xl sm:rounded-2xl overflow-hidden mb-3 bg-iceBg">
+            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=1200&auto=format&fit=crop'; this.onerror=null;">
+          </div>
+        ` : '';
+
+        card.innerHTML = `
+          <div>
+            ${imageMarkup}
+            <div class="flex items-center justify-between mb-1.5 text-xs">
+              <span class="font-extrabold uppercase px-2 py-0.5 rounded-full text-[9px] ${badgeColor}">
+                ${item.category || 'BULLETIN'}
+              </span>
+              <span class="text-slateBlueText font-mono text-[10px] font-medium">${item.date || ''}</span>
+            </div>
+            <h3 class="text-sm font-bold text-midnight group-hover:text-cobalt transition-colors leading-snug">
+              ${item.title || 'Untitled Bulletin'}
+            </h3>
+            <p class="text-xs text-slateBlueText mt-1.5 leading-relaxed font-normal">
+              ${item.summary || ''}
+            </p>
+          </div>
+          <div class="mt-3 pt-2.5 border-t border-iceBorder flex items-center justify-between text-xs">
+            <span class="text-[10px] text-slateBlueText truncate max-w-[140px]">${item.source || ''}</span>
+            <button onclick="openNewsModal('${item.id}')" class="font-bold text-cobalt hover:text-cobaltDark flex items-center gap-1.5 min-h-[32px]">
+              Read Advisory <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function filterHeadlines(cat) {
+      document.querySelectorAll('.news-tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-category') === cat) {
+          btn.classList.add('bg-cobalt', 'text-white', 'shadow-sm');
+          btn.classList.remove('text-slateBlueText');
+        } else {
+          btn.classList.remove('bg-cobalt', 'text-white', 'shadow-sm');
+          btn.classList.add('text-slateBlueText');
+        }
+      });
+      renderHeadlines(cat);
+    }
+
+    function openNewsModal(id) {
+      const item = liveHeadlinesData.find(h => h.id === id);
+      if (!item) return;
+
+      document.getElementById('newsModalTitle').innerText = item.title;
+      document.getElementById('newsModalCategory').innerText = item.category || 'BULLETIN';
+      document.getElementById('newsModalCategory').className = `text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-iceBg text-cobalt border border-iceBorder`;
+      document.getElementById('newsModalMeta').innerText = `${item.date || ''} • Issued by: ${item.source || 'RSCWC Region II'}`;
+      document.getElementById('newsModalBody').innerHTML = item.content || `<p>${item.summary || ''}</p>`;
+
+      const imgContainer = document.getElementById('newsModalImageContainer');
+      const imgEl = document.getElementById('newsModalImage');
+      if (item.image) {
+        imgEl.src = item.image;
+        imgContainer.classList.remove('hidden');
+      } else {
+        imgContainer.classList.add('hidden');
+      }
+
+      openModal('newsModal');
+    }
+
+    // Render Hotlines
+    function renderHotlines() {
+      const container = document.getElementById('hotlinesGrid');
+      const emptyState = document.getElementById('noHotlineFound');
+      const search = document.getElementById('hotlineSearchInput').value.toLowerCase().trim();
+      
+      container.innerHTML = '';
+
+      const filtered = liveHotlinesData.filter(item => {
+        const itemProv = (item.province || '').toUpperCase();
+        const matchesProv = (currentProvinceFilter === 'ALL') || (itemProv === currentProvinceFilter);
+        const matchesText = 
+          (item.office || '').toLowerCase().includes(search) ||
+          (item.provinceLabel || '').toLowerCase().includes(search) ||
+          (item.jurisdiction || '').toLowerCase().includes(search) ||
+          (item.focus || '').toLowerCase().includes(search) ||
+          (item.phoneText || '').toLowerCase().includes(search);
+        return matchesProv && matchesText;
+      });
+
+      if (filtered.length === 0) {
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      emptyState.classList.add('hidden');
+
+      filtered.forEach(h => {
+        let badgeStyle = "bg-iceBg text-cobalt border border-iceBorder";
+        if (h.province === 'REGIONAL') badgeStyle = "bg-midnight text-cyanGlow border border-cyanGlow/40";
+        if (h.province === 'ISABELA') badgeStyle = "bg-canvasBlue text-azure border border-iceBorder";
+        if (h.province === 'NUEVA_VIZCAYA') badgeStyle = "bg-iceBg text-cobaltDark border border-iceBorder";
+        if (h.province === 'BATANES') badgeStyle = "bg-canvasBlue text-skyElectric border border-iceBorder";
+
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-2xl sm:rounded-3xl p-3.5 sm:p-4 border border-iceBorder shadow-sm hover:shadow-md transition-all flex flex-col justify-between";
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-2 text-xs">
+              <span class="font-extrabold uppercase px-2 py-0.5 rounded-full text-[9px] ${badgeStyle}">
+                ${h.provinceLabel || h.province}
+              </span>
+              <span class="text-slateBlueText text-[10px] font-medium truncate max-w-[130px]">
+                <i class="fa-solid fa-map-pin text-azure mr-1"></i> ${h.jurisdiction || ''}
+              </span>
+            </div>
+
+            <h4 class="text-sm font-bold text-midnight leading-snug">
+              ${h.office || 'Emergency Desk'}
+            </h4>
+            <p class="text-xs text-slateBlueText mt-1 leading-relaxed font-normal">
+              ${h.focus || ''}
+            </p>
+
+            <div class="mt-3 p-2.5 bg-iceBg rounded-xl border border-iceBorder space-y-1 text-xs text-slateBlueText">
+              <div class="flex items-start gap-1.5">
+                <i class="fa-solid fa-location-dot text-cobalt mt-0.5 text-[10px]"></i>
+                <span class="text-[10px] leading-tight text-midnight font-medium">${h.station || 'Regional Station'}</span>
+              </div>
+              <div class="flex items-center justify-between pt-0.5">
+                <span>Official Line:</span>
+                <span class="font-mono text-midnight font-bold text-[11px]">${h.phoneText || '—'}</span>
+              </div>
+              ${h.altPhone ? `
+              <div class="flex items-center justify-between text-[10px]">
+                <span>24/7 Mobile:</span>
+                <span class="font-mono text-cobalt font-semibold">${h.altPhone}</span>
+              </div>` : ''}
+              ${h.email ? `
+              <div class="flex items-center justify-between text-[10px] border-t border-iceBorder pt-0.5 mt-0.5">
+                <span>Email:</span>
+                <span class="font-mono text-azure truncate max-w-[150px]">${h.email}</span>
+              </div>` : ''}
+            </div>
+          </div>
+
+          <div class="mt-3.5 pt-2.5 border-t border-iceBorder">
+            <a href="tel:${h.phoneTel || h.phoneText}" class="w-full text-center bg-cobalt hover:bg-cobaltHover text-white py-2 px-3 rounded-xl text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-1.5 border border-cyanGlow/20 min-h-[38px]">
+              <i class="fa-solid fa-phone text-xs"></i>
+              <span>Call Desk Now</span>
+            </a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function selectProvinceTab(prov) {
+      currentProvinceFilter = prov;
+      document.querySelectorAll('.prov-tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-prov') === prov) {
+          btn.classList.add('bg-cobalt', 'text-white', 'shadow-sm');
+          btn.classList.remove('bg-white', 'text-slateBlueText');
+        } else {
+          btn.classList.remove('bg-cobalt', 'text-white', 'shadow-sm');
+          btn.classList.add('bg-white', 'text-slateBlueText');
+        }
+      });
+      renderHotlines();
+    }
+
+    function filterHotlines() {
+      renderHotlines();
+    }
+
+    // Render Personnel Directory
+    function renderEmployeeTable() {
+      const tbody = document.getElementById('employeeTableBody');
+      const cardsMobile = document.getElementById('employeeCardsMobile');
+      if (!tbody && !cardsMobile) return;
+
+      if (tbody) tbody.innerHTML = '';
+      if (cardsMobile) cardsMobile.innerHTML = '';
+
+      liveDirectoryData.forEach(emp => {
+        if (tbody) {
+          const row = document.createElement('tr');
+          row.className = "hover:bg-iceBg/60 transition-colors";
+          row.innerHTML = `
+            <td class="p-2.5 font-bold text-midnight">${emp.role || '—'}</td>
+            <td class="p-2.5 text-cobalt font-semibold">${emp.agency || '—'}</td>
+            <td class="p-2.5 text-slateBlueText">${emp.station || '—'}</td>
+            <td class="p-2.5 text-midnight">${emp.focus || '—'}</td>
+            <td class="p-2.5 text-right font-mono text-cobaltDark font-semibold">${emp.contact || '—'}</td>
+          `;
+          tbody.appendChild(row);
+        }
+
+        if (cardsMobile) {
+          const mCard = document.createElement('div');
+          mCard.className = "bg-white p-3 rounded-xl border border-iceBorder text-xs space-y-1 shadow-sm";
+          mCard.innerHTML = `
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-midnight text-xs">${emp.role || '—'}</span>
+              <span class="text-[9px] bg-iceBg text-cobalt font-bold px-1.5 py-0.5 rounded border border-iceBorder">${emp.agency || '—'}</span>
+            </div>
+            <div class="text-[10px] text-slateBlueText"><i class="fa-solid fa-location-dot text-azure mr-1"></i> ${emp.station || '—'}</div>
+            <div class="text-[10px] text-slateBlueText font-medium">${emp.focus || '—'}</div>
+            <div class="pt-1 border-t border-iceBorder flex items-center justify-between text-[10px]">
+              <span class="text-slateBlueText">Official Contact:</span>
+              <span class="font-mono text-cobaltDark font-bold">${emp.contact || '—'}</span>
+            </div>
+          `;
+          cardsMobile.appendChild(mCard);
+        }
+      });
+    }
+
+    function switchOrgView(viewType) {
+      const chartView = document.getElementById('orgChartView');
+      const tableView = document.getElementById('orgTableView');
+      const chartBtn = document.getElementById('viewChartBtn');
+      const tableBtn = document.getElementById('viewTableBtn');
+
+      if (viewType === 'chart') {
+        chartView.classList.remove('hidden');
+        tableView.classList.add('hidden');
+        chartBtn.className = "px-3.5 sm:px-4 py-2 rounded-xl bg-midnight text-white shadow-sm transition-all flex items-center gap-1.5 min-h-[34px]";
+        tableBtn.className = "px-3.5 sm:px-4 py-2 rounded-xl text-slateBlueText hover:text-midnight transition-all flex items-center gap-1.5 min-h-[34px]";
+      } else {
+        chartView.classList.add('hidden');
+        tableView.classList.remove('hidden');
+        tableBtn.className = "px-3.5 sm:px-4 py-2 rounded-xl bg-midnight text-white shadow-sm transition-all flex items-center gap-1.5 min-h-[34px]";
+        chartBtn.className = "px-3.5 sm:px-4 py-2 rounded-xl text-slateBlueText hover:text-midnight transition-all flex items-center gap-1.5 min-h-[34px]";
+      }
+    }
+
+    // 6. INITIALIZATION
     window.addEventListener('DOMContentLoaded', () => {
       fetchPortalData();
     });
