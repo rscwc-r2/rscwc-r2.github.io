@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>RSCWC Region II | Regional Sub-Committee for the Welfare of Children - Cagayan Valley</title>
+  <title>RSCWC Region II | Cagayan Valley Child Welfare & Regional News Portal</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -62,7 +62,7 @@
       }
     }
 
-    /* Custom Blue Scrollbar */
+    /* Family of Blue Custom Scrollbar */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #f0f7ff; }
     ::-webkit-scrollbar-thumb { background: #93c5fd; border-radius: 4px; }
@@ -439,7 +439,7 @@
 
       <!-- Mobile About Us Subheadings -->
       <div class="pb-1">
-        <button onclick="toggleMobileAccordion('accAbout')" class="w-full flex items-center justify-between py-2 px-2 font-bold text-white hover:text-cyanGlow">
+        <button onclick="toggleMobileAccordion('accAbout')" class="w-full flex items-center justify-between py-2.5 px-2 font-bold text-white hover:text-cyanGlow">
           <span><i class="fa-solid fa-landmark text-cyanGlow mr-2"></i> About Us</span>
           <i id="accAboutIcon" class="fa-solid fa-chevron-down text-[10px] transition-transform"></i>
         </button>
@@ -458,7 +458,7 @@
   <!-- 4. BREAKING TICKER -->
   <div class="bg-navyDeep text-white text-xs py-1.5 border-b border-cobalt overflow-hidden shadow-inner">
     <div class="max-w-7xl mx-auto px-3 sm:px-4 flex items-center gap-2 sm:gap-3">
-      <span class="bg-cobalt text-white font-extrabold px-2.5 py-0.5 rounded text-[9px] sm:text-[10px] uppercase tracking-wider flex-shrink-0 flex items-center gap-1 shadow-sm border border-cyanGlow/40">
+      <span class="bg-cobalt text-white font-extrabold px-2 py-0.5 rounded text-[9px] sm:text-[10px] uppercase tracking-wider flex-shrink-0 flex items-center gap-1 shadow-sm border border-cyanGlow/40">
         <i class="fa-solid fa-tower-broadcast animate-bounce text-cyanGlow"></i> BULLETIN
       </span>
       <div class="overflow-hidden relative w-full whitespace-nowrap">
@@ -581,8 +581,8 @@
         <div class="flex items-center gap-1 sm:gap-1.5 bg-iceBg p-1 rounded-2xl text-xs font-semibold border border-iceBorder overflow-x-auto shadow-sm -mx-3 px-3 sm:mx-0 sm:px-1">
           <button onclick="filterHeadlines('ALL')" class="news-tab-btn active px-3 sm:px-3.5 py-1.5 rounded-xl bg-cobalt text-white shadow-sm transition-all whitespace-nowrap min-h-[34px] border border-cyanGlow/30" data-category="ALL">All Advisories</button>
           <button onclick="filterHeadlines('CFLGA')" class="news-tab-btn px-3 sm:px-3.5 py-1.5 rounded-xl text-slateBlueText hover:text-midnight transition-all whitespace-nowrap min-h-[34px]" data-category="CFLGA">CFLGA Governance</button>
-          <button onclick="filterHeadlines('EMERGENCY')" class="news-tab-btn px-3 sm:px-3.5 py-1.5 rounded-xl text-slateBlueText hover:text-midnight transition-all whitespace-nowrap min-h-[34px]" data-category="EMERGENCY">CEPC Floods/Disaster</button>
-          <button onclick="filterHeadlines('PROTECTION')" class="news-tab-btn px-3 sm:px-3.5 py-1.5 rounded-xl text-slateBlueText hover:text-midnight transition-all whitespace-nowrap min-h-[34px]" data-category="PROTECTION">Protection & Rights</button>
+          <button onclick="filterHeadlines('EMERGENCY')" class="news-tab-btn px-3 sm:px-4 py-1.5 rounded-xl text-slateBlueText hover:text-midnight transition-all whitespace-nowrap min-h-[34px]" data-category="EMERGENCY">CEPC Floods/Disaster</button>
+          <button onclick="filterHeadlines('PROTECTION')" class="news-tab-btn px-3 sm:px-4 py-1.5 rounded-xl text-slateBlueText hover:text-midnight transition-all whitespace-nowrap min-h-[34px]" data-category="PROTECTION">Protection & Rights</button>
         </div>
       </div>
 
@@ -1187,17 +1187,238 @@
     </div>
   </div>
 
-  <!-- 14. CORE JAVASCRIPT -->
+  <!-- 14. CORE JAVASCRIPT (PROPER ORDER: CONSTANTS DECLARED FIRST) -->
   <script>
+    // 1. API URL
     const GOOGLE_SHEET_API_URL = "https://script.google.com/macros/s/AKfycbxcC-crXI3I6Qwqe88mu9BebfyA53W38kU9ZTX5Kw-VOXPtgDQtoiby6NxRBrwZXr7GYw/exec";
 
+    // 2. DEFAULT FALLBACK DATA (Declared first to avoid ReferenceError)
+    const defaultHeadlines = [
+      {
+        id: "news-1",
+        category: "CFLGA",
+        title: "CFLGA 2026: Regional Validation of 93 LGUs Underway Across 5 Provinces",
+        date: "October 02, 2026",
+        source: "DILG RO2 & RSCWC Secretariat (Carig Sur)",
+        image: "https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=1200&auto=format&fit=crop",
+        summary: "The Regional Inter-Agency Monitoring Task Force (RIMTF) initiated on-site audits for 93 cities and municipalities across Cagayan Valley to validate the Seal of Child-Friendly Local Governance.",
+        content: "<p><strong>CARIG SUR, TUGUEGARAO CITY</strong> — The Regional Sub-Committee for the Welfare of Children (RSCWC Region II), in joint partnership with DILG Region II, has commenced the comprehensive validation cycle for the <strong>Child-Friendly Local Governance Audit (CFLGA) 2026</strong>.</p><p class='mt-2'>Covering 93 local government units across <strong>Cagayan, Isabela, Nueva Vizcaya, Quirino, and Batanes</strong>, the audit evaluates mandatory statutory indicators: 1% Internal Revenue Allotment (IRA) earmarked for the Barangay Council for the Protection of Children (BCPC), fully functioning Child Development Centers, functional Local Councils for the Protection of Children (LCPC), and localized juvenile diversion systems under RA 9344.</p>"
+      },
+      {
+        id: "news-2",
+        category: "EMERGENCY",
+        title: "CEPC Flood Protocol: Child-Friendly Evacuation Spaces Activated Along Cagayan Basin",
+        date: "September 29, 2026",
+        source: "DSWD FO2 Disaster Response & PDRRMOs",
+        image: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=1200&auto=format&fit=crop",
+        summary: "In compliance with RA 10821, child-friendly spaces, trauma play kits, and mother-baby lactation tents have been prepositioned in 42 flood-prone river basin municipalities.",
+        content: "<p><strong>REGIONAL GOVERNMENT CENTER, TUGUEGARAO</strong> — Following water level advisories on the Cagayan River and Magat Reservoir, the RSCWC activated the <strong>Comprehensive Emergency Program for Children (CEPC - Republic Act 10821)</strong>.</p><p class='mt-2'>Child-Friendly Spaces (CFS) and emergency infant nutritional kits have been staged in designated multi-purpose evacuation shelters across low-lying areas of Cagayan and Isabela.</p>"
+      },
+      {
+        id: "news-3",
+        category: "PROTECTION",
+        title: "Anti-OSAEC Taskforce Conducts Regional Cyber-Safety Drives in Nueva Vizcaya & Quirino",
+        date: "September 24, 2026",
+        source: "PNP PRO2 WCPD & RACU 2",
+        image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1200&auto=format&fit=crop",
+        summary: "Regional taskforce enforces RA 11930 against Online Sexual Abuse and Exploitation of Children through high school symposiums and cafe compliance sweeps.",
+        content: "<p><strong>BAYOMBONG, NUEVA VIZCAYA</strong> — The RSCWC Inter-Agency Committee, joined by the PNP Regional Anti-Cybercrime Unit 2 (RACU 2) and PNP PRO2 WCPD, conducted multi-school child protection symposiums reaching 4,200 junior and senior high school students.</p>"
+      }
+    ];
+
+    const defaultHotlines = [
+      {
+        id: "cmd-1",
+        province: "REGIONAL",
+        provinceLabel: "Regional Command",
+        office: "DSWD Field Office 02 (RSCWC Secretariat)",
+        jurisdiction: "All 5 Provinces (Region II)",
+        station: "Regional Government Center, Carig Sur, Tuguegarao City",
+        phoneText: "(078) 304-1004 / 304-0586",
+        phoneTel: "0783041004",
+        altPhone: "0917-810-2344",
+        email: "fo2@dswd.gov.ph",
+        focus: "Executive Child Policy, Statutory Custody, CEPC Emergency Prepositioning"
+      },
+      {
+        id: "cmd-2",
+        province: "REGIONAL",
+        provinceLabel: "Regional Command",
+        office: "PNP Police Regional Office 2 (PRO2) WCPD",
+        jurisdiction: "All 5 Provinces (Region II)",
+        station: "Camp Marcelo A. Adduru, Tuguegarao City",
+        phoneText: "0917-812-3150 / (078) 304-1221",
+        phoneTel: "09178123150",
+        altPhone: "0998-598-7890",
+        email: "pro2_wcpd@pnp.gov.ph",
+        focus: "Regional Anti-Trafficking, Minor Rescue Operations, Anti-OSAEC RA 11930"
+      },
+      {
+        id: "cag-1",
+        province: "CAGAYAN",
+        provinceLabel: "Cagayan Province",
+        office: "PSWDO Cagayan (Provincial Social Welfare)",
+        jurisdiction: "28 Municipalities & Tuguegarao City",
+        station: "Capitol Hills, Tuguegarao City",
+        phoneText: "(078) 304-1875 / 0917-542-8800",
+        phoneTel: "0783041875",
+        altPhone: "0926-440-1922",
+        email: "pswdo@cagayan.gov.ph",
+        focus: "PCPC Oversight, Cagayan River Basin Child Relief, BCPC Accreditation"
+      },
+      {
+        id: "isa-1",
+        province: "ISABELA",
+        provinceLabel: "Isabela Province",
+        office: "PSWDO Isabela (Provincial Social Welfare)",
+        jurisdiction: "34 Municipalities, Ilagan & Santiago Cities",
+        station: "Capitol Complex, Alibagu, City of Ilagan",
+        phoneText: "(078) 323-0173 / 0917-622-4411",
+        phoneTel: "0783230173",
+        altPhone: "0927-550-1844",
+        email: "pswdo@isabela.gov.ph",
+        focus: "Isabela Bahay Pag-asa, 34 Municipal BCPCs, Daycare Training Center"
+      },
+      {
+        id: "nv-1",
+        province: "NUEVA_VIZCAYA",
+        provinceLabel: "Nueva Vizcaya",
+        office: "PSWDO Nueva Vizcaya",
+        jurisdiction: "15 Municipalities",
+        station: "Capitol Compound, Bayombong",
+        phoneText: "(078) 321-2551 / 0917-548-1199",
+        phoneTel: "0783212551",
+        altPhone: "0926-788-3310",
+        email: "pswdo@nuevavizcaya.gov.ph",
+        focus: "Indigenous Children Rights, Bahay Pag-asa Bayombong, CFLGA Lead"
+      },
+      {
+        id: "qui-1",
+        province: "QUIRINO",
+        provinceLabel: "Quirino Province",
+        office: "PSWDO Quirino",
+        jurisdiction: "6 Municipalities",
+        station: "Capitol Hills, Cabarroguis",
+        phoneText: "0917-548-2910 / (078) 692-5034",
+        phoneTel: "09175482910",
+        altPhone: "0927-440-2811",
+        email: "pswdo@quirinoprovince.gov.ph",
+        focus: "Upland Child Development Centers, Adolescent Counseling"
+      },
+      {
+        id: "bat-1",
+        province: "BATANES",
+        provinceLabel: "Batanes Province",
+        office: "PSWDO Batanes",
+        jurisdiction: "6 Island Municipalities",
+        station: "Provincial Capitol Building, Basco",
+        phoneText: "0999-883-4921 / (078) 533-3456",
+        phoneTel: "09998834921",
+        altPhone: "0918-922-1088",
+        email: "pswdo@batanes.gov.ph",
+        focus: "Island Child Protection Desks, Ivatan Cultural Safeguards"
+      }
+    ];
+
+    const defaultDirectory = [
+      {
+        role: "RSCWC Regional Chairperson",
+        agency: "DSWD Field Office 02",
+        station: "Regional Gov Center, Carig Sur, Tuguegarao",
+        focus: "Executive Regional Policy & Inter-Agency Coordination",
+        contact: "(078) 304-1004 / fo2@dswd.gov.ph"
+      },
+      {
+        role: "RSCWC Regional Co-Chairperson",
+        agency: "DILG Regional Office 02",
+        station: "Regional Gov Center, Carig Sur, Tuguegarao",
+        focus: "LGU Child-Friendly Governance Audit (CFLGA) Oversight",
+        contact: "(078) 304-1244 / r2@dilg.gov.ph"
+      },
+      {
+        role: "RSCWC Secretariat Head",
+        agency: "DSWD FO2 Protective Services",
+        station: "DSWD FO2 Complex, Carig Sur, Tuguegarao",
+        focus: "Statutory Case Custody, CEPC Response & Licensing",
+        contact: "(078) 304-1004 loc. 201"
+      },
+      {
+        role: "Regional Child Rights Focal Person",
+        agency: "DSWD FO2 Child Protection Desk",
+        station: "Carig Sur, Tuguegarao City",
+        focus: "RPAC 2023–2028 Implementation & Makabata 1383",
+        contact: "rscwc.fo2@dswd.gov.ph"
+      }
+    ];
+
+    const aboutData = {
+      mandate: {
+        title: "Mandate & Legal Basis",
+        html: "<p>The <strong>Regional Sub-Committee for the Welfare of Children (RSCWC)</strong> was instituted by virtue of <strong>Executive Order No. 233</strong> as the regional mechanism of the <strong>Council for the Welfare of Children (CWC)</strong>.</p><p class='mt-2'>RSCWC Region II coordinates, monitors, and evaluates the implementation of all child rights laws, policies, and welfare programs across the provinces of <strong>Cagayan, Isabela, Nueva Vizcaya, Quirino, and Batanes</strong>.</p>"
+      },
+      vision: {
+        title: "Vision, Mission & Core Values",
+        html: "<div class='space-y-2'><div><strong class='text-midnight text-xs block'>Vision</strong><p class='text-slateBlueText'>A child-friendly Cagayan Valley where every child fully enjoys their rights to survival, development, protection, and participation.</p></div><div><strong class='text-midnight text-xs block'>Mission</strong><p class='text-slateBlueText'>To harmonize, steer, and advocate for child-focused policies, mobilize inter-agency collaboration, and empower LGUs to uphold quality standards.</p></div></div>"
+      },
+      charter: {
+        title: "Citizen's Charter & Service Standards",
+        html: "<p>In accordance with <strong>Republic Act No. 11032</strong> (Ease of Doing Business):</p><ul class='list-disc pl-5 space-y-1 mt-1.5'><li><strong>Hotline Intake:</strong> Validated and referred to respective PSWDOs within <strong>2 to 4 hours</strong>.</li><li><strong>LGU CFLGA Assistance:</strong> Technical guidance provided within <strong>3 business days</strong>.</li></ul>"
+      }
+    };
+
+    const programData = {
+      rpac: {
+        tag: "Roadmap 2023-2028",
+        title: "Regional Plan of Action for Children (RPAC)",
+        icon: "fa-map-location-dot",
+        bg: "bg-iceBg text-cobalt border border-iceBorder",
+        html: "<p>The <strong>RPAC Region II (2023-2028)</strong> represents the synchronized regionalization of the Philippine National Plan of Action for Children across Cagayan Valley.</p>"
+      },
+      cflga: {
+        tag: "DILG-CWC Joint MC",
+        title: "Child-Friendly Local Governance Audit (CFLGA)",
+        icon: "fa-award",
+        bg: "bg-iceBg text-azure border border-iceBorder",
+        html: "<p>Annual performance assessment for all 93 LGUs in Cagayan Valley evaluating child budget earmarks (1% IRA), daycare service ratios, and BCPC functionality.</p>"
+      },
+      cepc: {
+        tag: "Republic Act 10821",
+        title: "Comprehensive Emergency Program for Children (CEPC)",
+        icon: "fa-life-ring",
+        bg: "bg-iceGlacier/40 text-midnight border border-iceBorder",
+        html: "<p>Statutory protocol safeguarding minors during river basin flooding and typhoons with Child-Friendly Spaces and tracking.</p>"
+      },
+      osaec: {
+        tag: "Republic Act 11930",
+        title: "Anti-OSAEC & Anti-CSAEM Regional Taskforce",
+        icon: "fa-shield-virus",
+        bg: "bg-iceBg text-skyElectric border border-iceBorder",
+        html: "<p>Multi-agency enforcement against Online Sexual Abuse and Exploitation of Children across Region II.</p>"
+      },
+      eccd: {
+        tag: "Quality Standards",
+        title: "ECCD & Child Development Worker Accreditation",
+        icon: "fa-child-reaching",
+        bg: "bg-iceBg text-cobaltDark border border-iceBorder",
+        html: "<p>Ensuring quality early childhood care across 1,840+ Daycare Centers in Region II.</p>"
+      },
+      jjwa: {
+        tag: "RA 9344 / RA 10630",
+        title: "Makabata 1383 & Juvenile Justice (Bahay Pag-asa)",
+        icon: "fa-scale-balanced",
+        bg: "bg-iceBg text-azure border border-iceBorder",
+        html: "<p>Multi-agency diversion and counseling network for Children in Conflict with the Law (CICL).</p>"
+      }
+    };
+
+    // 3. INITIALIZE STATE (Now safe because defaults are defined above)
     let liveHeadlinesData = [...defaultHeadlines];
     let liveHotlinesData = [...defaultHotlines];
     let liveDirectoryData = [...defaultDirectory];
     let currentProvinceFilter = 'ALL';
-    let featuredHeadlineItem = null;
+    let featuredHeadlineItem = liveHeadlinesData[0];
 
-    // NAVIGATION CONTROLLERS
+    // 4. NAVIGATION CONTROLLERS
     function scrollToTop(e) {
       if (e) e.preventDefault();
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1208,9 +1429,7 @@
     function scrollToSection(id) {
       closeMobileMenu();
       const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
 
     function navigateAndFilterNews(category) {
@@ -1259,7 +1478,6 @@
       if (!el) return;
 
       const isOpen = el.classList.contains('open');
-      
       document.querySelectorAll('.accordion-content').forEach(acc => acc.classList.remove('open'));
       document.querySelectorAll('[id$="Icon"]').forEach(i => {
         if (i.id !== 'menuIcon') i.classList.remove('rotate-180');
@@ -1343,7 +1561,7 @@
       }
     });
 
-    // Fetch Portal Data
+    // 5. FETCH PORTAL DATA (LIVE GOOGLE APPS SCRIPT)
     async function fetchPortalData() {
       try {
         const response = await fetch(GOOGLE_SHEET_API_URL);
@@ -1352,7 +1570,7 @@
         if (data.hotlines && data.hotlines.length > 0) liveHotlinesData = data.hotlines;
         if (data.directory && data.directory.length > 0) liveDirectoryData = data.directory;
       } catch (error) {
-        console.warn("Could not fetch remote sheet data. Rendering preloaded fallback records:", error);
+        console.warn("Using preloaded records (CORS/offline fallback):", error);
       } finally {
         populateFirstWindowHero();
         renderHeadlines('ALL');
@@ -1663,7 +1881,7 @@
       }
     }
 
-    // Initialization
+    // 6. INITIALIZATION
     window.addEventListener('DOMContentLoaded', () => {
       fetchPortalData();
     });
