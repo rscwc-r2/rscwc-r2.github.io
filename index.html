@@ -26,22 +26,22 @@
       theme: {
         extend: {
           colors: {
-            oxford: '#041d4a',        // CWC Deep Emblem Midnight Blue
-            midnight: '#002f87',      // Primary CWC Official Royal Blue
-            navyDeep: '#0038a8',      // Official GovPH & CWC Seal Blue
-            navySurface: '#0d47a1',   // Elevated Card & Header Sapphire
-            cobaltDark: '#1251b5',    // Deep Sapphire Blue
-            cobalt: '#1a65d6',        // Primary Action Vibrant Royal Blue
-            cobaltHover: '#104ea8',   // Hover State Royal Blue
-            azure: '#0284c7',         // Sky Ocean Blue Accent
-            skyElectric: '#38bdf8',   // Light Sky Blue
-            cyanGlow: '#60a5fa',      // CWC Glow Blue & Highlight Tone
-            iceGlacier: '#dbeafe',    // Soft Emblem Glacier Tint
-            iceBorder: '#bfdbfe',     // Light Blue Border
-            iceBg: '#eff6ff',         // Soft Blue Surface Background
-            canvasBlue: '#f8faff',    // Clean Crisp Porcelain Blue Background
-            inkBlue: '#051937',       // High-Contrast Deep Navy Text
-            slateBlueText: '#2e4a70'  // Muted Body Slate Blue
+            oxford: '#0a2558',        // CWC Official Emblem Deep Blue
+            midnight: '#0f3b82',      // CWC Seal Outer Ring Royal Blue
+            navyDeep: '#164ea5',      // Medium Regional Command Blue
+            navySurface: '#1e5bc6',   // Elevated Card & Active Header Blue
+            cobaltDark: '#1d4ed8',    // Deep Cobalt Blue
+            cobalt: '#2563eb',        // Primary Official Action Blue
+            cobaltHover: '#1d4ed8',   // Hover State Cobalt
+            azure: '#0284c7',         // Child Silhouettes Vibrant Cerulean
+            skyElectric: '#0ea5e9',   // Emblem Sky Blue
+            cyanGlow: '#38bdf8',      // High-Contrast Accent Cyan
+            iceGlacier: '#bfdbfe',    // Soft Glacier Blue Tint
+            iceBorder: '#dbeafe',     // Light Blue Border
+            iceBg: '#f0f7ff',         // Pale Ice Surface Tint
+            canvasBlue: '#f8fbff',    // Clean Light Blue Background
+            inkBlue: '#0c2340',       // Deep Navy Primary Text
+            slateBlueText: '#334e68'  // Muted Body Slate Blue
           },
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
@@ -68,13 +68,13 @@
 
     /* Custom Blue Scrollbar */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #eff6ff; }
-    ::-webkit-scrollbar-thumb { background: #60a5fa; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #1a65d6; }
+    ::-webkit-scrollbar-track { background: #f0f7ff; }
+    ::-webkit-scrollbar-thumb { background: #93c5fd; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #2563eb; }
 
     /* Modal Backdrop Glass Effect */
     .modal-backdrop {
-      background: rgba(4, 29, 74, 0.88);
+      background: rgba(10, 37, 88, 0.88);
       backdrop-filter: blur(6px);
     }
 
@@ -104,7 +104,7 @@
   </style>
 </head>
 
-<body id="home" class="bg-canvasBlue text-inkBlue antialiased font-sans flex flex-col min-h-screen relative selection:bg-cyanGlow selection:text-white overflow-x-hidden">
+<body id="home" class="bg-canvasBlue text-inkBlue antialiased font-sans flex flex-col min-h-screen relative selection:bg-cyanGlow selection:text-oxford overflow-x-hidden">
 
   <!-- 1. TOP GOVPH BLUE BAR & LIVE PHILIPPINE STANDARD TIME (PST) -->
   <aside aria-label="Official GovPH Top Bar" class="bg-gradient-to-r from-oxford via-midnight to-navyDeep text-blue-100 text-[10px] sm:text-[11px] py-1.5 px-3 sm:px-4 border-b border-cyanGlow/20 z-50">
@@ -182,7 +182,7 @@
       <!-- Makabata 1383 Hotline -->
       <div class="hidden lg:flex items-center gap-3 flex-shrink-0">
         <a href="tel:1383" class="bg-gradient-to-r from-midnight via-navySurface to-cobalt text-white px-3.5 py-1.5 rounded-xl shadow border border-cyanGlow/40 hover:border-cyanGlow transition-all flex items-center gap-2.5 group">
-          <div class="w-7 h-7 rounded-lg bg-white text-midnight flex items-center justify-center text-xs font-bold shadow group-hover:scale-105 transition-transform">
+          <div class="w-7 h-7 rounded-lg bg-cyanGlow text-oxford flex items-center justify-center text-xs font-bold shadow group-hover:scale-105 transition-transform">
             <i class="fa-solid fa-phone-volume"></i>
           </div>
           <div class="text-left">
@@ -357,11 +357,46 @@
             </div>
           </div>
 
+          <!-- Subheading Group 6: Contact Us & Location -->
+          <div class="relative group">
+            <button onclick="openModal('contactModal')" class="hover:bg-navySurface hover:text-cyanGlow transition-colors px-3 py-2 flex items-center gap-1 border-b-2 border-transparent group-hover:border-cyanGlow">
+              <span>Contact Us</span>
+              <i class="fa-solid fa-chevron-down text-[10px] ml-0.5 opacity-80 group-hover:rotate-180 transition-transform"></i>
+            </button>
+            <div class="absolute left-0 top-full hidden group-hover:block w-72 bg-white text-slateBlueText rounded-b-2xl shadow-2xl border-t-2 border-cyanGlow border-x border-b border-iceBorder py-1.5 z-50">
+              <a href="javascript:void(0)" onclick="openModal('contactModal')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight flex items-center gap-1.5">
+                  <i class="fa-solid fa-map-location-dot text-cobalt"></i> Office Location & Map
+                </div>
+                <div class="text-[10px] text-slateBlueText">Carig Sur, Tuguegarao City HQ</div>
+              </a>
+              <a href="tel:1383" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors border-b border-iceBorder/60">
+                <div class="font-bold text-midnight flex items-center gap-1.5">
+                  <i class="fa-solid fa-phone text-azure"></i> Makabata 1383 Helpline
+                </div>
+                <div class="text-[10px] text-slateBlueText">24/7 Toll-free child abuse reporting</div>
+              </a>
+              <a href="javascript:void(0)" onclick="navigateAndFilterHotlines('REGIONAL')" class="block px-4 py-2 hover:bg-iceBg hover:text-cobalt transition-colors">
+                <div class="font-bold text-midnight flex items-center gap-1.5">
+                  <i class="fa-solid fa-address-book text-skyElectric"></i> Provincial Desks
+                </div>
+                <div class="text-[10px] text-slateBlueText">Direct lines across 5 provinces</div>
+              </a>
+            </div>
+          </div>
+
         </div>
 
-        <div class="text-xs text-white font-mono py-1.5 flex items-center gap-1.5 font-bold">
-          <i class="fa-solid fa-location-dot text-cyanGlow"></i> <span>RSCWC REGION II</span>
-        </div>
+        <!-- Taskbar Location Button & Pin -->
+        <button 
+          type="button" 
+          onclick="openModal('contactModal')" 
+          title="Click to view RSCWC Regional Office Location & Map" 
+          class="text-xs text-cyanGlow hover:text-white font-mono py-1.5 flex items-center gap-1.5 transition-colors cursor-pointer group"
+        >
+          <i class="fa-solid fa-location-dot animate-bounce text-skyElectric group-hover:text-white"></i> 
+          <span class="underline decoration-cyanGlow/40 underline-offset-4 group-hover:decoration-white">RSCWC REGION II</span>
+        </button>
 
       </div>
     </nav>
@@ -370,7 +405,7 @@
     <div id="mobileMenuDrawer" class="hidden lg:hidden bg-gradient-to-b from-oxford to-midnight text-white border-t border-cyanGlow/30 px-4 py-2.5 space-y-1.5 text-xs max-h-[82vh] overflow-y-auto">
       
       <a href="tel:1383" class="w-full bg-cobalt hover:bg-cobaltHover text-white p-2.5 rounded-xl font-bold flex items-center justify-center gap-2 mb-1.5 shadow border border-cyanGlow/40">
-        <i class="fa-solid fa-phone-volume text-white"></i>
+        <i class="fa-solid fa-phone-volume text-cyanGlow"></i>
         <span>CALL MAKABATA 1383 HOTLINE</span>
       </a>
 
@@ -441,7 +476,7 @@
       </div>
 
       <!-- Mobile About Us Subheadings -->
-      <div class="pb-1">
+      <div class="border-b border-navySurface pb-1">
         <button onclick="toggleMobileAccordion('accAbout')" class="w-full flex items-center justify-between py-2.5 px-2 font-bold text-white hover:text-cyanGlow">
           <span><i class="fa-solid fa-landmark text-cyanGlow mr-2"></i> About Us</span>
           <i id="accAboutIcon" class="fa-solid fa-chevron-down text-[10px] transition-transform"></i>
@@ -452,6 +487,28 @@
           <a href="javascript:void(0)" onclick="navigateAndSwitchOrg('chart'); closeMobileMenu();" class="block py-1 hover:text-cyanGlow">Organizational Structure</a>
           <a href="javascript:void(0)" onclick="navigateAndSwitchOrg('table'); closeMobileMenu();" class="block py-1 hover:text-cyanGlow">Officers & Personnel Directory</a>
           <a href="javascript:void(0)" onclick="openAboutModal('charter'); closeMobileMenu();" class="block py-1 hover:text-cyanGlow">Citizen's Charter</a>
+        </div>
+      </div>
+
+      <!-- Mobile Contact Us & Location Subheadings -->
+      <div class="pb-1">
+        <button onclick="toggleMobileAccordion('accContact')" class="w-full flex items-center justify-between py-2.5 px-2 font-bold text-white hover:text-cyanGlow">
+          <span><i class="fa-solid fa-map-location-dot text-cyanGlow mr-2"></i> Contact Us & Location</span>
+          <i id="accContactIcon" class="fa-solid fa-chevron-down text-[10px] transition-transform"></i>
+        </button>
+        <div id="accContact" class="accordion-content pl-6 space-y-1.5 text-[11px] text-blue-100 py-1">
+          <a href="javascript:void(0)" onclick="openModal('contactModal'); closeMobileMenu();" class="block py-1 hover:text-cyanGlow text-cyanGlow font-bold">
+            <i class="fa-solid fa-location-dot mr-1.5"></i> Regional HQ Location & Live Map
+          </a>
+          <a href="tel:0783041004" class="block py-1 hover:text-cyanGlow">
+            <i class="fa-solid fa-phone mr-1.5 text-cobalt"></i> DSWD FO2 Trunkline: (078) 304-1004
+          </a>
+          <a href="mailto:fo2@dswd.gov.ph" class="block py-1 hover:text-cyanGlow">
+            <i class="fa-solid fa-envelope mr-1.5 text-azure"></i> Email: fo2@dswd.gov.ph
+          </a>
+          <a href="javascript:void(0)" onclick="navigateAndFilterHotlines('ALL'); closeMobileMenu();" class="block py-1 hover:text-cyanGlow">
+            <i class="fa-solid fa-list-check mr-1.5 text-skyElectric"></i> Provincial Desks Directory
+          </a>
         </div>
       </div>
 
@@ -477,8 +534,8 @@
 
 <!-- 5. [FIRST WINDOW / HERO] HEADLINE & TOP NEWS HERO WINDOW -->
 <section id="news-hero" class="relative bg-gradient-to-r from-oxford via-midnight to-navyDeep text-white py-6 sm:py-8 lg:py-10 px-3 sm:px-4 overflow-hidden border-b-4 border-azure">
-  <!-- Dot pattern color -->
-  <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#60a5fa_1px,transparent_1px)] [background-size:24px_24px]"></div>
+  <!-- Dot pattern color: tuned to CWC vibrant blue -->
+  <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#2563eb_1px,transparent_1px)] [background-size:24px_24px]"></div>
     <div class="max-w-7xl mx-auto relative z-10">
       
       <div class="flex items-center justify-between mb-3 sm:mb-4">
@@ -514,7 +571,7 @@
             <p id="heroHeadlineSummary" class="text-xs text-blue-100 max-w-xl font-normal leading-relaxed line-clamp-2">
               The Regional Inter-Agency Monitoring Task Force (RIMTF) initiated on-site audits for 93 cities and municipalities across Cagayan Valley to validate the Seal of Child-Friendly Local Governance.
             </p>
-            <button id="heroHeadlineBtn" onclick="openFeaturedModal()" class="w-full sm:w-auto bg-cobalt hover:bg-cobaltHover text-white font-extrabold px-4 py-2 rounded-xl shadow transition-all flex items-center justify-center gap-1.5 text-xs whitespace-nowrap min-h-[38px] border border-cyanGlow/40">
+            <button id="heroHeadlineBtn" onclick="openFeaturedModal()" class="w-full sm:w-auto bg-cyanGlow hover:bg-skyElectric text-oxford font-extrabold px-4 py-2 rounded-xl shadow transition-all flex items-center justify-center gap-1.5 text-xs whitespace-nowrap min-h-[38px]">
               <span>Read Full Story</span>
               <i class="fa-solid fa-arrow-right text-xs"></i>
             </button>
@@ -527,8 +584,8 @@
           <div class="bg-white text-inkBlue rounded-2xl sm:rounded-3xl p-3.5 sm:p-4 shadow-xl border-2 border-iceGlacier flex-1 flex flex-col justify-between">
             <div>
               <div class="flex items-center justify-between border-b border-iceBorder pb-2 mb-2.5">
-                <span class="text-[10px] uppercase font-extrabold text-midnight tracking-wider flex items-center gap-1.5">
-                  <i class="fa-solid fa-tower-broadcast text-cobalt animate-pulse"></i> Regional Flash Updates
+                <span class="text-[10px] uppercase font-extrabold text-cobalt tracking-wider flex items-center gap-1.5">
+                  <i class="fa-solid fa-tower-broadcast text-skyElectric animate-pulse"></i> Regional Flash Updates
                 </span>
                 <span class="bg-iceBg text-cobalt font-bold text-[9px] px-2 py-0.5 rounded-full border border-iceBorder">
                   Region II
@@ -539,7 +596,7 @@
             </div>
 
             <div class="pt-2.5 border-t border-iceBorder flex items-center justify-between">
-              <a href="javascript:void(0)" onclick="scrollToSection('headlines-section')" class="text-cobalt hover:text-midnight font-bold text-xs flex items-center gap-1">
+              <a href="javascript:void(0)" onclick="scrollToSection('headlines-section')" class="text-cobalt hover:text-cobaltDark font-bold text-xs flex items-center gap-1">
                 <span>View Full News Archive</span>
                 <i class="fa-solid fa-chevron-right text-[10px]"></i>
               </a>
@@ -701,7 +758,7 @@
               Multi-sectoral master plan unifying DSWD, DepEd, DOH CVCHD, DILG, and NEDA across all 5 provinces to eliminate stunting and enhance juvenile protection.
             </p>
           </div>
-          <button onclick="openProgramModal('rpac')" class="mt-3.5 pt-2.5 border-t border-iceBorder text-xs font-bold text-cobalt hover:text-midnight flex items-center justify-between min-h-[34px]">
+          <button onclick="openProgramModal('rpac')" class="mt-3.5 pt-2.5 border-t border-iceBorder text-xs font-bold text-cobalt hover:text-cobaltDark flex items-center justify-between min-h-[34px]">
             <span>View RPAC Targets</span>
             <i class="fa-solid fa-arrow-right"></i>
           </button>
@@ -721,7 +778,7 @@
               Annual audit assessing all 93 LGUs on child budget earmarks (1% IRA), daycare service quality, and functional Barangay Councils for Children.
             </p>
           </div>
-          <button onclick="openProgramModal('cflga')" class="mt-3.5 pt-2.5 border-t border-iceBorder text-xs font-bold text-azure hover:text-midnight flex items-center justify-between min-h-[34px]">
+          <button onclick="openProgramModal('cflga')" class="mt-3.5 pt-2.5 border-t border-iceBorder text-xs font-bold text-azure hover:text-cobaltDark flex items-center justify-between min-h-[34px]">
             <span>Audit Mechanics & Tools</span>
             <i class="fa-solid fa-arrow-right"></i>
           </button>
@@ -761,7 +818,7 @@
               Coordinated action against Online Sexual Abuse and Exploitation of Children, aligning digital forensics with PNP RACU 2 and school campaigns.
             </p>
           </div>
-          <button onclick="openProgramModal('osaec')" class="mt-3.5 pt-2.5 border-t border-iceBorder text-xs font-bold text-cobalt hover:text-midnight flex items-center justify-between min-h-[34px]">
+          <button onclick="openProgramModal('osaec')" class="mt-3.5 pt-2.5 border-t border-iceBorder text-xs font-bold text-skyElectric hover:text-azure flex items-center justify-between min-h-[34px]">
             <span>Taskforce Directives</span>
             <i class="fa-solid fa-arrow-right"></i>
           </button>
@@ -801,7 +858,7 @@
               Case intake and diversion coordination for Children in Conflict with the Law (CICL) across provincial Bahay Pag-asa facilities.
             </p>
           </div>
-          <button onclick="openProgramModal('jjwa')" class="mt-3.5 pt-2.5 border-t border-iceBorder text-xs font-bold text-azure hover:text-midnight flex items-center justify-between min-h-[34px]">
+          <button onclick="openProgramModal('jjwa')" class="mt-3.5 pt-2.5 border-t border-iceBorder text-xs font-bold text-azure hover:text-cobaltDark flex items-center justify-between min-h-[34px]">
             <span>Diversion Guidelines</span>
             <i class="fa-solid fa-arrow-right"></i>
           </button>
@@ -849,8 +906,8 @@
           <div class="bg-iceBg border-2 border-cobalt/30 rounded-2xl p-3.5 sm:p-4 shadow-sm text-left relative">
             <span class="absolute top-2.5 right-2.5 bg-cobalt text-white font-bold text-[9px] px-2 py-0.5 rounded-full">CHAIRPERSON</span>
             <div class="flex items-center gap-2.5">
-              <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl bg-midnight text-white flex items-center justify-center font-bold text-base sm:text-lg shadow flex-shrink-0">
-                <i class="fa-solid fa-user-tie text-cyanGlow"></i>
+              <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl bg-midnight text-cyanGlow flex items-center justify-center font-bold text-base sm:text-lg shadow flex-shrink-0">
+                <i class="fa-solid fa-user-tie"></i>
               </div>
               <div>
                 <h4 class="text-xs sm:text-sm font-bold text-midnight">Regional Director, DSWD Field Office 02</h4>
@@ -924,7 +981,7 @@
           <h4 class="font-bold text-midnight text-xs sm:text-sm">RSCWC Region II Institutional Personnel & Desk Directory</h4>
           <p class="text-[10px] sm:text-[11px] text-slateBlueText mt-0.5">Live registry retrieved from Google Sheets.</p>
         </div>
-        <div class="text-cobalt font-mono text-[10px] sm:text-[11px] bg-white px-2.5 py-0.5 rounded-full border border-iceBorder font-bold">GovPH R2 Registry</div>
+        <div class="text-cobalt font-mono text-[10px] sm:text-[11px] bg-white px-2.5 py-0.5 rounded-full border border-iceBorder">GovPH R2 Registry</div>
       </div>
 
       <!-- Desktop Tabular Layout -->
@@ -978,7 +1035,7 @@
             <div class="mt-2.5 text-[10px] text-slateBlueText font-mono">PDF • 4.2 MB • CWC Approved</div>
           </div>
           <div class="mt-3.5 pt-2.5 border-t border-iceBorder">
-            <a href="assets/docs/RPAC_Region2_2023-2028_Framework.pdf" download class="w-full text-xs font-bold text-cobalt hover:text-midnight flex items-center justify-between min-h-[38px]">
+            <a href="assets/docs/RPAC_Region2_2023-2028_Framework.pdf" download="RPAC_Region2_2023-2028_Framework.pdf" class="w-full text-xs font-bold text-cobalt hover:text-cobaltDark flex items-center justify-between min-h-[38px]">
               <span>Download Official RPAC Manual</span>
               <i class="fa-solid fa-download"></i>
             </a>
@@ -998,7 +1055,7 @@
             <div class="mt-2.5 text-[10px] text-slateBlueText font-mono">DOCX / XLSX • 2.8 MB • DILG-CWC Joint</div>
           </div>
           <div class="mt-3.5 pt-2.5 border-t border-iceBorder">
-            <a href="assets/docs/CFLGA_2026_Audit_Indicators_R2.xlsx" download class="w-full text-xs font-bold text-azure hover:text-midnight flex items-center justify-between min-h-[38px]">
+            <a href="assets/docs/CFLGA_2026_Audit_Indicators_R2.xlsx" download="CFLGA_2026_Audit_Indicators_R2.xlsx" class="w-full text-xs font-bold text-azure hover:text-cobaltDark flex items-center justify-between min-h-[38px]">
               <span>Download CFLGA Verification Tool</span>
               <i class="fa-solid fa-download"></i>
             </a>
@@ -1008,7 +1065,7 @@
         <!-- Doc 3: CEPC -->
         <div class="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-iceBorder shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
           <div>
-            <div class="w-9 h-9 rounded-2xl bg-iceBg text-cobalt flex items-center justify-center font-bold text-base mb-3 border border-iceBorder">
+            <div class="w-9 h-9 rounded-2xl bg-iceBg text-skyElectric flex items-center justify-center font-bold text-base mb-3 border border-iceBorder">
               <i class="fa-solid fa-file-shield"></i>
             </div>
             <h4 class="text-sm font-bold text-midnight">CEPC RA 10821 Flood Guidelines</h4>
@@ -1018,7 +1075,7 @@
             <div class="mt-2.5 text-[10px] text-slateBlueText font-mono">PDF • 3.1 MB • DSWD FO2 Disaster Desk</div>
           </div>
           <div class="mt-3.5 pt-2.5 border-t border-iceBorder">
-            <a href="assets/docs/CEPC_RA10821_Cagayan_Basin_Guidelines.pdf" download class="w-full text-xs font-bold text-cobalt hover:text-midnight flex items-center justify-between min-h-[38px]">
+            <a href="assets/docs/CEPC_RA10821_Cagayan_Basin_Guidelines.pdf" download="CEPC_RA10821_Cagayan_Basin_Guidelines.pdf" class="w-full text-xs font-bold text-cobalt hover:text-cobaltDark flex items-center justify-between min-h-[38px]">
               <span>Download CEPC Flood SOP</span>
               <i class="fa-solid fa-download"></i>
             </a>
@@ -1110,6 +1167,103 @@
   </footer>
 
   <!-- 13. MODALS -->
+  <!-- Contact Us & Location Modal with Google Map -->
+  <div id="contactModal" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white rounded-2xl sm:rounded-3xl max-w-3xl w-full p-4 sm:p-5 shadow-2xl border border-iceBorder max-h-[92vh] overflow-y-auto">
+      
+      <div class="flex items-center justify-between border-b border-iceBorder pb-2.5 mb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-xl bg-iceBg text-cobalt flex items-center justify-center text-sm shadow-sm border border-iceBorder flex-shrink-0">
+            <i class="fa-solid fa-map-location-dot"></i>
+          </div>
+          <div>
+            <span class="text-[9px] uppercase font-bold text-cobalt tracking-wider font-mono">Contact Us & Official Office Location</span>
+            <h3 class="text-sm sm:text-base font-extrabold text-midnight">RSCWC Region II Secretariat Headquarters</h3>
+          </div>
+        </div>
+        <button onclick="closeModal('contactModal')" aria-label="Close Modal" class="text-slateBlueText hover:text-midnight p-1 text-lg min-w-[32px] min-h-[32px] flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Interactive Embedded Google Map -->
+      <div class="w-full h-56 sm:h-72 rounded-2xl overflow-hidden border border-iceBorder shadow-inner mb-3.5 bg-iceBg">
+        <iframe 
+          title="DSWD Field Office 02 Regional Government Center Map"
+          src="https://www.google.com/maps?q=DSWD+Field+Office+02+Carig+Sur+Tuguegarao+City&output=embed" 
+          width="100%" 
+          height="100%" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <!-- Contact Information Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+        <div class="bg-iceBg p-3 rounded-xl border border-iceBorder space-y-1">
+          <div class="text-[10px] font-bold text-cobalt uppercase tracking-wider flex items-center gap-1.5">
+            <i class="fa-solid fa-building-columns"></i> Physical Address
+          </div>
+          <p class="font-bold text-midnight leading-tight text-xs">
+            DSWD Field Office 02 (RSCWC Secretariat)
+          </p>
+          <p class="text-slateBlueText text-[11px] leading-relaxed">
+            Regional Government Center, Carig Sur, Tuguegarao City, Cagayan Valley, 3500
+          </p>
+          <div class="text-[10px] text-slateBlueText/80 font-mono pt-0.5">
+            Coordinates: 17.6534° N, 121.7505° E
+          </div>
+        </div>
+
+        <div class="bg-iceBg p-3 rounded-xl border border-iceBorder space-y-1.5">
+          <div class="text-[10px] font-bold text-azure uppercase tracking-wider flex items-center gap-1.5">
+            <i class="fa-solid fa-phone-volume"></i> Telecommunications & Desks
+          </div>
+          <div class="flex items-center justify-between text-[11px]">
+            <span class="text-slateBlueText">Direct Trunklines:</span>
+            <span class="font-mono font-bold text-midnight">(078) 304-1004 / 304-0586</span>
+          </div>
+          <div class="flex items-center justify-between text-[11px]">
+            <span class="text-slateBlueText">Child Rights Focal:</span>
+            <span class="font-mono font-semibold text-cobalt">Loc. 201</span>
+          </div>
+          <div class="flex items-center justify-between text-[11px] border-t border-iceBorder pt-1">
+            <span class="text-slateBlueText">Official Email:</span>
+            <a href="mailto:fo2@dswd.gov.ph" class="font-mono text-azure hover:underline">fo2@dswd.gov.ph</a>
+          </div>
+          <div class="flex items-center justify-between text-[11px]">
+            <span class="text-slateBlueText">24/7 Hotline:</span>
+            <span class="font-mono text-red-600 font-bold">Makabata 1383 (Toll-Free)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="mt-4 pt-3 border-t border-iceBorder flex flex-col xs:flex-row items-center justify-between gap-2">
+        <a 
+          href="https://maps.google.com/?cid=5455840075204436322" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="w-full xs:w-auto text-xs text-cobalt hover:text-cobaltDark font-bold flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-xl bg-iceBg border border-iceBorder hover:bg-iceGlacier transition-colors"
+        >
+          <span>Open in Google Maps App</span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+        </a>
+        <div class="flex items-center gap-2 w-full xs:w-auto">
+          <button onclick="closeModal('contactModal'); navigateAndFilterHotlines('ALL');" class="flex-1 xs:flex-initial bg-white border border-iceBorder hover:bg-iceBg text-midnight font-bold px-3 py-1.5 rounded-xl text-xs transition-colors min-h-[34px]">
+            View 5-Province Directory
+          </button>
+          <button onclick="closeModal('contactModal')" class="flex-1 xs:flex-initial bg-midnight hover:bg-oxford text-white font-bold px-3.5 py-1.5 rounded-xl text-xs transition-colors min-h-[34px]">
+            Close Window
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- About Us Details Modal -->
   <div id="aboutModal" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-3 sm:p-4">
     <div class="bg-white rounded-2xl sm:rounded-3xl max-w-2xl w-full p-4 sm:p-5 shadow-2xl border border-iceBorder max-h-[90vh] overflow-y-auto">
@@ -1676,7 +1830,7 @@
           </div>
           <div class="mt-3 pt-2.5 border-t border-iceBorder flex items-center justify-between text-xs">
             <span class="text-[10px] text-slateBlueText truncate max-w-[140px]">${item.source || ''}</span>
-            <button onclick="openNewsModal('${item.id}')" class="font-bold text-cobalt hover:text-midnight flex items-center gap-1.5 min-h-[32px]">
+            <button onclick="openNewsModal('${item.id}')" class="font-bold text-cobalt hover:text-cobaltDark flex items-center gap-1.5 min-h-[32px]">
               Read Advisory <i class="fa-solid fa-arrow-right text-[10px]"></i>
             </button>
           </div>
